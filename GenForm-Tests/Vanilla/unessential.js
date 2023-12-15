@@ -1,18 +1,20 @@
-const genform = module.exports = {};
+const genform = (module.exports = {})
 
 // PARTIE ESTHETIQUE
-const addChar = function(textarea, text) {
-    let i = 0;
-    const interval = setInterval(function() {
-        textarea.value += text[i];
-        i++;
+const addChar = function (textarea, text) {
+    let i = 0
+    const interval = setInterval(function () {
+        textarea.value += text[i]
+        i++
         if (i == text.length) {
-            clearInterval(interval);
+            clearInterval(interval)
         }
-    }, 1);
+    }, 1)
 }
 
-addChar(document.getElementById("changeform"), `{
+addChar(
+    document.getElementById('changeform'),
+    `{
     "elems": [
         {
             "type": "text",
@@ -40,38 +42,38 @@ addChar(document.getElementById("changeform"), `{
         "action": "/login",
         "method": "POST"
     }
-}`);
+}`
+)
 
 // PARTIE AUTO GEN
 genform.toForm(document, {
-    "elems" : [
+    elems: [
         {
-            "type" : "text",
-            "name" : "name",
-            "placeholder" : "Name"
+            type: 'text',
+            name: 'name',
+            placeholder: 'Name'
         },
         {
-            "type" : "email",
-            "name" : "email",
-            "placeholder" : "Email"
+            type: 'email',
+            name: 'email',
+            placeholder: 'Email'
         },
         {
-            "type" : "password",
-            "name" : "password",
-            "placeholder" : "Password"
+            type: 'password',
+            name: 'password',
+            placeholder: 'Password'
         },
         {
-            "type" : "submit",
-            "value" : "Submit"
+            type: 'submit',
+            value: 'Submit'
         }
     ],
-    "params" : {
-        "action" : "/register",
-        "method" : "POST"
+    params: {
+        action: '/register',
+        method: 'POST'
     }
-});
+})
 
 /* Code pour inclure dès le chargement de la page
 formInHtml = document.getElementById("genform");
 formInHtml.appendChild(form);*/
-

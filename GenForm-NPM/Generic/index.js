@@ -126,19 +126,19 @@ Different attributes:
  * @returns The InnerHTML of the form containing the elements listed in the object
  */
 
-exports.toForm = function(document, obj) {
-    const form = document.createElement("form");
-    form.setAttribute("action", obj.params.action);
-    form.setAttribute("method", obj.params.method);
-    obj.elems.forEach(elem => {
-        const element = document.createElement("input");
-        const keys = Object.keys(elem);
+exports.toForm = function (document, obj) {
+    const form = document.createElement('form')
+    form.setAttribute('action', obj.params.action)
+    form.setAttribute('method', obj.params.method)
+    obj.elems.forEach((elem) => {
+        const element = document.createElement('input')
+        const keys = Object.keys(elem)
         for (const key in keys) {
-            element.setAttribute(keys[key], elem[keys[key]]);
+            element.setAttribute(keys[key], elem[keys[key]])
         }
-        form.appendChild(element);
-    });
-    return form;
+        form.appendChild(element)
+    })
+    return form
 }
 
 /*TODO: Parser de form html into json
