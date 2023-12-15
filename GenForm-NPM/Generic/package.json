@@ -1,0 +1,20 @@
+{
+  "name": "@jathoosh/genform",
+  "version": "1.0.0",
+  "description": "A form generator using JS based on a JSON object",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "lint": "eslint ../../.eslintrc.js"
+  },
+  "keywords": [
+    "form-generator",
+    "form"
+  ],
+  "author": "Jathoosh",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "3.1.1"
+  }
+}
