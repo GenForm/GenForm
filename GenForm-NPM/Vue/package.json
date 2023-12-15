@@ -1,0 +1,20 @@
+{
+  "name": "@genform/vue",
+  "version": "0.0.1",
+  "description": "A form generator using JS based on a JSON object for Vue projects",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js",
+    "lint": "eslint ../../.eslintrc.js"
+  },
+  "keywords": [
+    "form-generator",
+    "form"
+  ],
+  "author": "GenForm",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.55.0",
+    "prettier": "3.1.1"
+  }
+}

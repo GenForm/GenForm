@@ -1,7 +1,7 @@
 {
-  "name": "@jathoosh/genform",
-  "version": "1.0.0",
-  "description": "A form generator using JS based on a JSON object",
+  "name": "@genform/react",
+  "version": "0.0.1",
+  "description": "A form generator using JS based on a JSON object for React projects",
   "main": "index.js",
   "scripts": {
     "test": "node index.js",
@@ -11,7 +11,7 @@
     "form-generator",
     "form"
   ],
-  "author": "Jathoosh",
+  "author": "GenForm",
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.55.0",

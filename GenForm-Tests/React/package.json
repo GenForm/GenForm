@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "@genform/vanilla": "^1.0.5"
+    "@genform/react": "^0.0.1"
   },
   "scripts": {
     "test": "npm i && nodemon app.js",
