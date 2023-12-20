@@ -3,3 +3,5 @@ GenForm-NPM/*/node_modules
 
 # GenForm-Tests
 GenForm-Tests/*/node_modules
+
+/.idea
