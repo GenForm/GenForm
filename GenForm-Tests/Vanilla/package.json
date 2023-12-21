@@ -1,7 +1,5 @@
 {
-  "dependencies": {
-    "@genform/vanilla": "^1.0.5"
-  },
+  "dependencies": {},
   "scripts": {
     "test": "npm i && nodemon app.js",
     "lint": "eslint ../../.eslintrc.js"

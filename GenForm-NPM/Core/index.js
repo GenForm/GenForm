@@ -7,20 +7,20 @@ Structure of the object :
             "name": "username",
             "label": "Username",
             "placeholder": "Enter your username",
-            "required": true,
+            "required": "true"
         },
         {
             "type": "password",
             "name": "password",
             "label": "Password",
             "placeholder": "Enter your password",
-            "required": true
+            "required": "true"
         },
         {
             "type": "checkbox",
             "name": "remember",
             "label": "Remember me",
-            "required": false
+            "required": "false"
         },
         {
             "type": "submit",

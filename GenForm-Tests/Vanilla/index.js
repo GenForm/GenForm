@@ -1,6 +1,7 @@
 /*TODO: We can't use require because node modules are not supported natively in the browser. 
 We need to pass by webpack or browserify or adjust our node modules to be directly compatible with the browser.
 const genform = require("@jathoosh/genform"); */
+const module = {}
 const genform = (module.exports = {})
 
 genform.toForm = function (document, obj) {
@@ -18,6 +19,7 @@ genform.toForm = function (document, obj) {
     return form
 }
 
+// Is used in a button onclick event in index.html
 // eslint-disable-next-line no-unused-vars
 function changeForm() {
     const json = document.getElementById('changeform').value
