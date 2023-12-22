@@ -6,7 +6,7 @@ const addChar = function (textarea, text) {
     const interval = setInterval(function () {
         textarea.value += text[i]
         i++
-        if (i == text.length) {
+        if (i === text.length) {
             clearInterval(interval)
         }
     }, 1)
