@@ -1,9 +1,8 @@
-import React from 'react';
-import GenFormComponent from './GenFormComponent' // Replace 'your-package-name' with the actual package name
 import './App.css';
+import GenForm from '@genform/react';
 
 function App() {
-  const customElems = [
+    const customElems = [
         {
           type: 'text',
           name: 'name',
@@ -29,14 +28,13 @@ function App() {
         action: '/register',
         method: 'POST',
       }
-
   return (
-      <div className="App">
-        <header className="App-header">
-          <GenFormComponent elems={customElems} params={customParams} />
-        </header>
-      </div>
-);
+    <div className="App">
+      <header className="App-header">
+        <GenForm elems={customElems} params={customParams}/>
+      </header>
+    </div>
+  );
 }
 
 export default App;
