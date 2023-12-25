@@ -103,7 +103,7 @@ Different attributes:
  */
 
 class GenForm {
-    constructor() { }
+    constructor() {}
 }
 
 /**
