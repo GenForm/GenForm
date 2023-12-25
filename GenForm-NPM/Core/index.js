@@ -98,6 +98,10 @@ Different attributes:
 ]
 */
 
+class GenForm {
+    constructor() {}
+}
+
 /**
  * @typedef {Object} inputElem
  * @property {String} type The type of the input
@@ -126,11 +130,11 @@ Different attributes:
  * @returns The InnerHTML of the form containing the elements listed in the object
  */
 
-exports.toForm = function (document, obj) {
+GenForm.toForm = function (document, obj) {
     const form = document.createElement('form')
     form.setAttribute('action', obj.params.action)
     form.setAttribute('method', obj.params.method)
-    obj.elems.forEach((elem) => {
+    obj.elems.forEach(function (elem) {
         const element = document.createElement('input')
         const keys = Object.keys(elem)
         for (const key in keys) {
@@ -160,3 +164,5 @@ genform.toJson = function(formInHtml) {
     }
     return form;
 }*/
+
+export default GenForm

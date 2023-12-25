@@ -1,26 +1,8 @@
-/*TODO: We can't use require because node modules are not supported natively in the browser. 
-We need to pass by webpack or browserify or adjust our node modules to be directly compatible with the browser.
-const genform = require("@jathoosh/genform"); */
-const module = {}
-const genform = (module.exports = {})
+import genform from 'https://unpkg.com/@genform/core@0.0.4/index.min.js'
 
-genform.toForm = function (document, obj) {
-    const form = document.createElement('form')
-    form.setAttribute('action', obj.params.action)
-    form.setAttribute('method', obj.params.method)
-    obj.elems.forEach((elem) => {
-        const element = document.createElement('input')
-        const keys = Object.keys(elem)
-        for (const key in keys) {
-            element.setAttribute(keys[key], elem[keys[key]])
-        }
-        form.appendChild(element)
-    })
-    return form
-}
+const submitButton = document.getElementById('submit')
+submitButton.addEventListener('click', changeForm)
 
-// Is used in a button onclick event in index.html
-// eslint-disable-next-line no-unused-vars
 function changeForm() {
     const json = document.getElementById('changeform').value
     const obj = JSON.parse(json)
