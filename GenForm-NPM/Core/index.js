@@ -98,8 +98,12 @@ Different attributes:
 ]
 */
 
+/**
+ * This class will contain all the functions to generate and manipulate forms
+ */
+
 class GenForm {
-    constructor() {}
+    constructor() { }
 }
 
 /**
