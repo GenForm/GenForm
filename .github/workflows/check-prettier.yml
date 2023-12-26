@@ -18,7 +18,7 @@ jobs:
           node-version: 16
 
       - name: change directory
-        run: cd '/GenFom-NPM/Core/'
+        run: cd '/GenForm-NPM/Core/'
 
       - name: Install dependencies
         run: npm install
