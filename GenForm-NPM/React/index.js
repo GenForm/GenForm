@@ -11,11 +11,12 @@ function GenFormComponent({ elems, params }) {
         })
 
         if (formRef.current) {
+            formRef.current.innerHTML = ''
             formRef.current.appendChild(generatedForm)
         }
     }, [elems, params])
 
-    return <div ref={formRef}></div>
+    return React.createElement('div', { ref: formRef })
 }
 
 export default GenFormComponent

@@ -1,5 +1,5 @@
 import './App.css'
-import GenForm from '@genform/react'
+import GenFormComponent from '@genform/react'
 
 function App() {
     const customElems = [
@@ -21,6 +21,10 @@ function App() {
         {
             type: 'submit',
             value: 'Submit'
+        },
+        {
+            type: 'reset',
+            value: 'Reset'
         }
     ]
 
@@ -30,9 +34,9 @@ function App() {
     }
     return (
         <div className="App">
-            <header className="App-header">
-                <GenForm elems={customElems} params={customParams} />
-            </header>
+            <main className="App-main">
+                <GenFormComponent elems={customElems} params={customParams} />
+            </main>
         </div>
     )
 }
