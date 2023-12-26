@@ -6,5 +6,5 @@ GenForm for react allows you to use genform in your react project as a react com
 
 ## Dependencies
 
-- [React](https://www.npmjs.com/package/react) - React library
-- [GenForm - Core](https://www.npmjs.com/package/@genform/core) - Core library
+-   [React](https://www.npmjs.com/package/react) - React library
+-   [GenForm - Core](https://www.npmjs.com/package/@genform/core) - Core library
