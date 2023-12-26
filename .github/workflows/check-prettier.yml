@@ -18,6 +18,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
+        run: cd '/GenFom-NPM/Core/'
         run: npm install
 
       - name: Check Prettier formatting
