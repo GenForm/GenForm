@@ -4,7 +4,7 @@ module.exports = {
         node: true,
         es2024: true
     },
-    extends: ['plugin:prettier/recommended'],
+    ignorePatterns: ['**/node_modules/', '**/*min.js'],
     parserOptions: {
         ecmaVersion: 'latest',
         sourceType: 'module'
@@ -33,7 +33,7 @@ module.exports = {
         'no-unsafe-negation': 'error',
         'no-unused-vars': 'warn',
         'arrow-body-style': ['error', 'always'],
-        camelcase: ['error', { properties: 'always' }],
+        'camelcase': ['error', { properties: 'always' }],
         'capitalized-comments': ['error', 'always'],
         'max-lines-per-function': ['error', 18],
         'no-empty': 'error',
@@ -48,7 +48,7 @@ module.exports = {
         'no-var': 'error',
         'prefer-const': 'error',
         'sort-imports': 'error',
-        yoda: ['error', 'never'],
+        'yoda': ['error', 'never'],
         'line-comment-position': ['error', { position: 'above' }]
     }
 }
