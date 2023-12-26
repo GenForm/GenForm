@@ -17,11 +17,10 @@ jobs:
         with:
           node-version: 16
 
-      - name: change directory
-        run: cd .\GenForm-NPM\Core\
-
       - name: Install dependencies
         run: npm install
+        working-directory: GenForm-NPM/Core/
 
       - name: Check Prettier formatting
         run: npx prettier . --check
+        working-directory: GenForm-NPM/Core/
