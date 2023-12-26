@@ -17,8 +17,10 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install dependencies
+      - name: change directory
         run: cd '/GenFom-NPM/Core/'
+
+      - name: Install dependencies
         run: npm install
 
       - name: Check Prettier formatting
