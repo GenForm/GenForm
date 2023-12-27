@@ -7,11 +7,11 @@ const submitButton = document.getElementById('submit')
 submitButton.addEventListener('click', changeForm)
 
 function changeForm() {
-    const json = document.getElementById('changeform').value
-    const obj = JSON.parse(json)
-    const formInHtml = document.getElementById('genform')
-    const form = genform.toForm(document, obj)
+  const json = document.getElementById('changeform').value
+  const obj = JSON.parse(json)
+  const formInHtml = document.getElementById('genform')
+  const form = genform.toForm(document, obj)
 
-    formInHtml.innerHTML = ''
-    formInHtml.appendChild(form)
+  formInHtml.innerHTML = ''
+  formInHtml.appendChild(form)
 }

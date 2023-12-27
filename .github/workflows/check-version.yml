@@ -27,7 +27,7 @@ jobs:
             echo "Version $currentVersion already published"
             exit 1
           fi
-  
+
   check-version-React:
     runs-on: ubuntu-latest
     steps:
@@ -49,5 +49,3 @@ jobs:
             echo "Version $currentVersion already published"
             exit 1
           fi
-
-
