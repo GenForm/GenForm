@@ -68,10 +68,13 @@ jobs:
       - name: Create Minified Version
         run: npm run minify
         working-directory: GenForm-NPM/Core
+      - name: Set up npm auth token
+        run: echo "//registry.npmjs.org/:_authToken=\${NODE_AUTH_TOKEN}" > ~/.npmrc
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+        working-directory: GenForm-NPM/Core
       - run: npm publish
         working-directory: GenForm-NPM/Core
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
   # build&publish-Vue:
   #   need: check-version-Vue
