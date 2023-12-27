@@ -14,4 +14,5 @@ jobs:
         with:
           node-version: 16
       - run: |
-          echo "$(git diff --name-only main --)"
+          echo "$(git branch -a)"
+          echo "$(git diff --name-only remotes/origin/main --)"
