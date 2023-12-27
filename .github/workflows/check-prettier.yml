@@ -1,9 +1,8 @@
 name: Check Prettier formatting
 
 on:
-  push:
+  pull_request:
     branches:
-      - t34-cicd
       - main
 jobs:
   prettier-check:

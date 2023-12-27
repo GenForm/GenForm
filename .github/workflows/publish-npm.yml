@@ -1,0 +1,107 @@
+name: Node.js Package building & publishing
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-version-Core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+      - run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/core version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 1
+          fi
+    working-directory: GenForm-NPM/Core
+
+  # check-version-Vue:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 16
+  #     - run: |
+  #         currentVersion=$(node -p -e "require('./package.json').version")
+  #         distantVersion=$(npm view @genform/vue version)
+  #         if [ "$currentVersion" = "$distantVersion" ]; then
+  #           echo "Version $currentVersion already published"
+  #           exit 1
+  #         fi
+  #   working-directory: GenForm-NPM/Vue
+
+  check-version-React:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+      - run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/react version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 1
+          fi
+    working-directory: GenForm-NPM/React
+
+  build&publish-Core:
+    need: check-version-Core
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/@genform/core
+      - run: npm ci
+      - run: npm run minify
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+    working-directory: GenForm-NPM/Core
+
+  # build&publish-Vue:
+  #   need: check-version-Vue
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - uses: actions/checkout@v4
+  #     - uses: actions/setup-node@v4
+  #       with:
+  #         node-version: 16
+  #         registry-url: https://registry.npmjs.org/@genform/vue
+  #     - run: npm ci
+  #    # - run: npm run minify
+  #     - run: npm publish
+  #       env:
+  #         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+  #   working-directory: GenForm-NPM/Vue
+
+  build&publish-React:
+    need: check-version-React
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+          registry-url: https://registry.npmjs.org/@genform/react
+      - run: npm ci
+      # - run: npm run minify
+      - run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+    working-directory: GenForm-NPM/React
+
+
+
+
