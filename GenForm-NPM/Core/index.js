@@ -201,18 +201,21 @@ GenForm.toForm = function (document, obj) {
     if (isJsonCorrect(obj)) {
         form.setAttribute('action', obj.params.action)
         form.setAttribute('method', obj.params.method)
-    }
-    isNameDuplicate(obj)
 
-    obj.elems.forEach(function (elem) {
-        const element = document.createElement('input')
-        const keys = Object.keys(elem)
-        for (const key in keys) {
-            element.setAttribute(keys[key], elem[keys[key]])
-        }
-        form.appendChild(element)
-    })
-    return form
+        isNameDuplicate(obj)
+
+        obj.elems.forEach(function (elem) {
+            const element = document.createElement('input')
+            const keys = Object.keys(elem)
+            for (const key in keys) {
+                element.setAttribute(keys[key], elem[keys[key]])
+            }
+            form.appendChild(element)
+        })
+        return form
+    } else {
+        return null
+    }
 }
 
 function isNameDuplicate(jsonObj) {
