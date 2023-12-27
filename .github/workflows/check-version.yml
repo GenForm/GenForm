@@ -14,4 +14,6 @@ jobs:
         with:
           node-version: 16
       - run: |
-          echo "$(git diff $(git branch --show-current) main --name-only)"
+          pr_number=${{ github.event.pull_request.number }}
+          git fetch origin pull/$pr_number/head:pr-$pr_number
+          git diff --name-only main...pr-$pr_number
