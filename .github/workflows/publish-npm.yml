@@ -73,6 +73,8 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
         working-directory: GenForm-NPM/Core
+      - run: cat ~/.npmrc
+        working-directory: GenForm-NPM/Core
       - run: npm publish
         working-directory: GenForm-NPM/Core
 
