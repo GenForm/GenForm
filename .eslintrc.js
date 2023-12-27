@@ -35,7 +35,11 @@ module.exports = {
         'arrow-body-style': ['error', 'always'],
         'camelcase': ['error', { properties: 'always' }],
         'capitalized-comments': ['error', 'always'],
-        'max-lines-per-function': ['error', 18],
+        'max-lines-per-function': [
+            'error',
+            30,
+            { skipBlankLines: true, skipComments: true }
+        ],
         'no-empty': 'error',
         'no-extra-boolean-cast': 'error',
         'no-global-assign': 'error',
