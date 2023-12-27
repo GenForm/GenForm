@@ -15,7 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: |
+      - name: check if Core version is already published
+        run: |
           if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- GenForm-NPM/Core)" ]; then
             echo "no changes in this package, skipping version check"
             exit 0
@@ -36,7 +37,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: |
+      - name: check if React version is already published
+        run: |
           if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- GenForm-NPM/React)" ]; then
             echo "no changes in this package, skipping version check"
             exit 0
