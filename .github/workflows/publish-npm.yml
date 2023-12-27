@@ -70,6 +70,8 @@ jobs:
         working-directory: GenForm-NPM/Core
       - name: Update npm registry
         run: npm config set registry https://registry.npmjs.org/
+      - name: Add npm user
+        run: npm adduser
       - name: Publish to NPM
         run: npm publish
         env:
