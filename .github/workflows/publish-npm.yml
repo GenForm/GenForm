@@ -63,8 +63,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/@genform/core
-      - name: Clean Install
-        run: npm ci
+      - name: npm Install
+        run: npm i
         working-directory: GenForm-NPM/Core
       - name: Create Minified Version
         run: npm run minify
