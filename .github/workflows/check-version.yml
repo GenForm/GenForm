@@ -40,7 +40,6 @@ jobs:
           if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- .github/workflows)" ]; then
             echo "no changes in this package, skipping version check"
             exit 0
-          fi
           else
             echo "Workflow changed"
             exit 0
