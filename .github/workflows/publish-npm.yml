@@ -68,6 +68,8 @@ jobs:
       - name: Create Minified Version
         run: npm run minify
         working-directory: GenForm-NPM/Core
+      - name: Update npm registry
+        run: npm config set registry https://registry.npmjs.org/
       - name: Publish to NPM
         run: npm publish
         working-directory: GenForm-NPM/Core
