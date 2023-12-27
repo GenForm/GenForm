@@ -63,13 +63,18 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/@genform/core
-      - name: Check Files
+      - name: Clean Install
+        run: npm ci
+        working-directory: GenForm-NPM/Core
+      - name: Create Minified Version
+        run: npm run minify
+        working-directory: GenForm-NPM/Core
+      - name: Check if it is all good
         run: ls
         working-directory: GenForm-NPM/Core
-      # - run: npm run minify
       # - run: npm publish
       #   env:
-      #       NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+      #     NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
   # build&publish-Vue:
   #   need: check-version-Vue
