@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - t34-cicd
+      - main
 jobs:
   prettier-check:
     runs-on: ubuntu-latest
@@ -17,10 +18,50 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install dependencies
+      - name: Install dependencies for Core in GenForm-NPM
         run: npm install
         working-directory: GenForm-NPM/Core/
 
-      - name: Check Prettier formatting
+      - name: Check Prettier formatting for Core in GenForm-NPM
         run: npx prettier . --check
         working-directory: GenForm-NPM/Core/
+        
+      - name: Install dependencies for React in GenForm-NPM
+        run: npm install
+        working-directory: GenForm-NPM/React/
+
+      - name: Check Prettier formatting for React in GenForm-NPM
+        run: npx prettier . --check
+        working-directory: GenForm-NPM/React/
+
+      - name: Install dependencies for Vue in GenForm-NPM
+        run: npm install
+        working-directory: GenForm-NPM/Vue/
+
+      - name: Check Prettier formatting for Vue in GenForm-NPM
+        run: npx prettier . --check
+        working-directory: GenForm-NPM/Vue/
+      
+      - name: Install dependencies for Vanilla in GenForm-Tests
+        run: npm install
+        working-directory: GenForm-Tests/Vanilla/
+
+      - name: Check Prettier formatting for Vanilla in GenForm-Tests
+        run: npx prettier . --check
+        working-directory: GenForm-Tests/Vanilla/
+      
+      - name: Install dependencies for React in GenForm-Tests
+        run: npm install
+        working-directory: GenForm-Tests/React/
+
+      - name: Check Prettier formatting for React in GenForm-Tests
+        run: npx prettier . --check
+        working-directory: GenForm-Tests/React/
+      
+      - name: Install dependencies for Vue in GenForm-Tests
+        run: npm install
+        working-directory: GenForm-Tests/Vue/
+
+      - name: Check Prettier formatting for Vue in GenForm-Tests
+        run: npx prettier . --check
+        working-directory: GenForm-Tests/Vue/
