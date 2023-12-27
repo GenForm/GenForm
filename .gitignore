@@ -7,4 +7,4 @@ GenForm-Tests/*/node_modules
 # All minified files
 *.min.js
 /.idea
-**/package-lock.json
+

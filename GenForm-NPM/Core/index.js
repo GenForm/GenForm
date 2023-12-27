@@ -103,7 +103,23 @@ Different attributes:
  */
 
 class GenForm {
-    constructor() {}
+    static validTypes = [
+        'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file',
+        'hidden', 'image', 'month', 'number', 'password', 'radio', 'range',
+        'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week'
+    ]
+
+    static validAttributes = [
+        'accept', 'alt', 'autocomplete', 'autofocus', 'capture', 'checked',
+        'dirname', 'disabled', 'form', 'formaction', 'formenctype', 'formmethod',
+        'formnovalidate', 'formtarget', 'height', 'list', 'max', 'maxlength',
+        'min', 'minlength', 'multiple', 'name', 'pattern', 'placeholder',
+        'popovertarget', 'popovertargetaction', 'readonly', 'required', 'size',
+        'src', 'step', 'type', 'value', 'width'
+    ]
+
+    constructor() {
+    }
 }
 
 /**
@@ -134,11 +150,15 @@ class GenForm {
  * @returns The InnerHTML of the form containing the elements listed in the object
  */
 
-GenForm.toForm = function (document, obj) {
+GenForm.toForm = function(document, obj) {
     const form = document.createElement('form')
-    form.setAttribute('action', obj.params.action)
-    form.setAttribute('method', obj.params.method)
-    obj.elems.forEach(function (elem) {
+    if (isJsonCorrect(obj)) {
+        form.setAttribute('action', obj.params.action)
+        form.setAttribute('method', obj.params.method)
+    }
+    isNameDuplicate(obj)
+
+    obj.elems.forEach(function(elem) {
         const element = document.createElement('input')
         const keys = Object.keys(elem)
         for (const key in keys) {
@@ -147,6 +167,69 @@ GenForm.toForm = function (document, obj) {
         form.appendChild(element)
     })
     return form
+}
+
+
+function isNameDuplicate(jsonObj) {
+    const name = {}
+    const elems = jsonObj.elems
+
+    for (let i = 0; i < elems.length; i++) {
+        if (name[elems[i].name] !== undefined) {
+            alert('duplicate value in : ' + elems[i].name)
+            throw new Error('duplicate value in : ' + elems[i].name)
+        } else {
+            name[elems[i].name] = elems[i].name
+        }
+    }
+}
+
+
+// eslint-disable-next-line max-lines-per-function
+function isJsonCorrect(inputJSON) {
+    try {
+        if (!inputJSON || Object.keys(inputJSON).length === 0) {
+            console.log('JSON is empty')
+            return false
+        }
+
+        if (!inputJSON.elems) {
+            alert('elems field is missing')
+            return false
+        }
+
+        if (!inputJSON.params || typeof inputJSON.params !== 'object') {
+            alert('params field is missing')
+            return false
+        }
+
+        if (!inputJSON.params.action) {
+            alert('action in params field is missing')
+            return false
+        }
+
+        if (!Array.isArray(inputJSON.elems)) {
+            alert('elems field must be an array')
+            return false
+        }
+
+        for (const elem of inputJSON.elems) {
+            if (!GenForm.validTypes.includes(elem.type)) {
+                alert('invalid type: ' + elem.type)
+                return false
+            }
+
+            for (const key in elem) {
+                if (!GenForm.validAttributes.includes(key)) {
+                    alert('invalid attribute: ' + key)
+                    return false
+                }
+            }
+        }
+        return true
+    } catch (e) {
+        console.log(e)
+    }
 }
 
 /*TODO: Parser de form html into json
