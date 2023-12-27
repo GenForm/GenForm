@@ -14,5 +14,6 @@ jobs:
         with:
           node-version: 16
       - run: |
-          echo "$(git diff --name-only HEAD HEAD~1)"
-    working-directory: GenForm-NPM/Core
+          pr_number=${{ github.event.pull_request.number }}
+          git fetch origin pull/$pr_number/head:pr-$pr_number
+          echo "git diff --name-only main...pr-$pr_number"
