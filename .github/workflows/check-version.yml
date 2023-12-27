@@ -13,7 +13,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: |
+      - run: 
           echo "$(git branch -r)"
+      - run: |
           pr_number=${{ github.event.pull_request.number }}
           echo "$(git diff --name-only origin/pull/$pr_number/merge)"
