@@ -16,4 +16,4 @@ jobs:
         with:
           node-version: 16
       - run: |
-          echo "$(git diff --name-only HEAD HEAD~1)"
+          echo "$(git diff --name-only main)"
