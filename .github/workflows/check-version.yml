@@ -10,11 +10,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: |
-          git branch -a
-          pr_number=${{ github.event.pull_request.number }}
-          git fetch origin pull/$pr_number/head:pr-$pr_number
-          git diff --name-only main...pr-$pr_number
+      - run: git diff --name-only -r HEAD^1 HEAD
