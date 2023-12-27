@@ -15,4 +15,15 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: echo "$(git diff --name-only -r HEAD^1 HEAD)"
+      - run: |
+          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- /GenForm-NPM/Core)" ]; then
+            echo "no changes in this package, skipping version check"
+            exit 0
+          fi
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/core version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 1
+          fi
+
