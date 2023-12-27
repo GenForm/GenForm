@@ -21,4 +21,4 @@ jobs:
         run: npm install prettier -g
 
       - name: Check Prettier formatting
-        run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore       
+        run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
