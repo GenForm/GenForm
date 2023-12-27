@@ -17,4 +17,4 @@ jobs:
           echo "$(git branch -r)"
       - run: |
           pr_number=${{ github.event.pull_request.number }}
-          echo "$(git diff --name-only origin/pull/$pr_number/merge)"
+          echo "$(git diff --name-only pull/$pr_number/merge --)"
