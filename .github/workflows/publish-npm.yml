@@ -69,6 +69,7 @@ jobs:
         run: npm run minify
         working-directory: GenForm-NPM/Core
       - run: npm publish
+        working-directory: GenForm-NPM/Core
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
 
