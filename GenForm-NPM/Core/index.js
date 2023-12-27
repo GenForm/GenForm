@@ -104,22 +104,68 @@ Different attributes:
 
 class GenForm {
     static validTypes = [
-        'button', 'checkbox', 'color', 'date', 'datetime-local', 'email', 'file',
-        'hidden', 'image', 'month', 'number', 'password', 'radio', 'range',
-        'reset', 'search', 'submit', 'tel', 'text', 'time', 'url', 'week'
+        'button',
+        'checkbox',
+        'color',
+        'date',
+        'datetime-local',
+        'email',
+        'file',
+        'hidden',
+        'image',
+        'month',
+        'number',
+        'password',
+        'radio',
+        'range',
+        'reset',
+        'search',
+        'submit',
+        'tel',
+        'text',
+        'time',
+        'url',
+        'week'
     ]
 
     static validAttributes = [
-        'accept', 'alt', 'autocomplete', 'autofocus', 'capture', 'checked',
-        'dirname', 'disabled', 'form', 'formaction', 'formenctype', 'formmethod',
-        'formnovalidate', 'formtarget', 'height', 'list', 'max', 'maxlength',
-        'min', 'minlength', 'multiple', 'name', 'pattern', 'placeholder',
-        'popovertarget', 'popovertargetaction', 'readonly', 'required', 'size',
-        'src', 'step', 'type', 'value', 'width'
+        'accept',
+        'alt',
+        'autocomplete',
+        'autofocus',
+        'capture',
+        'checked',
+        'dirname',
+        'disabled',
+        'form',
+        'formaction',
+        'formenctype',
+        'formmethod',
+        'formnovalidate',
+        'formtarget',
+        'height',
+        'list',
+        'max',
+        'maxlength',
+        'min',
+        'minlength',
+        'multiple',
+        'name',
+        'pattern',
+        'placeholder',
+        'popovertarget',
+        'popovertargetaction',
+        'readonly',
+        'required',
+        'size',
+        'src',
+        'step',
+        'type',
+        'value',
+        'width'
     ]
 
-    constructor() {
-    }
+    constructor() {}
 }
 
 /**
@@ -150,7 +196,7 @@ class GenForm {
  * @returns The InnerHTML of the form containing the elements listed in the object
  */
 
-GenForm.toForm = function(document, obj) {
+GenForm.toForm = function (document, obj) {
     const form = document.createElement('form')
     if (isJsonCorrect(obj)) {
         form.setAttribute('action', obj.params.action)
@@ -158,7 +204,7 @@ GenForm.toForm = function(document, obj) {
     }
     isNameDuplicate(obj)
 
-    obj.elems.forEach(function(elem) {
+    obj.elems.forEach(function (elem) {
         const element = document.createElement('input')
         const keys = Object.keys(elem)
         for (const key in keys) {
@@ -168,7 +214,6 @@ GenForm.toForm = function(document, obj) {
     })
     return form
 }
-
 
 function isNameDuplicate(jsonObj) {
     const name = {}
@@ -183,7 +228,6 @@ function isNameDuplicate(jsonObj) {
         }
     }
 }
-
 
 // eslint-disable-next-line max-lines-per-function
 function isJsonCorrect(inputJSON) {

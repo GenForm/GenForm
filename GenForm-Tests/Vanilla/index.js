@@ -6,7 +6,6 @@ import genform from 'https://unpkg.com/@genform/core@latest/index.js'
 const submitButton = document.getElementById('submit')
 submitButton.addEventListener('click', changeForm)
 
-
 function changeForm() {
     const json = document.getElementById('changeform').value
     const obj = JSON.parse(json)
@@ -15,4 +14,3 @@ function changeForm() {
     formInHtml.innerHTML = ''
     formInHtml.appendChild(form)
 }
-
