@@ -12,8 +12,6 @@ function changeForm() {
     const formInHtml = document.getElementById('genform')
     const form = genform.toForm(document, obj)
 
-    if (form !== null) {
-        formInHtml.innerHTML = ''
-        formInHtml.appendChild(form)
-    }
+    formInHtml.innerHTML = ''
+    formInHtml.appendChild(form)
 }

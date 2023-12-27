@@ -2,7 +2,7 @@
   "name": "@genform/core",
   "version": "0.0.11",
   "description": "A form generator using JS based on a JSON object",
-  "private" : false,
+  "private": false,
   "main": "index.js",
   "scripts": {
     "minify": "uglifyjs --compress --mangle -o ./index.min.js -- ./index.js",
