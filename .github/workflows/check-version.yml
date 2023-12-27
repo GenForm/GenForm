@@ -37,11 +37,11 @@ jobs:
         with:
           node-version: 16
       - run: |
-          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- .github/workflows)" ]; then
+          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- .github/workflows/check-prettier.yml)" ]; then
             echo "no changes in this package, skipping version check"
             exit 0
           else
-            echo "Workflow changed"
+            echo "Workflow check-prettier changed"
             exit 0
           fi
 
