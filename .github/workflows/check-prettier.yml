@@ -28,3 +28,6 @@ jobs:
       
       - name: Check main.js after prettier
         run: cat GenForm-Tests/Vue/src/main.js 
+
+      - name: Check Prettier formatting
+        run: npx prettier GenForm-Tests/Vue/src/main.js --check --config .prettierrc --ignore-path .prettierignore
