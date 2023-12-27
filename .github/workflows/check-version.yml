@@ -27,3 +27,22 @@ jobs:
             exit 1
           fi
 
+  check-Workflow:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 16
+      - run: |
+          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- .github/workflows)" ]; then
+            echo "no changes in this package, skipping version check"
+            exit 0
+          fi
+          else
+            echo "Workflow changed"
+            exit 0
+          fi
+
