@@ -14,5 +14,6 @@ jobs:
         with:
           node-version: 16
       - run: |
+          echo "$(git branch -r)"
           pr_number=${{ github.event.pull_request.number }}
-          echo "$(git diff --name-only remotes/pull/$pr_number/merge --)"
+          echo "$(git diff --name-only origin/pull/$pr_number/merge)"
