@@ -1,31 +1,17 @@
-/*TODO: We can't use require because node modules are not supported natively in the browser. 
-We need to pass by webpack or browserify or adjust our node modules to be directly compatible with the browser.
-const genform = require("@jathoosh/genform"); */
-const module = {}
-const genform = (module.exports = {})
+// UNPKG allow to retrieve a specific file from a node package (here a minified version of the core of GenForm)
+import genform from 'https://unpkg.com/@genform/core@latest/index.js'
 
-genform.toForm = function (document, obj) {
-    const form = document.createElement('form')
-    form.setAttribute('action', obj.params.action)
-    form.setAttribute('method', obj.params.method)
-    obj.elems.forEach((elem) => {
-        const element = document.createElement('input')
-        const keys = Object.keys(elem)
-        for (const key in keys) {
-            element.setAttribute(keys[key], elem[keys[key]])
-        }
-        form.appendChild(element)
-    })
-    return form
-}
+// Because of this js file is called from index.html using a script tag with type="module", the function changeForm is not accessible from the global scope
+// To allow the function to be called whenever the button is clicked, we need to add an event listener to the button
+const submitButton = document.getElementById('submit')
+submitButton.addEventListener('click', changeForm)
 
-// Is used in a button onclick event in index.html
-// eslint-disable-next-line no-unused-vars
 function changeForm() {
     const json = document.getElementById('changeform').value
     const obj = JSON.parse(json)
     const formInHtml = document.getElementById('genform')
     const form = genform.toForm(document, obj)
+
     formInHtml.innerHTML = ''
     formInHtml.appendChild(form)
 }

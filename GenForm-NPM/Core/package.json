@@ -1,9 +1,11 @@
 {
   "name": "@genform/core",
-  "version": "0.0.1",
+  "version": "0.0.11",
   "description": "A form generator using JS based on a JSON object",
+  "private": false,
   "main": "index.js",
   "scripts": {
+    "minify": "uglifyjs --compress --mangle -o ./index.min.js -- ./index.js",
     "test": "node index.js",
     "lint": "eslint ../../.eslintrc.js"
   },
@@ -15,6 +17,7 @@
   "license": "ISC",
   "devDependencies": {
     "eslint": "^8.55.0",
-    "prettier": "3.1.1"
+    "prettier": "3.1.1",
+    "uglify-js": "^3.17.4"
   }
 }

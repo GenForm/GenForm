@@ -31,72 +31,80 @@ Structure of the object :
         "action": "/login",
         "method": "POST"
     }
+}*/
+
+// MDN WebSite for input doc : https://developer.mozilla.org/fr/docs/Web/HTML/Element/input
+
+/**
+ * This class will contain all the functions to generate and manipulate forms
+ */
+
+class GenForm {
+    static validTypes = [
+        'button',
+        'checkbox',
+        'color',
+        'date',
+        'datetime-local',
+        'email',
+        'file',
+        'hidden',
+        'image',
+        'month',
+        'number',
+        'password',
+        'radio',
+        'range',
+        'reset',
+        'search',
+        'submit',
+        'tel',
+        'text',
+        'time',
+        'url',
+        'week'
+    ]
+
+    // TODO: Check if attributes are valid for the corresponding type
+    static validAttributes = [
+        'accept',
+        'alt',
+        'autocomplete',
+        'autofocus',
+        'capture',
+        'checked',
+        'dirname',
+        'disabled',
+        'form',
+        'formaction',
+        'formenctype',
+        'formmethod',
+        'formnovalidate',
+        'formtarget',
+        'height',
+        'list',
+        'max',
+        'maxlength',
+        'min',
+        'minlength',
+        'multiple',
+        'name',
+        'pattern',
+        'placeholder',
+        'popovertarget',
+        'popovertargetaction',
+        'readonly',
+        'required',
+        'size',
+        'src',
+        'step',
+        'type',
+        'value',
+        'width'
+    ]
+
+    constructor() {}
 }
-
-Diffirent types of elements:
-[
-    "button",
-    "checkbox",
-    "color",
-    "date",
-    "datetime-local",
-    "email",
-    "file",
-    "hidden",
-    "image",
-    "month",
-    "number",
-    "password",
-    "radio",
-    "range",
-    "reset",
-    "search",
-    "submit",
-    "tel",
-    "text",
-    "time",
-    "url",
-    "week"
-]
-
-Different attributes:
-[
-    "accept",
-    "alt",
-    "autocomplete",
-    "autofocus",
-    "capture",
-    "checked",
-    "dirname",
-    "disabled",
-    "form",
-    "formaction",
-    "formenctype",
-    "formmethod",
-    "formnovalidate",
-    "formtarget",
-    "height",
-    "list",
-    "max",
-    "maxlength",
-    "min",
-    "minlength",
-    "multiple",
-    "name",
-    "pattern",
-    "placeholder",
-    "popovertarget",
-    "popovertargetaction",
-    "readonly",
-    "required",
-    "size",
-    "src",
-    "step",
-    "type",
-    "value",
-    "width"
-]
-*/
 
 /**
  * @typedef {Object} inputElem
@@ -126,11 +134,20 @@ Different attributes:
  * @returns The InnerHTML of the form containing the elements listed in the object
  */
 
-exports.toForm = function (document, obj) {
+GenForm.toForm = function (document, obj) {
+    try {
+        jsonIsCorrect(obj) // Security check
+        nameIsDuplicate(obj) // Security check
+    } catch (e) {
+        e.message = 'Error in GenForm, the JSON has: ' + e.message
+        throw e
+    }
+
     const form = document.createElement('form')
     form.setAttribute('action', obj.params.action)
     form.setAttribute('method', obj.params.method)
-    obj.elems.forEach((elem) => {
+
+    obj.elems.forEach(function (elem) {
         const element = document.createElement('input')
         const keys = Object.keys(elem)
         for (const key in keys) {
@@ -139,6 +156,49 @@ exports.toForm = function (document, obj) {
         form.appendChild(element)
     })
     return form
+}
+
+function nameIsDuplicate(jsonObj) {
+    const name = {}
+    const elems = jsonObj.elems
+
+    for (let i = 0; i < elems.length; i++) {
+        if (name[elems[i].name] !== undefined) {
+            throw new Error('Duplicate name: ' + elems[i].name)
+        } else {
+            name[elems[i].name] = elems[i].name
+        }
+    }
+}
+
+function jsonIsCorrect(inputJSON) {
+    if (!inputJSON || Object.keys(inputJSON).length === 0) {
+        throw new Error('Empty JSON')
+    }
+
+    if (!inputJSON.elems) {
+        throw new Error('"elems" field is missing')
+    }
+
+    if (!inputJSON.params || typeof inputJSON.params !== 'object') {
+        throw new Error('"params" field is missing')
+    }
+
+    if (!inputJSON.params.action) {
+        throw new Error('"action" field in "params" is missing')
+    }
+
+    for (const elem of inputJSON.elems) {
+        if (!GenForm.validTypes.includes(elem.type)) {
+            throw new Error('invalid type: ' + elem.type)
+        }
+
+        for (const key in elem) {
+            if (!GenForm.validAttributes.includes(key)) {
+                throw new Error('invalid attribute: ' + key)
+            }
+        }
+    }
 }
 
 /*TODO: Parser de form html into json
@@ -160,3 +220,5 @@ genform.toJson = function(formInHtml) {
     }
     return form;
 }*/
+
+export default GenForm
