@@ -26,8 +26,8 @@ jobs:
             echo "Version $currentVersion already published"
             exit 1
           fi
-
-  check-Workflow:
+  
+  check-version-React:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -37,11 +37,15 @@ jobs:
         with:
           node-version: 16
       - run: |
-          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- .github/workflows/check-prettier.yml)" ]; then
+          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- GenForm-NPM/React)" ]; then
             echo "no changes in this package, skipping version check"
             exit 0
-          else
-            echo "Workflow check-prettier changed"
-            exit 0
           fi
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/react version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 1
+          fi
+
 
