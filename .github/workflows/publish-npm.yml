@@ -65,7 +65,8 @@ jobs:
         with:
           node-version: 16
           registry-url: https://registry.npmjs.org/@genform/core
-      - run: ls
+      - name: Check Files
+        run: ls
         working-directory: GenForm-NPM/Core
       # - run: npm run minify
       # - run: npm publish
