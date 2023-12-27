@@ -1,33 +1,24 @@
 name: Check Prettier formatting
 
 on:
-  pull_request:
-    branches:
-      - main
+    pull_request:
+        branches:
+            - main
 jobs:
-  prettier-check:
-    runs-on: ubuntu-latest
+    prettier-check:
+        runs-on: ubuntu-latest
 
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
+        steps:
+            - name: Checkout repository
+              uses: actions/checkout@v4
 
-      - name: Use Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 16
+            - name: Use Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 16
 
-      - name: Install prettier
-        run: npm install prettier -g
-      
-      - name: Check main.js before prettier
-        run: cat GenForm-Tests/Vue/src/main.js
-      
-      - name: Check Prettier formatting
-        run: npx prettier GenForm-Tests/Vue/src/main.js --write --config .prettierrc --ignore-path .prettierignore
-      
-      - name: Check main.js after prettier
-        run: cat GenForm-Tests/Vue/src/main.js 
+            - name: Install prettier
+              run: npm install prettier -g
 
-      - name: Check Prettier formatting
-        run: npx prettier GenForm-Tests/Vue/src/main.js --check --config .prettierrc --ignore-path .prettierignore
+            - name: Check Prettier formatting
+              run: npx prettier . --write --config .prettierrc --ignore-path .prettierignore
