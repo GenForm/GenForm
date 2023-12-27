@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: 16
 
-      - name: Install dependencies for Core in GenForm-NPM
+      - name: Install prettier
         run: npm install prettier -g
 
       - name: Check Prettier formatting
