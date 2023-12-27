@@ -19,6 +19,12 @@ jobs:
 
       - name: Install prettier
         run: npm install prettier -g
+      
+      - name: Check configuration
+        run: cat .prettierrc
+
+      - name: Check ignore file
+        run: cat .prettierignore
 
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
