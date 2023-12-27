@@ -74,7 +74,7 @@ jobs:
         run: npm publish
         working-directory: GenForm-NPM/Core
         env:
-          NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          NPM_TOKEN: ${{secrets.npm_token}}
 
   # build&publish-Vue:
   #   need: check-version-Vue
