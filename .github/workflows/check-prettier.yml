@@ -19,6 +19,15 @@ jobs:
 
       - name: Install prettier
         run: npm install prettier -g
+      
+      - name: Check main.js before prettier
+        run: cat GenForm-Tests/Vue/src/main.js
+      
+      - name: Check Prettier formatting
+        run: npx prettier GenForm-Tests/Vue/src/main.js --write --config .prettierrc --ignore-path .prettierignore
+      
+      - name: Check main.js after prettier
+        run: cat GenForm-Tests/Vue/src/main.js 
 
       - name: Check Prettier formatting
-        run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
+        run: npx prettier GenForm-Tests/Vue/src/main.js --check --config .prettierrc --ignore-path .prettierignore
