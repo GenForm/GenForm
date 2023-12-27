@@ -10,9 +10,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: GenForm-NPM/Core
       - uses: actions/setup-node@v4
         with:
           node-version: 16
       - run: |
           echo "$(git diff --name-only HEAD HEAD~1)"
-    working-directory: GenForm-NPM/Core

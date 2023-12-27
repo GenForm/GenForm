@@ -10,6 +10,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: GenForm-NPM/Core
       - uses: actions/setup-node@v4
         with:
           node-version: 16
@@ -20,7 +22,6 @@ jobs:
             echo "Version $currentVersion already published"
             exit 1
           fi
-    working-directory: GenForm-NPM/Core
 
   # check-version-Vue:
   #   runs-on: ubuntu-latest
@@ -42,6 +43,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: GenForm-NPM/React
       - uses: actions/setup-node@v4
         with:
           node-version: 16
@@ -52,13 +55,14 @@ jobs:
             echo "Version $currentVersion already published"
             exit 1
           fi
-    working-directory: GenForm-NPM/React
 
-  build&publish-Core:
-    need: check-version-Core
+  build-publish-Core:
+    needs: check-version-Core
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: GenForm-NPM/Core
       - uses: actions/setup-node@v4
         with:
           node-version: 16
@@ -68,7 +72,6 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-    working-directory: GenForm-NPM/Core
 
   # build&publish-Vue:
   #   need: check-version-Vue
@@ -86,11 +89,13 @@ jobs:
   #         NODE_AUTH_TOKEN: ${{secrets.npm_token}}
   #   working-directory: GenForm-NPM/Vue
 
-  build&publish-React:
-    need: check-version-React
+  build-publish-React:
+    needs: check-version-React
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          path: GenForm-NPM/React
       - uses: actions/setup-node@v4
         with:
           node-version: 16
@@ -100,7 +105,6 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{secrets.npm_token}}
-    working-directory: GenForm-NPM/React
 
 
 
