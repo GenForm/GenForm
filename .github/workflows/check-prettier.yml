@@ -19,10 +19,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies for Core in GenForm-NPM
-        run: npm install
-        working-directory: GenForm-NPM/Core/
+        run: npm install prettier -g
 
-      - name: Check Prettier formatting for Core in GenForm-NPM
-        run: npx prettier ../../. --check
-        working-directory: GenForm-NPM/Core/
-        
+      - name: Check Prettier formatting
+        run: npx prettier . --check        
