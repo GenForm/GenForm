@@ -57,8 +57,6 @@ jobs:
       - name: Create Minified Version
         run: npm run minify
         working-directory: GenForm-NPM/Core
-      - name: list all files
-        run: ls -R
       - name: Publish to NPM
         run: npm publish
         env:
