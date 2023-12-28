@@ -15,7 +15,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: |
+      - name: Check if the version is already published
+        run: |
           currentVersion=$(node -p -e "require('./package.json').version")
           distantVersion=$(npm view @genform/core version)
           if [ "$currentVersion" = "$distantVersion" ]; then
@@ -33,7 +34,8 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
-      - run: |
+      - name: Check if the version is already published
+        run: |
           currentVersion=$(node -p -e "require('./package.json').version")
           distantVersion=$(npm view @genform/react version)
           if [ "$currentVersion" = "$distantVersion" ]; then
