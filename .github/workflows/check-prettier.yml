@@ -23,6 +23,3 @@ jobs:
 
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
-
-      # - name: Commit changes
-      #   run: |
