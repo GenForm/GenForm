@@ -21,7 +21,7 @@ jobs:
             echo "no changes in this package, skipping version check"
             exit 0
           fi
-          cd ./GenForm-NPM/React
+          cd ./GenForm-NPM/Core
           currentVersion=$(node -p -e "require('./package.json').version")
           distantVersion=$(npm view @genform/core version)
           if [ "$currentVersion" = "$distantVersion" ]; then
