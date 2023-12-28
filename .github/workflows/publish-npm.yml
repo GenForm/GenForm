@@ -47,7 +47,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org/'
@@ -57,8 +57,8 @@ jobs:
       - name: Create Minified Version
         run: npm run minify
         working-directory: GenForm-NPM/Core
-      - name: cat .npmrc
-        run: cat .npmrc
+      - name: list all files
+        run: ls -R
       - name: Publish to NPM
         run: npm publish
         env:
