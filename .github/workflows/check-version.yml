@@ -21,13 +21,17 @@ jobs:
             echo "no changes in this package, skipping version check"
             exit 0
           fi
+          cd ./GenForm-NPM/React
           currentVersion=$(node -p -e "require('./package.json').version")
           distantVersion=$(npm view @genform/core version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
+          else
+            echo "Version $currentVersion not published yet"
+            exit 0
           fi
-  
+
   check-version-React:
     runs-on: ubuntu-latest
     steps:
@@ -43,12 +47,13 @@ jobs:
             echo "no changes in this package, skipping version check"
             exit 0
           fi
-          cd ./GenForm-Tests/React
+          cd ./GenForm-NPM/React
           currentVersion=$(node -p -e "require('./package.json').version")
           distantVersion=$(npm view @genform/react version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
+          else
+            echo "Version $currentVersion not published yet"
+            exit 0
           fi
-
-
