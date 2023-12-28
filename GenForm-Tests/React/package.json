@@ -1,14 +1,36 @@
 {
+  "name": "genform-react-tests",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "@genform/react": "^0.0.1"
+    "@genform/react": "^0.1.4",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "test": "npm i && nodemon app.js",
-    "lint": "eslint ../../.eslintrc.js"
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
-  "devDependencies": {
-    "eslint": "^8.55.0",
-    "prettier": "3.1.1",
-    "nodemon": "^3.0.1"
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }
