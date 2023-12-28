@@ -50,14 +50,16 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 16
+          registry-url: 'https://registry.npmjs.org/'
       - name: Clean Install
         run: npm ci
         working-directory: GenForm-NPM/Core
       - name: Create Minified Version
         run: npm run minify
         working-directory: GenForm-NPM/Core
-      - name: Update npm registry
-        run: npm config set registry https://registry.npmjs.org/
+      - name: cat .npmrc
+        run: cat .npmrc
+        working-directory: GenForm-NPM/Core
       - name: Publish to NPM
         run: npm publish
         env:
