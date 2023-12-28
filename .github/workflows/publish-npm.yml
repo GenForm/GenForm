@@ -21,6 +21,8 @@ jobs:
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
+          else
+            echo "Version $currentVersion not published yet"
           fi
         working-directory: GenForm-NPM/Core
 
@@ -37,6 +39,8 @@ jobs:
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
+          else
+            echo "Version $currentVersion not published yet"
           fi
         working-directory: GenForm-NPM/React
 
@@ -70,14 +74,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-        with:
-          path: GenForm-NPM/React
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: https://registry.npmjs.org/@genform/react
-      - run: ls
-      # - run: npm run minify
-      # - run: npm publish
-      #   env:
-      #       NODE_AUTH_TOKEN: ${{secrets.npm_token}}
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Clean Install
+        run: npm ci
+        working-directory: GenForm-NPM/React
+      - name: Create Minified Version
+        run: npm run minify
+        working-directory: GenForm-NPM/React
+      - name: Publish to NPM
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
+        working-directory: GenForm-NPM/React
