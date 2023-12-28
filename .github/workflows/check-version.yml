@@ -27,6 +27,9 @@ jobs:
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
+          else
+            echo "Version $currentVersion not published yet"
+            exit 0
           fi
 
   check-version-React:
@@ -50,4 +53,7 @@ jobs:
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
+          else
+            echo "Version $currentVersion not published yet"
+            exit 0
           fi
