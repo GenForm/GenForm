@@ -1,10 +1,10 @@
 name: Check Prettier formatting
 
 on:
-  push:
+  pull_request:
     branches:
       - main
-      - t34-cicd
+
 jobs:
   prettier-check:
     runs-on: ubuntu-latest
