@@ -81,9 +81,9 @@ jobs:
       - name: Clean Install
         run: npm ci
         working-directory: GenForm-NPM/React
-      - name: Create Minified Version
-        run: npm run minify
-        working-directory: GenForm-NPM/React
+      # - name: Create Minified Version
+      #   run: npm run minify
+      #   working-directory: GenForm-NPM/React
       - name: Publish to NPM
         run: npm publish
         env:
