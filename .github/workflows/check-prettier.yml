@@ -1,9 +1,10 @@
 name: Check Prettier formatting
 
 on:
-  pull_request:
+  push:
     branches:
       - main
+      - t34-cicd
 jobs:
   prettier-check:
     runs-on: ubuntu-latest
@@ -21,4 +22,7 @@ jobs:
         run: npm install prettier -g
 
       - name: Check Prettier formatting
-        run: npx prettier . --write --config .prettierrc --ignore-path .prettierignore
+        run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
+
+      # - name: Commit changes
+      #   run: |
