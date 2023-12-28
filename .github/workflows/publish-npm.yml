@@ -3,10 +3,9 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - t34-cicd
+      - main
 
 jobs:
-
   # Check if the version is already published
   check-version-Core:
     runs-on: ubuntu-latest
@@ -45,7 +44,6 @@ jobs:
             echo "Version $currentVersion not published yet"
           fi
         working-directory: GenForm-NPM/React
-
 
   # Build and publish the package if the version is not already published
   build-publish-Core:
