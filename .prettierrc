@@ -5,7 +5,7 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "arrowParens": "always",
-  "endOfLine": "crlf",
+  "endOfLine": "auto",
   "quoteProps": "consistent",
   "bracketSpacing": true
 }
