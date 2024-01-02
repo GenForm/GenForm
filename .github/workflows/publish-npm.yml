@@ -54,7 +54,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: 'https://registry.npmjs.com/'
       - name: Clean Install
         run: npm ci
         working-directory: GenForm-NPM/Core
@@ -80,7 +80,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16
-          registry-url: 'https://registry.npmjs.org/'
+          registry-url: 'https://registry.npmjs.com/'
       - name: Clean Install
         run: npm ci
         working-directory: GenForm-NPM/React
