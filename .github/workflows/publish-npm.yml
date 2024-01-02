@@ -3,7 +3,7 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - main
+      - t47-cicd
 
 jobs:
   # Check if the version is already published
