@@ -37,8 +37,11 @@ module.exports = {
     'capitalized-comments': ['error', 'always'],
     'max-lines-per-function': [
       'error',
-      30,
-      { skipBlankLines: true, skipComments: true }
+      {
+        max: 30,
+        skipBlankLines: true,
+        skipComments: true
+      }
     ],
     'no-empty': 'error',
     'no-extra-boolean-cast': 'error',
@@ -51,7 +54,6 @@ module.exports = {
     'no-useless-escape': 'error',
     'no-var': 'error',
     'prefer-const': 'error',
-    'sort-imports': 'error',
     'yoda': ['error', 'never'],
     'line-comment-position': ['error', { position: 'above' }]
   }
