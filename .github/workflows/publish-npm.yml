@@ -57,6 +57,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
       - name: Clean Install
         run: npm ci
+        working-directory: GenForm-NPM/Core
       - name: print registry
         run: npm config get registry
         working-directory: GenForm-NPM/Core
