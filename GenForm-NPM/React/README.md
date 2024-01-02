@@ -8,16 +8,18 @@ This is package for React.
 
 ## Dependencies
 
--   [React](https://www.npmjs.com/package/react) - React library
--   [GenForm - Core](https://www.npmjs.com/package/@genform/core) - Core library
+- [React](https://www.npmjs.com/package/react) - React library
+- [GenForm - Core](https://www.npmjs.com/package/@genform/core) - Core library
 
-## How to use it :
+## How to use it
 
 It takes two elements when creating the component :
+
 - elems : the elements of the form
 - params : the parameters of the form
 
-The first one `elements` is an array of objects. Each object represents an element of the form. For example : 
+The first one `elements` is an array of objects. Each object represents an element of the form. For example :
+
 ```js
 [
         {
@@ -43,6 +45,7 @@ The first one `elements` is an array of objects. Each object represents an eleme
 ```
 
 The second one `params` is an object that contains the parameters of the form. For example :
+
 ```js
 {
         action: '/register',

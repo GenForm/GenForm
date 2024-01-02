@@ -135,9 +135,10 @@ class GenForm {
  */
 
 GenForm.toForm = function (document, obj) {
+  // Security check
   try {
-    jsonIsCorrect(obj) // Security check
-    nameIsDuplicate(obj) // Security check
+    jsonIsCorrect(obj)
+    nameIsDuplicate(obj)
   } catch (e) {
     e.message = 'Error in GenForm, the JSON has: ' + e.message
     throw e
