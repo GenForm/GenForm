@@ -103,7 +103,7 @@ class GenForm {
     'width'
   ]
 
-  constructor() { }
+  constructor() {}
 }
 
 /**
