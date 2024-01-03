@@ -2,7 +2,7 @@ import GenForm from '../index.js'
 
 describe('GenForm should', function () {
   it('be a class', function () {
-    expect(typeof GenForm).toBe(typeof class { })
+    expect(typeof GenForm).toBe(typeof class {})
   })
 
   it('contain function toForm with two arguments', function () {
