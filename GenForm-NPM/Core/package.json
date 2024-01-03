@@ -2,11 +2,12 @@
   "name": "@genform/core",
   "version": "0.1.5",
   "description": "A form generator using JS based on a JSON object",
+  "type": "module",
   "private": false,
   "main": "index.js",
   "scripts": {
     "minify": "uglifyjs --compress --mangle -o ./index.min.js -- ./index.js",
-    "test": "node index.js",
+    "test": "jasmine",
     "lint": "eslint ../../.eslintrc.js"
   },
   "keywords": [
@@ -14,9 +15,11 @@
     "form"
   ],
   "author": "GenForm",
-  "license": "ISC",
+  "license": "MIT",
   "devDependencies": {
     "eslint": "^8.55.0",
+    "jasmine": "^5.1.0",
+    "jsdom": "^23.0.1",
     "prettier": "3.1.1",
     "uglify-js": "^3.17.4"
   }
