@@ -69,6 +69,7 @@ class GenForm {
   static validAttributes = [
     'accept',
     'alt',
+    'autocapitalize',
     'autocomplete',
     'autofocus',
     'capture',
@@ -103,7 +104,7 @@ class GenForm {
     'width'
   ]
 
-  constructor() {}
+  constructor() { }
 }
 
 /**
