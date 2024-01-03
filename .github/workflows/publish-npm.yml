@@ -29,11 +29,11 @@ jobs:
           distantVersion_2=$(echo $distantVersion | cut -d'.' -f3)
           if [ "$currentVersion_0" < "$distantVersion_0" ]; then 
             echo "Version $currentVersion already published"
-          else if [ "$currentVersion_0" = "$distantVersion_0" ] && [ "$currentVersion_1" < "$distantVersion_1" ]; then
+          elif [ "$currentVersion_0" = "$distantVersion_0" ] && [ "$currentVersion_1" < "$distantVersion_1" ]; then
             echo "Version $currentVersion already published"
-          else if [ "$currentVersion_0" = "$distantVersion_0" ] && [ "$currentVersion_1" = "$distantVersion_1" ] && [ "$currentVersion_2" < "$distantVersion_2" ]; then
+          elif [ "$currentVersion_0" = "$distantVersion_0" ] && [ "$currentVersion_1" = "$distantVersion_1" ] && [ "$currentVersion_2" < "$distantVersion_2" ]; then
             echo "Version $currentVersion already published"
-          else if [ "$currentVersion = $distantVersion" ]; then
+          elif [ "$currentVersion = $distantVersion" ]; then
             echo "Version $currentVersion already published"
           else
             echo "Version $currentVersion not published yet"
