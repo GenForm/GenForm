@@ -23,6 +23,9 @@ jobs:
           currentVersion_0=$(echo $currentVersion | cut -d'.' -f1)
           currentVersion_1=$(echo $currentVersion | cut -d'.' -f2)
           currentVersion_2=$(echo $currentVersion | cut -d'.' -f3)
+          echo "currentVersion_0: $currentVersion_0"
+          echo "currentVersion_1: $currentVersion_1"
+          echo "currentVersion_2: $currentVersion_2"
           distantVersion=$(npm view @genform/core version)
           distantVersion_0=$(echo $distantVersion | cut -d'.' -f1)
           distantVersion_1=$(echo $distantVersion | cut -d'.' -f2)
