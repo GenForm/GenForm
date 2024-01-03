@@ -20,7 +20,7 @@ jobs:
           distantVersion=$(npm view @genform/core version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            exit 2
+            echo "::set-output name=version-published::true"
           else
             echo "Version $currentVersion not published yet"
           fi
@@ -39,7 +39,7 @@ jobs:
           distantVersion=$(npm view @genform/react version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            exit 2
+            echo "::set-output name=version-published::true"
           else
             echo "Version $currentVersion not published yet"
           fi
@@ -48,7 +48,7 @@ jobs:
   # Build and publish the package if the version is not already published
   build-publish-Core:
     needs: check-version-Core
-    if: ${{ needs.check-version-Core.result != 'failure' && needs.check-version-Core.result != 'cancelled' }}
+    if: ${{ needs.check-version-Core.outputs.version-published != 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -72,7 +72,7 @@ jobs:
 
   build-publish-React:
     needs: check-version-React
-    if: ${{ needs.check-version-React.result != 'failure' && needs.check-version-React.result != 'cancelled' }}
+    if: ${{ needs.check-version-React.outputs.version-published != 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
