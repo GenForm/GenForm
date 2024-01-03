@@ -19,35 +19,35 @@ npm install @genform/core
 Then, you can use it in your project :
 
 ```js
-import GenForm from '@genform/core';
+import GenForm from '@genform/core'
 
 // You need an array of objects that represents the elements of the form
 const elems = [
-        {
-            type: 'text',
-            name: 'username',
-            placeholder: 'Username'
-        },
-        {
-            type: 'password',
-            name: 'password',
-            placeholder: 'Password'
-        },
-        {
-            type: 'submit',
-            value: 'Login'
-        }
-];
+  {
+    type: 'text',
+    name: 'username',
+    placeholder: 'Username'
+  },
+  {
+    type: 'password',
+    name: 'password',
+    placeholder: 'Password'
+  },
+  {
+    type: 'submit',
+    value: 'Login'
+  }
+]
 
 // You need an object that contains the general parameters of the form
 const params = {
-        action: '/login',
-        method: 'POST'
-};
+  action: '/login',
+  method: 'POST'
+}
 
 // And finally, you can create the form
-const yourForm = new GenForm(elems, params);
-Document.getElementById('yourFormDiv').innerHTML = yourForm;
+const yourForm = new GenForm(elems, params)
+Document.getElementById('yourFormDiv').innerHTML = yourForm
 ```
 
 ## Want to contribute ?
