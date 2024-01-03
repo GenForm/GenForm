@@ -3,7 +3,7 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - main
+      - t48-cicd
 
 jobs:
   # Build and publish the package if the version is not already published
@@ -20,8 +20,20 @@ jobs:
       - name: Check if the version is already published
         run: |
           currentVersion=$(node -p -e "require('./package.json').version")
+          currentVersion_0=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_1=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_2=$(echo $currentVersion | cut -d'.' -f3)
           distantVersion=$(npm view @genform/core version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
+          distantVersion_0=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_1=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_2=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_0" < "$distantVersion_0" ]; then 
+            echo "Version $currentVersion already published"
+          else if [ "$currentVersion_0" = "$distantVersion_0" ] && [ "$currentVersion_1" < "$distantVersion_1" ]; then
+            echo "Version $currentVersion already published"
+          else if [ "$currentVersion_0" = "$distantVersion_0" ] && [ "$currentVersion_1" = "$distantVersion_1" ] && [ "$currentVersion_2" < "$distantVersion_2" ]; then
+            echo "Version $currentVersion already published"
+          else if [ "$currentVersion = $distantVersion" ]; then
             echo "Version $currentVersion already published"
           else
             echo "Version $currentVersion not published yet"
@@ -36,14 +48,14 @@ jobs:
         if: env.CORE_PUBLISHED == 'false'
         run: npm run minify
         working-directory: GenForm-NPM/Core
-      - name: Publish to NPM
-        if: env.CORE_PUBLISHED == 'false'
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          token: ${{ secrets.NPM_TOKEN }}
-        working-directory: GenForm-NPM/Core
+      # - name: Publish to NPM
+      #   if: env.CORE_PUBLISHED == 'false'
+      #   run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #   working-directory: GenForm-NPM/Core
 
   build-publish-React:
     runs-on: ubuntu-latest
@@ -70,11 +82,11 @@ jobs:
         if: env.REACT_PUBLISHED == 'false'
         run: npm ci
         working-directory: GenForm-NPM/React
-      - name: Publish to NPM
-        if: env.REACT_PUBLISHED == 'false'
-        run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-          token: ${{ secrets.NPM_TOKEN }}
-        working-directory: GenForm-NPM/React
+      # - name: Publish to NPM
+      #   if: env.REACT_PUBLISHED == 'false'
+      #   run: npm publish
+      #   env:
+      #     NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+      #     token: ${{ secrets.NPM_TOKEN }}
+      #   working-directory: GenForm-NPM/React
