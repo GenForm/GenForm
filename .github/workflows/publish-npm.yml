@@ -45,8 +45,11 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           token: ${{ secrets.NPM_TOKEN }}
         working-directory: GenForm-NPM/Core
+
   build-publish-React:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_ENV: ./env-vars-publish.env
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
@@ -59,24 +62,21 @@ jobs:
           distantVersion=$(npm view @genform/react version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            REACT_PUBLISHED=$(true)
-            echo "::set-env name=REACT_PUBLISHED::$REACT_PUBLISHED"
           else
             echo "Version $currentVersion not published yet"
-            REACT_PUBLISHED=$(false)
-            echo "::set-env name=REACT_PUBLISHED::$REACT_PUBLISHED"
+            echo "REACT_PUBLISHED=false" >> $GITHUB_ENV
           fi
         working-directory: GenForm-NPM/React
       - name: Clean Install
+        if: env.REACT_PUBLISHED == 'false'
         run: npm ci
         working-directory: GenForm-NPM/React
-      # - name: Create Minified Version
-      #   run: npm run minify
-      #   working-directory: GenForm-NPM/React
       - name: Publish to NPM
+        if: env.REACT_PUBLISHED == 'false'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           token: ${{ secrets.NPM_TOKEN }}
         working-directory: GenForm-NPM/React
+ 
