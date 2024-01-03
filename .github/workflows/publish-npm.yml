@@ -6,7 +6,6 @@ on:
       - main
 
 jobs:
-
   # Build and publish the package if the version is not already published
   build-publish-Core:
     runs-on: ubuntu-latest
@@ -79,4 +78,3 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           token: ${{ secrets.NPM_TOKEN }}
         working-directory: GenForm-NPM/React
- 
