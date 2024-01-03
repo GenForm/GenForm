@@ -20,7 +20,7 @@ jobs:
           distantVersion=$(npm view @genform/core version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            exit 1
+            exit 2
           else
             echo "Version $currentVersion not published yet"
           fi
@@ -39,7 +39,7 @@ jobs:
           distantVersion=$(npm view @genform/react version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            exit 1
+            exit 2
           else
             echo "Version $currentVersion not published yet"
           fi
@@ -48,6 +48,7 @@ jobs:
   # Build and publish the package if the version is not already published
   build-publish-Core:
     needs: check-version-Core
+    if: ${{ needs.check-version-Core.result != 'failure' && needs.check-version-Core.result != 'cancelled' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -57,9 +58,6 @@ jobs:
           registry-url: 'https://registry.npmjs.org/'
       - name: Clean Install
         run: npm ci
-        working-directory: GenForm-NPM/Core
-      - name: print registry
-        run: npm config get registry
         working-directory: GenForm-NPM/Core
       - name: Create Minified Version
         run: npm run minify
@@ -71,11 +69,10 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           token: ${{ secrets.NPM_TOKEN }}
         working-directory: GenForm-NPM/Core
-      - name: Check logs
-        run: cat /home/runner/.npm/_logs/2024-01-02T20_20_31_958Z-debug-0.log
 
   build-publish-React:
     needs: check-version-React
+    if: ${{ needs.check-version-React.result != 'failure' && needs.check-version-React.result != 'cancelled' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
