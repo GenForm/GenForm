@@ -1,6 +1,6 @@
 {
   "name": "@genform/core",
-  "version": "0.2.0",
+  "version": "0.1.4",
   "description": "A form generator using JS based on a JSON object",
   "type": "module",
   "private": false,
