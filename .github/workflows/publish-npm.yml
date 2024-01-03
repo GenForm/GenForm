@@ -22,18 +22,24 @@ jobs:
           distantVersion=$(npm view @genform/core version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            exit 0
+            CORE_PUBLISHED=$(true)
+            echo "::set-env name=CORE_PUBLISHED::$CORE_PUBLISHED"
           else
             echo "Version $currentVersion not published yet"
+            CORE_PUBLISHED=$(false)
+            echo "::set-env name=CORE_PUBLISHED::$CORE_PUBLISHED"
           fi
         working-directory: GenForm-NPM/Core
       - name: Clean Install
+        if: env.CORE_PUBLISHED == false
         run: npm ci
         working-directory: GenForm-NPM/Core
       - name: Create Minified Version
+        if: env.CORE_PUBLISHED == false
         run: npm run minify
         working-directory: GenForm-NPM/Core
       - name: Publish to NPM
+        if: env.CORE_PUBLISHED == false
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -55,9 +61,12 @@ jobs:
           distantVersion=$(npm view @genform/react version)
           if [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
-            exit 0
+            REACT_PUBLISHED=$(true)
+            echo "::set-env name=REACT_PUBLISHED::$REACT_PUBLISHED"
           else
             echo "Version $currentVersion not published yet"
+            REACT_PUBLISHED=$(false)
+            echo "::set-env name=REACT_PUBLISHED::$REACT_PUBLISHED"
           fi
         working-directory: GenForm-NPM/React
       - name: Clean Install
