@@ -6,49 +6,9 @@ on:
       - t47-cicd
 
 jobs:
-  # Check if the version is already published
-  check-version-Core:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - name: Check if the version is already published
-        run: |
-          currentVersion=$(node -p -e "require('./package.json').version")
-          distantVersion=$(npm view @genform/core version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
-            echo "Version $currentVersion already published"
-            echo "::set-output name=version-published::true"
-          else
-            echo "Version $currentVersion not published yet"
-          fi
-        working-directory: GenForm-NPM/Core
-
-  check-version-React:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - name: Check if the version is already published
-        run: |
-          currentVersion=$(node -p -e "require('./package.json').version")
-          distantVersion=$(npm view @genform/react version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
-            echo "Version $currentVersion already published"
-            echo "::set-output name=version-published::true"
-          else
-            echo "Version $currentVersion not published yet"
-          fi
-        working-directory: GenForm-NPM/React
 
   # Build and publish the package if the version is not already published
   build-publish-Core:
-    needs: check-version-Core
-    if: ${{ needs.check-version-Core.outputs.version-published != 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -56,6 +16,17 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org/'
+      - name: Check if the version is already published
+        run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/core version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 0
+          else
+            echo "Version $currentVersion not published yet"
+          fi
+        working-directory: GenForm-NPM/Core
       - name: Clean Install
         run: npm ci
         working-directory: GenForm-NPM/Core
@@ -71,8 +42,6 @@ jobs:
         working-directory: GenForm-NPM/Core
 
   build-publish-React:
-    needs: check-version-React
-    if: ${{ needs.check-version-React.outputs.version-published != 'true' }}
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -80,6 +49,17 @@ jobs:
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org/'
+      - name: Check if the version is already published
+        run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/react version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 0
+          else
+            echo "Version $currentVersion not published yet"
+          fi
+        working-directory: GenForm-NPM/React
       - name: Clean Install
         run: npm ci
         working-directory: GenForm-NPM/React
