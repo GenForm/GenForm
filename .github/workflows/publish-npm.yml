@@ -3,7 +3,7 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - t47-cicd
+      - main
 
 jobs:
 
