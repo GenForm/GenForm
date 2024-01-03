@@ -6,62 +6,38 @@ on:
       - main
 
 jobs:
-  # Check if the version is already published
-  check-version-Core:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - name: Check if the version is already published
-        run: |
-          currentVersion=$(node -p -e "require('./package.json').version")
-          distantVersion=$(npm view @genform/core version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
-            echo "Version $currentVersion already published"
-            exit 1
-          else
-            echo "Version $currentVersion not published yet"
-          fi
-        working-directory: GenForm-NPM/Core
-
-  check-version-React:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 16
-      - name: Check if the version is already published
-        run: |
-          currentVersion=$(node -p -e "require('./package.json').version")
-          distantVersion=$(npm view @genform/react version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
-            echo "Version $currentVersion already published"
-            exit 1
-          else
-            echo "Version $currentVersion not published yet"
-          fi
-        working-directory: GenForm-NPM/React
-
   # Build and publish the package if the version is not already published
   build-publish-Core:
-    needs: check-version-Core
     runs-on: ubuntu-latest
+    env:
+      GITHUB_ENV: ./env-vars-publish.env
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org/'
+      - name: Check if the version is already published
+        run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/core version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+          else
+            echo "Version $currentVersion not published yet"
+            echo "CORE_PUBLISHED=false" >> $GITHUB_ENV
+          fi
+        working-directory: GenForm-NPM/Core
       - name: Clean Install
+        if: env.CORE_PUBLISHED == 'false'
         run: npm ci
         working-directory: GenForm-NPM/Core
       - name: Create Minified Version
+        if: env.CORE_PUBLISHED == 'false'
         run: npm run minify
         working-directory: GenForm-NPM/Core
       - name: Publish to NPM
+        if: env.CORE_PUBLISHED == 'false'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -70,21 +46,32 @@ jobs:
         working-directory: GenForm-NPM/Core
 
   build-publish-React:
-    needs: check-version-React
     runs-on: ubuntu-latest
+    env:
+      GITHUB_ENV: ./env-vars-publish.env
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v3
         with:
           node-version: 16
           registry-url: 'https://registry.npmjs.org/'
+      - name: Check if the version is already published
+        run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          distantVersion=$(npm view @genform/react version)
+          if [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+          else
+            echo "Version $currentVersion not published yet"
+            echo "REACT_PUBLISHED=false" >> $GITHUB_ENV
+          fi
+        working-directory: GenForm-NPM/React
       - name: Clean Install
+        if: env.REACT_PUBLISHED == 'false'
         run: npm ci
         working-directory: GenForm-NPM/React
-      # - name: Create Minified Version
-      #   run: npm run minify
-      #   working-directory: GenForm-NPM/React
       - name: Publish to NPM
+        if: env.REACT_PUBLISHED == 'false'
         run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
