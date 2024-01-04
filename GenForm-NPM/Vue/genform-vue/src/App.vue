@@ -9,6 +9,7 @@ import { ref } from 'vue';
 import GenFormComponent from './components/GenFormComponent.vue';
 
 export default {
+  name: 'App',
   components: {
     GenFormComponent,
   },

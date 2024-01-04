@@ -2,8 +2,8 @@
   <div ref= "formRef"/>
 </template>
 
-<script setup lang="ts">
-import { onMounted, ref, defineProps } from "vue"
+<script lang="ts">
+import { onMounted, ref } from "vue"
 import GenForm from '@genform/core'
 
 export default {
