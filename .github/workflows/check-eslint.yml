@@ -1,9 +1,9 @@
 name: Check EsLint
 
 on:
-  push:
+  pull_request:
     branches:
-      - t53-cicd
+      - main
 
 jobs:
   eslint-check:
