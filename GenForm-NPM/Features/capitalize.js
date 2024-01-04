@@ -63,19 +63,3 @@ function capitalizeFirstLetter(string) {
     })
     .join('')
 }
-
-function attributeToCapitalize(string, rule) {
-  const capitalize = ['firstLetter', 'firstLetterOfEach', 'all', 'none']
-
-  if (rule === capitalize[0]) {
-    return string.charAt(0).toUpperCase() + string.slice(1)
-  }
-  if (rule === capitalize[1]) {
-    return capitalizeFirstLetter(string)
-  }
-  if (rule === capitalize[2]) {
-    return string.toUpperCase()
-  } else {
-    return string
-  }
-}
