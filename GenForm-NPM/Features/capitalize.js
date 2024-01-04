@@ -1,19 +1,26 @@
 function applyCapitalizeRulesOnFormInput(form, features) {
+  const capitalizationMap = mappingInputsWithRules(features)
+  applyCapitalizationRulesToInputs(form, capitalizationMap)
+}
+
+function mappingInputsWithRules(features) {
   const capitalizeRules = features.capitalize
   checkDuplicateNamesInRules(capitalizeRules)
 
-  const inputs = form.getElementsByTagName('input')
+  const inputRulesMap = {}
+  for (const rule in capitalizeRules) {
+    capitalizeRules[rule].forEach((name) => {
+      inputRulesMap[name] = rule
+    })
+  }
+  console.log(inputRulesMap)
+  return inputRulesMap
+}
 
-  for (let i = 0; i < inputs.length; i++) {
-    const input = inputs[i]
-    let capitalizeRule = null
-
-    for (const rule in capitalizeRules) {
-      if (capitalizeRules[rule].includes(input.name)) {
-        capitalizeRule = rule
-      }
-    }
-
+function applyCapitalizationRulesToInputs(form, capitalizationMap) {
+  for (let i = 0; i < form.elements.length; i++) {
+    const input = form.elements[i]
+    const capitalizeRule = capitalizationMap[input.name]
     if (capitalizeRule) {
       input.addEventListener('input', function () {
         input.value = applyTextCapitalize(input.value, capitalizeRule)
