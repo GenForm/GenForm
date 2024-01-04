@@ -1,0 +1,25 @@
+name: Check EsLint
+
+on:
+  push:
+    branches:
+      - t53-cicd
+
+jobs:
+  prettier-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 16
+
+      - name: Install eslint
+        run: npm install eslint -g
+
+      - name: Run eslint for npm packages
+        run: npx eslint .\GenForm-NPM\

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import GenForm from '@genform/core'
+import GenForm from '@genform/core'
 
 function GenFormComponent({ elems, params }) {
   const formRef = useRef(null)
