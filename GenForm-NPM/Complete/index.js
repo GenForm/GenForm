@@ -1,7 +1,7 @@
 import * as GenFormCore from '@GenForm/Core'
 
 class GenForm {
-  constructor() { }
+  constructor() {}
 }
 
 const autoCapitalize = (form, features) => {
