@@ -1,7 +1,11 @@
 import * as GenFormCore from '@GenForm/Core'
 
 class GenForm {
-  constructor() {}
+  constructor() { }
+}
+
+const autoCapitalize = (form, features) => {
+  console.log('A PH until the feature is implemented')
 }
 
 GenForm.toForm = function (document, obj) {
