@@ -39,7 +39,7 @@ jobs:
           node-version: 18
 
       - name: npm clean install
-        run: npm ci
+        run: echo "todo"
         working-directory: ./GenForm-NPM/Vue/
 
       - name: npm run tests for vue
