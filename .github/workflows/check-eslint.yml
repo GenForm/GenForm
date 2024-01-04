@@ -25,4 +25,6 @@ jobs:
         run: npx eslint ./GenForm-NPM/
 
       - name: check eslint for tests
-        run: npx eslint ./GenForm-Tests/React/
+        run: |
+          npx eslint ./GenForm-Tests/Vue/
+          npx eslint ./GenForm-Tests/Vanilla/
