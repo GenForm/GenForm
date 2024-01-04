@@ -23,16 +23,16 @@ jobs:
           fi
           cd ./GenForm-NPM/Core
           currentVersion=$(node -p -e "require('./package.json').version")
-          currentVersion_0=$(echo $currentVersion | cut -d'.' -f1)
-          currentVersion_1=$(echo $currentVersion | cut -d'.' -f2)
-          currentVersion_2=$(echo $currentVersion | cut -d'.' -f3)
+          currentVersion_major=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_minor=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_patch=$(echo $currentVersion | cut -d'.' -f3)
           distantVersion=$(npm view @genform/core version)
-          distantVersion_0=$(echo $distantVersion | cut -d'.' -f1)
-          distantVersion_1=$(echo $distantVersion | cut -d'.' -f2)
-          distantVersion_2=$(echo $distantVersion | cut -d'.' -f3)
-          if [ "$currentVersion_0" -lt "$distantVersion_0" ] || 
-            ([ "$currentVersion_0" -eq "$distantVersion_0" ] && [ "$currentVersion_1" -lt "$distantVersion_1" ]) || 
-            ([ "$currentVersion_0" -eq "$distantVersion_0" ] && [ "$currentVersion_1" -eq "$distantVersion_1" ] && [ "$currentVersion_2" -lt "$distantVersion_2" ]); then
+          distantVersion_major=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_minor=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_patch=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_major" -lt "$distantVersion_major" ] || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -lt "$distantVersion_minor" ]) || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -eq "$distantVersion_minor" ] && [ "$currentVersion_patch" -lt "$distantVersion_patch" ]); then
             echo "Local version $currentVersion is lower than distant version"
             exit 1
           elif [ "$currentVersion" = "$distantVersion" ]; then
@@ -59,16 +59,16 @@ jobs:
           fi
           cd ./GenForm-NPM/React
           currentVersion=$(node -p -e "require('./package.json').version")
-          currentVersion_0=$(echo $currentVersion | cut -d'.' -f1)
-          currentVersion_1=$(echo $currentVersion | cut -d'.' -f2)
-          currentVersion_2=$(echo $currentVersion | cut -d'.' -f3)
+          currentVersion_major=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_minor=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_patch=$(echo $currentVersion | cut -d'.' -f3)
           distantVersion=$(npm view @genform/react version)
-          distantVersion_0=$(echo $distantVersion | cut -d'.' -f1)
-          distantVersion_1=$(echo $distantVersion | cut -d'.' -f2)
-          distantVersion_2=$(echo $distantVersion | cut -d'.' -f3)
-          if [ "$currentVersion_0" -lt "$distantVersion_0" ] || 
-            ([ "$currentVersion_0" -eq "$distantVersion_0" ] && [ "$currentVersion_1" -lt "$distantVersion_1" ]) || 
-            ([ "$currentVersion_0" -eq "$distantVersion_0" ] && [ "$currentVersion_1" -eq "$distantVersion_1" ] && [ "$currentVersion_2" -lt "$distantVersion_2" ]); then
+          distantVersion_major=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_minor=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_patch=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_major" -lt "$distantVersion_major" ] || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -lt "$distantVersion_minor" ]) || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -eq "$distantVersion_minor" ] && [ "$currentVersion_patch" -lt "$distantVersion_patch" ]); then
             echo "Local version $currentVersion is lower than distant version"
             exit 1
           elif [ "$currentVersion" = "$distantVersion" ]; then
