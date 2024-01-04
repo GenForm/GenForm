@@ -79,16 +79,3 @@ function attributeToCapitalize(string, rule) {
     return string
   }
 }
-
-function capitalizeFirstLetter(string) {
-  const breakpoints = /(\s|-|,)/
-  return string
-    .split(breakpoints)
-    .map((s) => {
-      if (breakpoints.test(s)) {
-        return s
-      }
-      return s.charAt(0).toUpperCase() + s.slice(1)
-    })
-    .join('')
-}
