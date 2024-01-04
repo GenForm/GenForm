@@ -17,79 +17,78 @@ function applyCapitalizeRulesOnFormInput(form, features) {
     if (capitalizeRule) {
       input.addEventListener('input', function () {
         input.value = applyTextCapitalize(input.value, capitalizeRule)
-      });
+      })
     }
   }
 }
 
 function checkDuplicateNamesInRules(capitalizeRules) {
-  const tempName = {};
+  const tempName = {}
 
   for (const rule in capitalizeRules) {
-    capitalizeRules[rule].forEach(name => {
+    capitalizeRules[rule].forEach((name) => {
       if (tempName[name]) {
-        throw new Error(` '${name}' is present in multiple rules`);
+        throw new Error(` '${name}' is present in multiple rules`)
       }
-      tempName[name] = rule;
-    });
+      tempName[name] = rule
+    })
   }
 }
-
 
 function applyTextCapitalize(string, rule) {
   const capitalize = ['firstLetter', 'firstLetterOfEach', 'all', 'none']
 
   if (rule === capitalize[0]) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
   if (rule === capitalize[1]) {
     return capitalizeFirstLetter(string)
   }
   if (rule === capitalize[2]) {
-    return string.toUpperCase();
-  }
-  else {
-    return string;
+    return string.toUpperCase()
+  } else {
+    return string
   }
 }
 
 function capitalizeFirstLetter(string) {
-  const breakpoints = /(\s|-|,)/;
-  return string.split(breakpoints)
-    .map(s => {
+  const breakpoints = /(\s|-|,)/
+  return string
+    .split(breakpoints)
+    .map((s) => {
       if (breakpoints.test(s)) {
-        return s;
+        return s
       }
-      return s.charAt(0).toUpperCase() + s.slice(1);
+      return s.charAt(0).toUpperCase() + s.slice(1)
     })
-    .join('');
+    .join('')
 }
 
 function attributeToCapitalize(string, rule) {
   const capitalize = ['firstLetter', 'firstLetterOfEach', 'all', 'none']
 
   if (rule === capitalize[0]) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
+    return string.charAt(0).toUpperCase() + string.slice(1)
   }
   if (rule === capitalize[1]) {
     return capitalizeFirstLetter(string)
   }
   if (rule === capitalize[2]) {
-    return string.toUpperCase();
-  }
-  else {
-    return string;
+    return string.toUpperCase()
+  } else {
+    return string
   }
 }
 
 function capitalizeFirstLetter(string) {
-  const breakpoints = /(\s|-|,)/; 
-  return string.split(breakpoints)
-    .map(s => {
+  const breakpoints = /(\s|-|,)/
+  return string
+    .split(breakpoints)
+    .map((s) => {
       if (breakpoints.test(s)) {
-        return s; 
+        return s
       }
-      return s.charAt(0).toUpperCase() + s.slice(1);
+      return s.charAt(0).toUpperCase() + s.slice(1)
     })
-    .join('');
+    .join('')
 }
