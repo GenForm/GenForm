@@ -24,3 +24,4 @@ jobs:
 
       - name: npm run tests for core
         run: npm test
+        working-directory: ./GenForm-NPM/Core/
