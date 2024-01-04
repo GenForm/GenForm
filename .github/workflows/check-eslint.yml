@@ -6,7 +6,7 @@ on:
       - t53-cicd
 
 jobs:
-  prettier-check:
+  eslint-check:
     runs-on: ubuntu-latest
 
     steps:
@@ -21,5 +21,5 @@ jobs:
       - name: Install eslint
         run: npm install eslint -g
 
-      - name: Run eslint for npm packages
-        run: npx eslint .\GenForm-NPM\
+      - name: check eslint for React
+        run: npx eslint .\GenForm-NPM\React
