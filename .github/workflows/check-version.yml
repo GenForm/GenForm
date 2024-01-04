@@ -23,13 +23,23 @@ jobs:
           fi
           cd ./GenForm-NPM/Core
           currentVersion=$(node -p -e "require('./package.json').version")
+          currentVersion_major=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_minor=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_patch=$(echo $currentVersion | cut -d'.' -f3)
           distantVersion=$(npm view @genform/core version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
+          distantVersion_major=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_minor=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_patch=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_major" -lt "$distantVersion_major" ] || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -lt "$distantVersion_minor" ]) || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -eq "$distantVersion_minor" ] && [ "$currentVersion_patch" -lt "$distantVersion_patch" ]); then
+            echo "Local version $currentVersion is lower than distant version"
+            exit 1
+          elif [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
           else
             echo "Version $currentVersion not published yet"
-            exit 0
           fi
 
   check-version-React:
@@ -49,11 +59,21 @@ jobs:
           fi
           cd ./GenForm-NPM/React
           currentVersion=$(node -p -e "require('./package.json').version")
+          currentVersion_major=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_minor=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_patch=$(echo $currentVersion | cut -d'.' -f3)
           distantVersion=$(npm view @genform/react version)
-          if [ "$currentVersion" = "$distantVersion" ]; then
+          distantVersion_major=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_minor=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_patch=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_major" -lt "$distantVersion_major" ] || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -lt "$distantVersion_minor" ]) || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -eq "$distantVersion_minor" ] && [ "$currentVersion_patch" -lt "$distantVersion_patch" ]); then
+            echo "Local version $currentVersion is lower than distant version"
+            exit 1
+          elif [ "$currentVersion" = "$distantVersion" ]; then
             echo "Version $currentVersion already published"
             exit 1
           else
             echo "Version $currentVersion not published yet"
-            exit 0
           fi
