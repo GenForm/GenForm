@@ -23,3 +23,6 @@ jobs:
 
       - name: check eslint for npm packages
         run: npx eslint ./GenForm-NPM/
+
+      - name: check eslint for tests
+        run: npx eslint ./GenForm-Tests/React/
