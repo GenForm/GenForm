@@ -25,3 +25,43 @@ jobs:
       - name: npm run tests for core
         run: npm test
         working-directory: ./GenForm-NPM/Core/
+  
+  unit-testing-vue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: npm clean install
+        run: npm ci
+        working-directory: ./GenForm-NPM/Vue/
+
+      - name: npm run tests for vue
+        run: echo "todo"
+        working-directory: ./GenForm-NPM/Vue/
+  
+  unit-testing-react:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: npm clean install
+        run: npm ci
+        working-directory: ./GenForm-NPM/React/
+
+      - name: npm run tests for react
+        run: echo "todo"
+        working-directory: ./GenForm-NPM/React/
