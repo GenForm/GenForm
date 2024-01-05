@@ -16,8 +16,6 @@ function applyCapitalizeRulesOnFormInput(features) {
 
 function mapRulesToInputNames(features) {
   const capitalizeRules = features.capitalize
-  checkDuplicateNamesInRules(capitalizeRules)
-
   const ruleMap = {}
 
   for (const rule in capitalizeRules) {
@@ -27,19 +25,6 @@ function mapRulesToInputNames(features) {
   }
 
   return ruleMap
-}
-
-function checkDuplicateNamesInRules(capitalizeRules) {
-  const tempName = {}
-
-  for (const rule in capitalizeRules) {
-    capitalizeRules[rule].forEach((name) => {
-      if (tempName[name]) {
-        throw new Error(` '${name}' is present in multiple rules`)
-      }
-      tempName[name] = rule
-    })
-  }
 }
 
 function applyRule(rule) {
@@ -61,7 +46,7 @@ function applyRule(rule) {
     }
   } else {
     return function (string) {
-      return String(string).toLowerCase()
+      return string.toLowerCase()
     }
   }
 }
