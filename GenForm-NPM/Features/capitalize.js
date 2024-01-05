@@ -1,18 +1,16 @@
-function applyCapitalizeRulesOnFormInput(form, features) {
+function applyCapitalizeRulesOnFormInput(features) {
   const ruleMap = mapRulesToInputNames(features)
 
   for (const inputName in ruleMap) {
     const rule = ruleMap[inputName]
-    const inputs = document.getElementsByName(inputName)
+    const input = document.getElementsByName(inputName)[0]
 
-    if (inputs.length > 1) {
-      throw new Error(`Multiple inputs with name '${inputName}'`)
+    if (input) {
+      input.addEventListener('input', function () {
+        const capitalizeFunction = applyRule(rule)
+        this.value = capitalizeFunction(this.value)
+      })
     }
-
-    const input = inputs[0]
-    input.addEventListener('input', function () {
-      input.value = applyRule(rule)(input.value)
-    })
   }
 }
 
