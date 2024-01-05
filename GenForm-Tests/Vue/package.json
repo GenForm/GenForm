@@ -10,12 +10,13 @@
     "lint": "eslint ../../.eslintrc.js"
   },
   "dependencies": {
+    "@genform/vue": "^0.0.4",
     "vue": "^3.3.11"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
-    "vite": "^5.0.10",
     "eslint": "^8.55.0",
-    "prettier": "3.1.1"
+    "prettier": "3.1.1",
+    "vite": "^5.0.10"
   }
 }

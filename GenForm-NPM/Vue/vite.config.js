@@ -7,15 +7,16 @@ export default defineConfig({
   plugins: [vue()],
   build: {
     lib: {
-      entry: resolve(__dirname, 'src/index.ts'),
-      name: 'GenFormVue',
-      fileName: "@genform/genform-vue",
+      entry: resolve(__dirname, 'lib/index.js'),
+      name: 'GenForm/Vue',
+      fileName: "GenFormComponent",
     },
     rollupOptions: {
-      external: ['vue'],
+      external: ['vue', '@genform/core'],
       output: {
         globals: {
           vue: 'Vue',
+          '@genform/core': 'GenForm',
         },
       },
     },
