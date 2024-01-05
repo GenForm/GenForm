@@ -4,9 +4,11 @@
   "description": "A form generator using JS based on a JSON object",
   "type": "module",
   "private": false,
-  "main": "index.js",
+  "main": "index.min.js",
+  "unpkg": "index.min.js",
   "scripts": {
-    "minify": "uglifyjs --compress --mangle -o ./index.min.js -- ./index.js",
+    "minify": "npm run build && uglifyjs --compress --mangle -o ./index.min.js -- ./index.min.js",
+    "build": "babel ./index.min.js --out-file ./index.min.js",
     "test": "jasmine",
     "lint": "eslint ../../.eslintrc.js"
   },
@@ -17,10 +19,14 @@
   "author": "GenForm",
   "license": "MIT",
   "devDependencies": {
-    "eslint": "^8.55.0",
-    "jasmine": "^5.1.0",
-    "jsdom": "^23.0.1",
+    "@babel/cli": "7.23.4",
+    "@babel/core": "7.23.7",
+    "@babel/plugin-transform-class-properties": "7.23.3",
+    "@babel/preset-env": "7.23.7",
+    "eslint": "8.55.0",
+    "jasmine": "5.1.0",
+    "jsdom": "23.0.1",
     "prettier": "3.1.1",
-    "uglify-js": "^3.17.4"
+    "uglify-js": "3.17.4"
   }
 }
