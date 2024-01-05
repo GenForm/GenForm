@@ -5,10 +5,10 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
+import { defineComponent, ref } from 'vue';
 import GenFormComponent from './components/GenFormComponent.vue';
 
-export default {
+export default defineComponent({
   name: 'App',
   components: {
     GenFormComponent,
@@ -47,6 +47,6 @@ export default {
 
     return { customElems, customParams };
   }
-};
+});
 
 </script>

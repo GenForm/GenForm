@@ -2,34 +2,27 @@
   <div ref= "formRef"/>
 </template>
 
-<script lang="ts">
-import { onMounted, ref } from "vue"
+<script  setup lang="ts">
+import { onMounted, ref, defineProps } from "vue"
 import GenForm from '@genform/core'
 
-export default {
-  name: 'GenFormComponent',
-  props: {
-    elems: Array,
-    params: Object,
-  },
-  setup(props) {
-    const formRef = ref(null);
+const props = defineProps<{
+  elems: Array<any>;
+  params: Object;
+}>();
 
-    onMounted(() => {
-      const generatedForm = GenForm.toForm(document, { 
-        elems: props.elems, 
-        params: props.params,
-      });
+const formRef = ref<HTMLElement | null>(null);
 
-      if (formRef.value) {
-        formRef.value.innerHTML = '';
-        formRef.value.appendChild(generatedForm);
-      }
-    });
+onMounted(() => {
+  const generatedForm = GenForm.toForm(document, { 
+    elems: props.elems, 
+    params: props.params,
+  });
 
-    return {
-      formRef,
-    };
-  },
-};
+  if (formRef.value instanceof HTMLElement) {
+    formRef.value.innerHTML = '';
+    formRef.value.appendChild(generatedForm);
+  }
+});
+
 </script>
