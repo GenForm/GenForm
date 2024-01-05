@@ -1,11 +1,10 @@
 import * as GenFormCore from '@GenForm/Core'
 
+// Features imports
+import autoCapitalize from './lib/autoCapitalize.js'
+
 class GenForm {
   constructor() {}
-}
-
-const autoCapitalize = (form, features) => {
-  console.log('A PH until the feature is implemented')
 }
 
 GenForm.toForm = function (document, obj) {
