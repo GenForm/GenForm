@@ -1,3 +1,6 @@
+# Config
+.vscode/
+
 # GenForm-NPM
 GenForm-NPM/*/node_modules
 
@@ -6,3 +9,4 @@ GenForm-Tests/*/node_modules
 
 # All minified files
 *.min.js
+dist/

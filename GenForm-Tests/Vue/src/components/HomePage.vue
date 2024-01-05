@@ -25,12 +25,12 @@
 
 <script>
 // Récupération du composant GenFormComponent de npm
-import GenFormComponent from '@genform/vue';
+import GenFormComponent from '@genform/vue'
 
 export default {
     name: 'HomePage',
     components: {
-        GenFormComponent,
+        GenFormComponent
     },
     data() {
         return {
@@ -39,39 +39,39 @@ export default {
                 {
                     type: 'text',
                     name: 'name',
-                    placeholder: 'Name',
+                    placeholder: 'Name'
                 },
                 {
                     type: 'email',
                     name: 'email',
-                    placeholder: 'Email',
+                    placeholder: 'Email'
                 },
                 {
                     type: 'password',
                     name: 'password',
-                    placeholder: 'Password',
+                    placeholder: 'Password'
                 },
                 {
                     type: 'submit',
-                    value: 'Submit',
+                    value: 'Submit'
                 },
                 {
                     type: 'reset',
-                    value: 'Reset',
-                },
+                    value: 'Reset'
+                }
             ],
             customParams: {
                 action: '/register',
-                method: 'POST',
-            },
-        };
+                method: 'POST'
+            }
+        }
     },
     methods: {
         jsonSubmit() {
-            console.log(this.jsonInput);
-        },
-    },
-};
+            console.log(this.jsonInput)
+        }
+    }
+}
 </script>
 
 <style scoped>
