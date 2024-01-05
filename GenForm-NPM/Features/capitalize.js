@@ -17,13 +17,13 @@ function applyCapitalizeRulesOnFormInput(form, features) {
 }
 
 function mapRulesToInputNames(features) {
-  const capitalizeRules = features.capitalize;
+  const capitalizeRules = features.capitalize
   checkDuplicateNamesInRules(capitalizeRules)
 
   const ruleMap = {}
 
   for (const rule in capitalizeRules) {
-    capitalizeRules[rule].forEach(inputName => {
+    capitalizeRules[rule].forEach((inputName) => {
       ruleMap[inputName] = rule
     })
   }
@@ -31,12 +31,11 @@ function mapRulesToInputNames(features) {
   return ruleMap
 }
 
-
 function checkDuplicateNamesInRules(capitalizeRules) {
   const tempName = {}
 
   for (const rule in capitalizeRules) {
-    capitalizeRules[rule].forEach(name => {
+    capitalizeRules[rule].forEach((name) => {
       if (tempName[name]) {
         throw new Error(` '${name}' is present in multiple rules`)
       }
@@ -49,26 +48,33 @@ function applyRule(rule) {
   const capitalize = ['firstLetter', 'firstLetterOfEach', 'all', 'lowercase']
 
   if (rule === capitalize[0]) {
-
-    return function (string) { return string.charAt(0).toUpperCase() + string.slice(1) }
+    return function (string) {
+      return string.charAt(0).toUpperCase() + string.slice(1)
+    }
   }
   if (rule === capitalize[1]) {
-    return function (string) { return capitalizeFirstLetter(string) }
+    return function (string) {
+      return capitalizeFirstLetter(string)
+    }
   }
   if (rule === capitalize[2]) {
-    return function (string) { return string.toUpperCase() }
-  }
-  else {
-    return function (string) { return String(string).toLowerCase() }
+    return function (string) {
+      return string.toUpperCase()
+    }
+  } else {
+    return function (string) {
+      return String(string).toLowerCase()
+    }
   }
 }
 
 function capitalizeFirstLetter(string) {
-  const breakpoints = /(\s|-|,)/ 
-  return string.split(breakpoints)
-    .map(s => {
+  const breakpoints = /(\s|-|,)/
+  return string
+    .split(breakpoints)
+    .map((s) => {
       if (breakpoints.test(s)) {
-        return s 
+        return s
       }
       return s.charAt(0).toUpperCase() + s.slice(1)
     })
