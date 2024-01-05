@@ -2,14 +2,15 @@
   <div ref= "formRef"/>
 </template>
 
-<script  setup lang="ts">
+<!-- TODO: Separate setup from normal script -->
+<script setup>
 import { onMounted, ref, defineProps } from "vue"
 import GenForm from '@genform/core'
 
-const props = defineProps<{
-  elems: Array<any>;
-  params: Object;
-}>();
+const props = defineProps({
+  elems: Array,
+  params: Object
+})
 
 const formRef = ref<HTMLElement | null>(null);
 
