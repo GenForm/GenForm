@@ -1,0 +1,26 @@
+{
+  "name": "@genform/complete",
+  "version": "0.0.6",
+  "description": "A form generator using JS based on a JSON object with features such as validation, auto switch to next input, etc.",
+  "type": "module",
+  "private": false,
+  "main": "index.min.js",
+  "unpkg": "index.min.js",
+  "scripts": {
+    "minify": "uglifyjs --compress --mangle -o ./index.min.js -- ./index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "form-generator",
+    "form"
+  ],
+  "author": "GenForm",
+  "license": "MIT",
+  "dependencies": {
+    "@genform/core": "0.1.9"
+  },
+  "devDependencies": {
+    "prettier": "^3.1.1",
+    "uglify-js": "^3.17.4"
+  }
+}
