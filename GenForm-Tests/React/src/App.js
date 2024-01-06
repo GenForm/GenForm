@@ -1,58 +1,61 @@
 import './App.css'
 import GenFormComponent from '@genform/react'
-import {useState} from "react";
+import { useState } from 'react'
 
 function App() {
-  const [value, setValue] = useState('');
-  const [params, setParams] = useState('');
-  const [elems, setElems] = useState('');
-  const [showForm, setShowForm] = useState(false);
+  const [value, setValue] = useState('')
+  const [params, setParams] = useState('')
+  const [elems, setElems] = useState('')
+  const [showForm, setShowForm] = useState(false)
 
   function changeForm() {
-    const json = value;
-    const obj = JSON.parse(json);
-    setParams(obj.params);
-    setElems(obj.elems);
-    setShowForm(true);
+    const json = value
+    const obj = JSON.parse(json)
+    setParams(obj.params)
+    setElems(obj.elems)
+    setShowForm(true)
   }
 
   function showFormComponent() {
     if (showForm) {
-      return (
-          <GenFormComponent params={params} elems={elems}/>
-      )
+      return <GenFormComponent params={params} elems={elems} />
     }
   }
 
   return (
-      <div>
+    <div>
       <head>
-        <link rel="stylesheet" type="text/css" href="index.css"/>
+        <link rel="stylesheet" type="text/css" href="index.css" />
       </head>
-  <body>
-  <h1>POC GenForm</h1>
-  <div id="main">
-    <form id="input">
-        <textarea
-            rows="30"
-            cols="68"
-            id="changeform"
-            name="changeform"
-            placeholder="Enter a json format form parameters ..."
-            onChange={(event) => setValue(event.target.value)}
-        ></textarea>
-      <br/>
-      <input type="button" value="Submit" id="submit" onClick={() => changeForm()}/>
-    </form>
-    <div id="vbar"></div>
-    <div id="genform">
-      <form></form>
-    </div>
-  </div>
-  <script type="module" src="./index.js"></script>
-  </body>
-        {showFormComponent()}
+      <body>
+        <h1>POC GenForm</h1>
+        <div id="main">
+          <form id="input">
+            <textarea
+              rows="30"
+              cols="68"
+              id="changeform"
+              name="changeform"
+              placeholder="Enter a json format form parameters ..."
+              onChange={(event) => setValue(event.target.value)}
+            ></textarea>
+            <br />
+            <input
+              type="button"
+              value="Submit"
+              id="submit"
+              onClick={() => changeForm()}
+            />
+          </form>
+          <div id="vbar"></div>
+          <div id="genform">
+            <form></form>
+          </div>
         </div>
+        <script type="module" src="./index.js"></script>
+      </body>
+      {showFormComponent()}
+    </div>
   )
 }
 
