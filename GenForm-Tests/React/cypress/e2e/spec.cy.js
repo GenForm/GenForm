@@ -1,6 +1,12 @@
+import data from "./../../test.json";
+const jsonString = JSON.stringify(data);
 describe('template spec', () => {
-  it('Fill in', () => {
+  it('Write the json', () => {
     cy.visit('http://localhost:3000/')
+    cy.get('#changeform').type(jsonString, {parseSpecialCharSequences: false})
+    cy.get('#submit').click()
+  })
+  it('Write Fields', () => {
     cy.get('[type="text"]').type('John Doe')
     cy.get('[type="email"]').type('c@c')
     cy.get('[type="password"]').type('123456')
@@ -19,11 +25,10 @@ describe('template spec', () => {
     cy.get('[type="password"]').should('have.value', '')
   })
   it('Submit Values', () => {
-    cy.visit('http://localhost:3000/')
     cy.get('[type="text"]').type('John Doe')
     cy.get('[type="email"]').type('c@c')
     cy.get('[type="password"]').type('123456')
     cy.get('[type="submit"]').click()
-    cy.url().should('include', '/register')
+    cy.url().should('include', '/login')
   })
 })
