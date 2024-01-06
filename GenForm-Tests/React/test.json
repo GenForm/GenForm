@@ -1,0 +1,35 @@
+{
+    "elems": [
+        {
+          "type": "text",
+          "name": "name",
+          "placeholder": "Name"
+        },
+        {
+          "type": "email",
+          "name": "email",
+          "placeholder": "Email"
+        },
+        {
+          "type": "password",
+          "name": "password",
+          "placeholder": "Password"
+        },
+        {
+          "type": "submit",
+          "value": "Submit"
+        },
+        {
+          "type": "reset",
+          "value": "Reset"
+        },
+        {
+          "type":"reset",
+          "value":"Reset"
+        }
+    ],
+    "params": {
+        "action": "/login",
+        "method": "POST"
+    }
+}

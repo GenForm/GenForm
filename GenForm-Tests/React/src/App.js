@@ -1,44 +1,58 @@
 import './App.css'
 import GenFormComponent from '@genform/react'
-
-const customElems = [
-  {
-    type: 'text',
-    name: 'name',
-    placeholder: 'Name'
-  },
-  {
-    type: 'email',
-    name: 'email',
-    placeholder: 'Email'
-  },
-  {
-    type: 'password',
-    name: 'password',
-    placeholder: 'Password'
-  },
-  {
-    type: 'submit',
-    value: 'Submit'
-  },
-  {
-    type: 'reset',
-    value: 'Reset'
-  }
-]
-
-const customParams = {
-  action: '/register',
-  method: 'POST'
-}
+import {useState} from "react";
 
 function App() {
+  const [value, setValue] = useState('');
+  const [params, setParams] = useState('');
+  const [elems, setElems] = useState('');
+  const [showForm, setShowForm] = useState(false);
+
+  function changeForm() {
+    const json = value;
+    const obj = JSON.parse(json);
+    setParams(obj.params);
+    setElems(obj.elems);
+    setShowForm(true);
+  }
+
+  function showFormComponent() {
+    if (showForm) {
+      return (
+          <GenFormComponent params={params} elems={elems}/>
+      )
+    }
+  }
+
   return (
-    <div className="App">
-      <main className="App-main">
-        <GenFormComponent elems={customElems} params={customParams} />
-      </main>
+      <div>
+      <head>
+        <link rel="stylesheet" type="text/css" href="index.css"/>
+      </head>
+  <body>
+  <h1>POC GenForm</h1>
+  <div id="main">
+    <form id="input">
+        <textarea
+            rows="30"
+            cols="68"
+            id="changeform"
+            name="changeform"
+            placeholder="Enter a json format form parameters ..."
+            onChange={(event) => setValue(event.target.value)}
+        ></textarea>
+      <br/>
+      <input type="button" value="Submit" id="submit" onClick={() => changeForm()}/>
+    </form>
+    <div id="vbar"></div>
+    <div id="genform">
+      <form></form>
     </div>
+  </div>
+  <script type="module" src="./index.js"></script>
+  </body>
+        {showFormComponent()}
+        </div>
   )
 }
 
