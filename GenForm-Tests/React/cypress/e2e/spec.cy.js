@@ -2,7 +2,7 @@ import data from './../../test.json'
 const jsonString = JSON.stringify(data)
 describe('template spec', () => {
   it('Write the json', () => {
-    cy.visit('http://localhost:3000/')
+    cy.visit('http://localhost:3000')
     cy.get('#changeform').type(jsonString, { parseSpecialCharSequences: false })
     cy.get('#submit').click()
   })
