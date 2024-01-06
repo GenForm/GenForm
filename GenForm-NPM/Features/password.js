@@ -1,45 +1,79 @@
-function applyPasswordRules(features) {
-  const passwordRules = features.password
-  const passwordInput = document.querySelector('input[type="password"]')
+function validatePassword(form, json) {
+  const passwordField = json.elems.find((elem) => elem.type === 'password')
+  const passwordInput = form.querySelector('input[type="password"]')
+  const passwordRegex = new RegExp(passwordField.pattern)
+
+  if (!passwordInput) {
+    throw new Error('password field or input or regex not found')
+  }
+  switch (true) {
+    case passwordField.autocomplete === true:
+      passwordInput.setAttribute('autocomplete', passwordField.autocomplete)
+
+    case passwordField.minLength:
+      passwordInput.setAttribute('minlength', passwordField.minLength)
+
+    case passwordField.maxLength:
+      passwordInput.setAttribute('maxlength', passwordField.maxLength)
+
+    case passwordField.pattern:
+      passwordInput.setAttribute('pattern', passwordField.pattern)
+  }
 
   passwordInput.addEventListener('input', function () {
-    const password = this.value
+    const passwordValue = this.value
 
     switch (true) {
-      case password.length < passwordRules.minChar:
+      case passwordField.minLength &&
+        passwordValue.length < passwordField.minLength:
         throw new Error(
-          `the password must contain at least ${passwordRules.minChar} character(s).`
+          'password must contain at least ' +
+            passwordField.minLength +
+            ' characters'
         )
-      case passwordRules.specialchar &&
-        !/[!@#$%^&*(),.?":{}|<>]/.test(password):
+      case passwordField.maxLength &&
+        passwordValue.length > passwordField.maxLength:
         throw new Error(
-          `the password must contain at least one special character.`
+          'password must contain at most ' +
+            passwordField.maxLength +
+            ' characters'
         )
-      case passwordRules.minUppercase &&
-        password.replace(/[^A-Z]/g, '').length < passwordRules.minUppercase:
+      case passwordField.pattern && !passwordRegex.test(passwordValue):
         throw new Error(
-          `the password must contain at least ${passwordRules.minUppercase} uppercase letter(s).`
+          'password must match the pattern ' + passwordField.pattern
         )
-      default:
-        console.log('password valid format')
     }
   })
 }
 
-function verifyPassword() {
-  const passwordInput = document.querySelector('input[name="password"]')
-  const confirmPasswordInput = document.querySelector(
-    'input[name="confirmpassword"]'
+function verifyPassword(form, json) {
+  const passwordField = json.elems.find((elem) => elem.name === 'password')
+  const confirmPasswordField = json.elems.find(
+    (elem) => elem.name === 'confirmpassword'
+  )
+  const passwordInput = form.querySelector(
+    'input[name="' + passwordField.name + '"]'
+  )
+  const confirmPasswordInput = form.querySelector(
+    'input[name="' + confirmPasswordField.name + '"]'
   )
 
-  function checkPasswords() {
-    if (passwordInput.value !== confirmPasswordInput.value) {
-      console.error('passwords do not match')
-    } else {
-      console.log('passwords match')
-    }
+  if (
+    !passwordField ||
+    !confirmPasswordField ||
+    !passwordInput ||
+    !confirmPasswordInput
+  ) {
+    throw new Error('password field or input not found')
   }
 
-  passwordInput.addEventListener('input', checkPasswords)
-  confirmPasswordInput.addEventListener('input', checkPasswords)
+  form.addEventListener('input', function () {
+    if (passwordInput.value && confirmPasswordInput.value) {
+      if (passwordInput.value !== confirmPasswordInput.value) {
+        throw new Error("passwords don't match")
+      } else {
+        console.log('passwords match')
+      }
+    }
+  })
 }
