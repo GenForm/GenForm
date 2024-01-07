@@ -1,5 +1,5 @@
 function verifyEqualInputs(form, json) {
-  const verifyPairs = json.features.verifyInputsEquals;
+  const verifyPairs = json.features.verifyInputsEquals
 
   for (const pair of verifyPairs) {
     const key = Object.keys(pair)[0]
