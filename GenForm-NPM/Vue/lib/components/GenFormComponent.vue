@@ -13,7 +13,7 @@ const props = defineProps({
 
 const formRef = ref(null)
 
-onMounted(() => {
+onMounted(() => {                
     const generatedForm = GenForm.toForm(document, {
         elems: props.elems,
         params: props.params
