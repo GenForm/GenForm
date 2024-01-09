@@ -1,6 +1,6 @@
 # Config
 .vscode/
-/.idea
+.idea/
 
 # GenForm-NPM
 **/node_modules
