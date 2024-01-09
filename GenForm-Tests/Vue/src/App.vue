@@ -3,5 +3,5 @@ import UniversTestVue from './components/UniversTestVue.vue'
 </script>
 
 <template>
-    <UniversTestVue />
+  <UniversTestVue />
 </template>

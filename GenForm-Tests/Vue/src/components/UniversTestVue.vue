@@ -1,27 +1,30 @@
 <template>
-    <div class="univers-test-vue">
-        <h1 class="title">POC GenForm</h1>
+  <div class="univers-test-vue">
+    <h1 class="title">POC GenForm</h1>
 
-        <div class="content">
-            <div class="left-section">
-                <textarea
-                    v-model="jsonInput"
-                    class="json-input"
-                    placeholder="Enter JSON data here"
-                />
-                <button class="submit-button" @click="jsonSubmit">
-                    Submit
-                </button>
-            </div>
+    <div class="content">
+      <div class="left-section">
+        <textarea
+          v-model="jsonInput"
+          class="json-input"
+          placeholder="Enter JSON data here"
+        />
+        <button class="submit-button" @click="jsonSubmit">Submit</button>
+      </div>
 
-            <div class="split-line" />
+      <div class="split-line" />
 
-            <div class="right-section">
-                <!-- Ici, on affiche le composant GenFormComponent de npm -->
-                <GenFormComponent v-if="showGenForm" :elems="customElems" :params="customParams" key="componentKey" />
-            </div>
-        </div>
+      <div class="right-section">
+        <!-- Ici, on affiche le composant GenFormComponent de npm -->
+        <GenFormComponent
+          v-if="showGenForm"
+          :elems="customElems"
+          :params="customParams"
+          key="componentKey"
+        />
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
@@ -30,37 +33,37 @@ import GenFormComponent from '@genform/vue'
 import { nextTick } from 'vue' // Pour attendre que le DOM soit mis à jour
 
 export default {
-    name: 'UniversTestVue',
-    components: {
-        GenFormComponent
-    },
-    data() {
-        return {
-            jsonInput: '',
-            customElems: [],
-            customParams: {},
-            showGenForm: false // Pour supprimer le composant GenFormComponent du DOM
-        }
-    },
-    methods: {
-        jsonSubmit: async function() {
-            try {
-                // Récupérer les données JSON entrées par l'utilisateur
-                const json = JSON.parse(this.jsonInput)
-                this.customElems = json.elems
-                this.customParams = json.params
-
-                // Supprimer mon composant GenFormComponent du DOM
-                this.showGenForm = false
-                // Attendre que le DOM soit mis à jour
-                await nextTick()
-                // Remettre mon composant GenFormComponent dans le DOM
-                this.showGenForm = true          
-            } catch (error) {
-                console.error('Invalid JSON data', error)
-            }
-        }
+  name: 'UniversTestVue',
+  components: {
+    GenFormComponent
+  },
+  data() {
+    return {
+      jsonInput: '',
+      customElems: [],
+      customParams: {},
+      showGenForm: false // Pour supprimer le composant GenFormComponent du DOM
     }
+  },
+  methods: {
+    jsonSubmit: async function () {
+      try {
+        // Récupérer les données JSON entrées par l'utilisateur
+        const json = JSON.parse(this.jsonInput)
+        this.customElems = json.elems
+        this.customParams = json.params
+
+        // Supprimer mon composant GenFormComponent du DOM
+        this.showGenForm = false
+        // Attendre que le DOM soit mis à jour
+        await nextTick()
+        // Remettre mon composant GenFormComponent dans le DOM
+        this.showGenForm = true
+      } catch (error) {
+        console.error('Invalid JSON data', error)
+      }
+    }
+  }
 }
 </script>
 
