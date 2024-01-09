@@ -7,8 +7,5 @@
     "eslint": "^8.55.0",
     "prettier": "3.1.1",
     "serve": "^14.2.1"
-  },
-  "dependencies": {
-    "@genform/core": "^0.1.9"
   }
 }
