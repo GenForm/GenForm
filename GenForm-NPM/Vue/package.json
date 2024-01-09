@@ -1,11 +1,18 @@
 {
   "name": "@genform/vue",
-  "version": "0.0.1",
+  "version": "0.0.16",
   "description": "A form generator using JS based on a JSON object for Vue projects",
-  "main": "index.js",
+  "type": "module",
+  "private": false,
+  "main": "./dist/GenFormComponent.umd.cjs",
+  "module": "./dist/GenFormComponent.js",
   "scripts": {
-    "test": "node index.js",
+    "build": "vite build",
     "lint": "eslint ../../.eslintrc.js"
+  },
+  "dependencies": {
+    "@genform/core": "0.1.5",
+    "vue": "3.4.5"
   },
   "keywords": [
     "form-generator",
@@ -15,7 +22,9 @@
   "author": "GenForm",
   "license": "MIT",
   "devDependencies": {
+    "@vitejs/plugin-vue": "5.0.2",
     "eslint": "^8.55.0",
-    "prettier": "3.1.1"
+    "prettier": "3.1.1",
+    "vite": "^5.0.11"
   }
 }
