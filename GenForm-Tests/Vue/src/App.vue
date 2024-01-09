@@ -1,7 +1,7 @@
 <script setup>
-import HomePage from './components/HomePage.vue'
+import UniversTestVue from './components/UniversTestVue.vue'
 </script>
 
 <template>
-    <HomePage />
+    <UniversTestVue />
 </template>
