@@ -8,7 +8,7 @@ function changeForm() {
   const json = document.getElementById('changeform').value
   const obj = JSON.parse(json)
   const formInHtml = document.getElementById('genform')
-  const form = GenForm.default.toForm.call(null, document, obj)
+  const form = GenForm.toForm(document, obj)
 
   formInHtml.innerHTML = ''
   formInHtml.appendChild(form)
