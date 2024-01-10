@@ -4,7 +4,7 @@ function verifyEqualInputs(form, json) {
 
   for (const pair of verifyPairs) {
     const key = Object.keys(pair).find((key) => {
-      key !== 'message' && key !== 'position'
+      return key !== 'message' && key !== 'position'
     })
     const value = pair[key]
 
