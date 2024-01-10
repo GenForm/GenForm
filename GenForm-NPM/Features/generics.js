@@ -24,6 +24,7 @@ function verifyEqualInputs(form, json) {
       case 'nextTo':
         valueInput.parentNode.insertBefore(errorMessage, valueInput.nextSibling)
         handleFormNextToCase(form, errorMessage, keyInput, valueInput)
+        break
       case 'none':
         break
       case 'popup':
