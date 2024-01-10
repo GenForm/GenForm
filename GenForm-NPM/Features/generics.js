@@ -3,9 +3,9 @@ function verifyEqualInputs(form, json) {
   const defaultMessage = "Inputs don't match"
 
   for (const pair of verifyPairs) {
-    const key = Object.keys(pair).find(
-      (key) => key !== 'message' && key !== 'position'
-    )
+    const key = Object.keys(pair).find((key) => {
+      key !== 'message' && key !== 'position'
+    })
     const value = pair[key]
 
     const keyInput = form.querySelector('input[name="' + key + '"]')
@@ -35,7 +35,7 @@ function verifyEqualInputs(form, json) {
 }
 
 function handlePopupCase(keyInput, valueInput, errorMessage) {
-  valueInput.addEventListener('input', () => {
+  valueInput.addEventListener('input', function () {
     if (keyInput.value && valueInput.value) {
       if (keyInput.value !== valueInput.value) {
         valueInput.setCustomValidity(errorMessage)
@@ -48,7 +48,7 @@ function handlePopupCase(keyInput, valueInput, errorMessage) {
 }
 
 function handleFormNextToCase(form, errorMessage, keyInput, valueInput) {
-  form.addEventListener('input', () => {
+  form.addEventListener('input', function () {
     if (keyInput.value && valueInput.value) {
       if (keyInput.value !== valueInput.value) {
         errorMessage.style.display = 'inline'
