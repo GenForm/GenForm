@@ -1,0 +1,30 @@
+name: Check EsLint
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  eslint-check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: Install eslint
+        run: npm install eslint -g
+
+      - name: check eslint for npm packages
+        run: npx eslint ./GenForm-NPM/
+
+      - name: check eslint for tests
+        run: |
+          npx eslint ./GenForm-Tests/Vue/
+          npx eslint ./GenForm-Tests/Vanilla/
