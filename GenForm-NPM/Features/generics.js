@@ -15,40 +15,45 @@ function verifyEqualInputs(form, json) {
       throw new Error('inputs not found')
     }
 
-    const errorMessage = document.createElement('span')
+    const errorMessage = document.createElement('p')
     errorMessage.textContent = pair.message || defaultMessage
     errorMessage.style.display = 'none'
     errorMessage.style.color = 'red'
-    errorMessage.style.marginLeft = '10px'
 
     switch (pair.position) {
       case 'nextTo':
         valueInput.parentNode.insertBefore(errorMessage, valueInput.nextSibling)
-        break
+        handleFormNextToCase(form, errorMessage, keyInput, valueInput)
       case 'none':
-        return
+        break
       case 'popup':
-        valueInput.setCustomValidity(errorMessage.textContent)
-        valueInput.addEventListener('input', function () {
-          if (keyInput.value && valueInput.value) {
-            if (keyInput.value !== valueInput.value) {
-              valueInput.setCustomValidity(errorMessage.textContent)
-            } else {
-              valueInput.setCustomValidity('')
-            }
-          }
-        })
+        handlePopupCase(keyInput, valueInput, errorMessage.textContent)
         break
     }
-
-    form.addEventListener('input', function () {
-      if (keyInput.value && valueInput.value) {
-        if (keyInput.value !== valueInput.value) {
-          errorMessage.style.display = 'inline'
-        } else {
-          errorMessage.style.display = 'none'
-        }
-      }
-    })
   }
+}
+
+function handlePopupCase(keyInput, valueInput, errorMessage) {
+  valueInput.addEventListener('input', function () {
+    if (keyInput.value && valueInput.value) {
+      if (keyInput.value !== valueInput.value) {
+        valueInput.setCustomValidity(errorMessage)
+      } else {
+        valueInput.setCustomValidity('')
+      }
+    }
+    valueInput.reportValidity()
+  })
+}
+
+function handleFormNextToCase(form, errorMessage, keyInput, valueInput) {
+  form.addEventListener('input', function () {
+    if (keyInput.value && valueInput.value) {
+      if (keyInput.value !== valueInput.value) {
+        errorMessage.style.display = 'inline'
+      } else {
+        errorMessage.style.display = 'none'
+      }
+    }
+  })
 }
