@@ -35,7 +35,7 @@ function verifyEqualInputs(form, json) {
 }
 
 function handlePopupCase(keyInput, valueInput, errorMessage) {
-  valueInput.addEventListener('input', function () {
+  valueInput.addEventListener('input', () => {
     if (keyInput.value && valueInput.value) {
       if (keyInput.value !== valueInput.value) {
         valueInput.setCustomValidity(errorMessage)
@@ -48,7 +48,7 @@ function handlePopupCase(keyInput, valueInput, errorMessage) {
 }
 
 function handleFormNextToCase(form, errorMessage, keyInput, valueInput) {
-  form.addEventListener('input', function () {
+  form.addEventListener('input', () => {
     if (keyInput.value && valueInput.value) {
       if (keyInput.value !== valueInput.value) {
         errorMessage.style.display = 'inline'
