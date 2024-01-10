@@ -1,4 +1,4 @@
-import data from './../../test.json'
+import data from '../test.json'
 const jsonString = JSON.stringify(data)
 describe('template spec', () => {
   it('Write the json', () => {
