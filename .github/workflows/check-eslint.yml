@@ -26,5 +26,5 @@ jobs:
 
       - name: check eslint for tests
         run: |
-          npx eslint ./GenForm-Tests/Vue/
-          npx eslint ./GenForm-Tests/Vanilla/
+          npx eslint ./GenForm-Exemples/Vue/
+          npx eslint ./GenForm-Exemples/Vanilla/
