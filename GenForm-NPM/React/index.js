@@ -1,20 +1,21 @@
 import React, { useEffect, useRef } from 'react'
-import GenForm from '@genform/core'
+import GenForm from '@genform/complete'
 
-function GenFormComponent({ elems, params }) {
+function GenFormComponent({ elems, params, features }) {
   const formRef = useRef(null)
 
   useEffect(() => {
     const generatedForm = GenForm.toForm(document, {
       elems: elems,
-      params: params
+      params: params,
+      features: features
     })
 
     if (formRef.current) {
       formRef.current.innerHTML = ''
       formRef.current.appendChild(generatedForm)
     }
-  }, [elems, params])
+  }, [elems, params, features])
 
   return React.createElement('div', { ref: formRef })
 }
