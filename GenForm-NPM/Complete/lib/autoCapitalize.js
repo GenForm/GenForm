@@ -3,7 +3,7 @@ export default function autoCapitalize(form, capitalRules) {
 
   for (const inputName in ruleMap) {
     const rule = ruleMap[inputName]
-    const input = form.getElementsByName(inputName)[0]
+    const input = form.querySelector('input[name="' + inputName + '"]')
 
     if (input) {
       input.addEventListener('input', function () {
@@ -27,27 +27,21 @@ function mapRulesToInputNames(capitalRules) {
 }
 
 function applyRule(rule) {
-  const capitalizeRuleEnum = [
-    'firstLetter',
-    'firstLetterOfEach',
-    'all',
-    'lowercase'
-  ]
 
   switch (rule) {
-    case capitalizeRuleEnum[0]:
+    case 'firstLetter':
       return function (string) {
         return string.charAt(0).toUpperCase() + string.slice(1)
       }
-    case capitalizeRuleEnum[1]:
+    case 'firstLetterOfEach':
       return function (string) {
         return capitalizeFirstLetter(string)
       }
-    case capitalizeRuleEnum[2]:
+    case 'allUppercase':
       return function (string) {
         return string.toUpperCase()
       }
-    case capitalizeRuleEnum[3]:
+    case 'allLowercase':
       return function (string) {
         return string.toLowerCase()
       }

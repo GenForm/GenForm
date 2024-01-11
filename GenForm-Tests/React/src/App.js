@@ -5,6 +5,7 @@ import { useState } from 'react'
 function App() {
   const [value, setValue] = useState('')
   const [params, setParams] = useState('')
+  const [features, setFeatures] = useState('')
   const [elems, setElems] = useState('')
   const [showForm, setShowForm] = useState(false)
 
@@ -13,12 +14,13 @@ function App() {
     const obj = JSON.parse(json)
     setParams(obj.params)
     setElems(obj.elems)
+    setFeatures(obj.features)
     setShowForm(true)
   }
 
   function showFormComponent() {
     if (showForm) {
-      return <GenFormComponent params={params} elems={elems} />
+      return <GenFormComponent params={params} elems={elems} features={features} />
     }
   }
 

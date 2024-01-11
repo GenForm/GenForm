@@ -1,8 +1,7 @@
-function verifyEqualInputs(form, json) {
-  const verifyPairs = json.features.verifyInputsEquals
+export default function verifyEqualInputs(form, checkEqualityInputs) {
   const defaultMessage = "Inputs don't match"
 
-  for (const pair of verifyPairs) {
+  for (const pair of checkEqualityInputs) {
     const key = Object.keys(pair).find((key) => {
       return key !== 'message' && key !== 'position'
     })
@@ -25,13 +24,25 @@ function verifyEqualInputs(form, json) {
         valueInput.parentNode.insertBefore(errorMessage, valueInput.nextSibling)
         handleFormNextToCase(form, errorMessage, keyInput, valueInput)
         break
-      case 'none':
-        break
       case 'popup':
         handlePopupCase(keyInput, valueInput, errorMessage.textContent)
         break
+      default:
+        break
     }
   }
+}
+
+function handleFormNextToCase(form, errorMessage, keyInput, valueInput) {
+  form.addEventListener('input', function () {
+    if (keyInput.value && valueInput.value) {
+      if (keyInput.value !== valueInput.value) {
+        errorMessage.style.display = 'inline'
+      } else {
+        errorMessage.style.display = 'none'
+      }
+    }
+  })
 }
 
 function handlePopupCase(keyInput, valueInput, errorMessage) {
@@ -44,17 +55,5 @@ function handlePopupCase(keyInput, valueInput, errorMessage) {
       }
     }
     valueInput.reportValidity()
-  })
-}
-
-function handleFormNextToCase(form, errorMessage, keyInput, valueInput) {
-  form.addEventListener('input', function () {
-    if (keyInput.value && valueInput.value) {
-      if (keyInput.value !== valueInput.value) {
-        errorMessage.style.display = 'inline'
-      } else {
-        errorMessage.style.display = 'none'
-      }
-    }
   })
 }
