@@ -4,7 +4,13 @@ module.exports = {
     node: true,
     es2024: true
   },
-  ignorePatterns: ['**/node_modules/', '**/*min.js', '**/spec/', 'GenForm-Exemples/React', 'GenForm-Tests/Cypress'],
+  ignorePatterns: [
+    '**/node_modules/',
+    '**/*min.js',
+    '**/spec/',
+    'GenForm-Exemples/React',
+    'GenForm-Tests/Cypress'
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
