@@ -1,5 +1,5 @@
 // UNPKG allow to retrieve a specific file from a node package (here a minified version of the core of GenForm)
-// import genform from 'https://unpkg.com/@genform/core@latest/index.min.js'
+import genform from 'https://unpkg.com/@genform/core@latest/index.min.js'
 // import GenForm from 'https://unpkg.com/@genform/complete@0.0.6?module'
 // import GenForm from './index.bundle.js'
 
@@ -12,7 +12,7 @@ function changeForm() {
   const json = document.getElementById('changeform').value
   const obj = JSON.parse(json)
   const formInHtml = document.getElementById('genform')
-  const form = e.toForm(document, obj)
+  const form = genform.toForm(document, obj)
 
   formInHtml.innerHTML = ''
   formInHtml.appendChild(form)

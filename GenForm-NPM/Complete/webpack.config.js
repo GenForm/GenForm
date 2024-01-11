@@ -1,13 +1,13 @@
 module.exports = {
-  entry: "./index.js",
-  mode: "production",
+  entry: './index.js',
+  mode: 'production',
   output: {
-    filename: "index.bundle.js"
+    filename: 'index.bundle.js'
   },
   module: {
     rules: [
       {
-        test: '/\.js$/',
+        test: '/.js$/',
         exclude: '/node_modules/',
         use: {
           loader: 'babel-loader',

@@ -27,7 +27,6 @@ function mapRulesToInputNames(capitalRules) {
 }
 
 function applyRule(rule) {
-
   switch (rule) {
     case 'firstLetter':
       return function (string) {
