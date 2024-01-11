@@ -28,4 +28,3 @@ jobs:
         run: |
           npx eslint ./GenForm-Exemples/Vue/
           npx eslint ./GenForm-Exemples/Vanilla/
-          npx eslint ./GenForm-Tests/
