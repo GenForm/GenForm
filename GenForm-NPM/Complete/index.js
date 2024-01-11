@@ -5,7 +5,7 @@ import autoCapitalize from './lib/autoCapitalize.js'
 import verifyEqualInputs from './lib/generics.js'
 
 class GenForm {
-  constructor() {}
+  constructor() { }
 }
 
 GenForm.toForm = function (document, obj) {
