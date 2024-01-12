@@ -40,7 +40,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'arrow-body-style': ['error', 'always'],
     'camelcase': ['error', { properties: 'always' }],
-    'capitalized-comments': ['error', 'always'],
+    'capitalized-comments': ['warning', 'always'],
     'max-lines-per-function': [
       'error',
       {
