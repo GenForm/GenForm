@@ -1,5 +1,4 @@
 **/package.json
 **/package-lock.json
 
-README.md
-**/*.min.js
+*.min.*
