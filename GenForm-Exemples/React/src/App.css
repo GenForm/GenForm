@@ -17,7 +17,7 @@ body {
   background: linear-gradient(to left, lightblue, lightgreen);
   background-repeat: no-repeat;
   background-size: cover;
-  font-family: 'Arial';
+  font-family: 'Arial', sans-serif;
 }
 
 #main {
