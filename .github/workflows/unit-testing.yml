@@ -26,3 +26,14 @@ jobs:
         run: npm test
         working-directory: ./GenForm-NPM/Core/
 
+  cypress-react:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          working-directory: ./GenForm-Tests/React/
