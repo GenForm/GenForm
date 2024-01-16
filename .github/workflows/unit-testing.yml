@@ -40,11 +40,11 @@ jobs:
       - name: install cypress in Exemples
         run: npm install cypress
         working-directory: ./GenForm-Exemples/React/
-      
+
       - name: run project
         run: (npm run start --port 3000&)
         working-directory: ./GenForm-Exemples/React/
-      
+
       - name: npm install in Tests
         run: npm install
         working-directory: ./GenForm-Tests/Cypress/
@@ -56,7 +56,7 @@ jobs:
       - name: Cypress run
         run: npx cypress run --spec ./cypress/e2e/spec.cy.js
         working-directory: ./GenForm-Tests/Cypress/
-  
+
   cypress-vue:
     runs-on: ubuntu-latest
 
@@ -71,11 +71,11 @@ jobs:
       - name: install cypress in Exemples
         run: npm install cypress
         working-directory: ./GenForm-Exemples/Vue/
-      
+
       - name: run project
         run: (npm run dev -- --port 3000&)
         working-directory: ./GenForm-Exemples/Vue/
-      
+
       - name: npm install in Tests
         run: npm install
         working-directory: ./GenForm-Tests/Cypress/
@@ -87,4 +87,3 @@ jobs:
       - name: Cypress run
         run: npx cypress run --spec ./cypress/e2e/spec.cy.js
         working-directory: ./GenForm-Tests/Cypress/
-
