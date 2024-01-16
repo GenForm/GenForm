@@ -1,104 +1,55 @@
-// Function to check functionality without additional properties
-function checkNoneFeatures(elem, autoSwitchFeatures, elems) {
-  const notInAutoSwitch = autoSwitchFeatures.every((feature) => { return feature.inputName !== elem.name })
-  
-  if (!notInAutoSwitch && elem.pattern) {
-    // Retrieves the HTML element associated with the JSON element
-    const inputElement = document.getElementsByName(elem.name)[0]
-
-    // Adds an event listener to detect changes in the input
-    inputElement.addEventListener('input', () => {
-      // Creation of a regular expression based on the JSON element pattern
-      // Necessary to check whether the value of an input field matches the pattern specified in the JSON element
-      const currentPattern = new RegExp(elem.pattern)
-      if (currentPattern.test(inputElement.value)) {
-        moveToNextInput(elem.name, elems)
-      }
-    })
-  }
-}
-
 // Function to check pattern validity
-function checkPatternValidity(inputElement, pattern, maxChars, name, elems) {
-  const adjustedPattern = pattern ? `^${pattern}$` : null
-  const currentPattern = adjustedPattern ? new RegExp(pattern) : null
+export function checkPatternValidity(elem, onValid) {
+  return function(event) {
+    const inputElement = event.target 
+    const currentPattern = new RegExp(inputElement.pattern)
 
-  inputElement.addEventListener('input', () => {
     const userInput = inputElement.value
     const currentLength = userInput.length
 
-    // If current length reaches specified limit (maxChars)
-    if (currentLength >= maxChars) {
-      // If a pattern is specified
+    // If the current length reaches the specified limit (maxChars)
+    if (currentLength >= elem.maxChars) {
+      // If a pattern is specified and not matched
       if (currentPattern && !currentPattern.test(userInput)) {
-        console.error(`Pattern not matched in ${name}. Entered value: ${userInput}. Expected pattern: ${currentPattern}`)
+        console.error(`Pattern not matched in ${elem.name}. Entered value: ${userInput}. Expected pattern: ${currentPattern}`)
       } else {
-        moveToNextInput(name, elems)
+        // Call the onValid callback when validation succeeds
+        onValid();
       }
-      
-      // Add another event listener to manage modification after maximum length has been reached
-      inputElement.addEventListener('input', () => {
-        if (inputElement.value.length >= maxChars) {
-          inputElement.value = inputElement.value.slice(0, maxChars)
-        }
-      })
-    }
-  })
-}
 
-// Function to check functionality with additional properties
-function checkFeatures(features, elems) {
-  // Retrieve autoSwitch features from the JSON
-  const autoSwitchFeatures = features.autoSwitch || []
-
-  autoSwitchFeatures.forEach((feature) => {
-    const inputName = feature.inputName    
-    const foundElement = elems.find((elem) => {return elem.name === inputName })
-
-    if (foundElement) {
-      const maxChars = parseInt(feature.maxChars)
-      foundElement.maxChars = maxChars
-    
-      // Checks for the presence of the word pattern in elems
-      const patternElement = elems.find((elem) => { return elem.name === inputName && elem.pattern })
-
-      const inputElement = document.getElementsByName(foundElement.name)[0]
-
-      if (patternElement) {  
-        // If a pattern is found, checks the validity of the pattern
-        checkPatternValidity(inputElement, patternElement.pattern, foundElement.maxChars, foundElement.name, elems)        
-      } else {
-        // If no pattern is found, adds an event listener to manage maximum length
-        inputElement.addEventListener('input', () => {
-          const currentLength = inputElement.value.length
-          if (currentLength >= foundElement.maxChars) {
-            moveToNextInput(foundElement.name, elems)
-          }
-        })
+      // Truncate input value if it exceeds maxChars
+      if (inputElement.value.length >= elem.maxChars) {
+        inputElement.value = inputElement.value.slice(0, elem.maxChars)
       }
     }
-  })
-
-  // Check all elements for functionality without additional properties
-  elems.forEach((elem) => {
-    checkNoneFeatures(elem, autoSwitchFeatures, elems)
-  })
-}  
-
-// Function to move to next field function
-function moveToNextInput(currentInputName, elems) {
-  // Retrieve the element from the elems array
-  const currentInput = elems.find((elem) => { return elem.name === currentInputName })
-  // Retrieve the following element from the elems array
-  const nextInput = elems.find((elem, index) => { return index > elems.indexOf(currentInput) && elem.maxChars !== null })
-  
-  if (nextInput) {
-    const nextInputName = nextInput.name
-    const nextInputElement = document.getElementsByName(nextInputName)[0]
-
-    // When the next element is found, moves the focus to that element
-    if (nextInputElement) nextInputElement.focus()
   }
 }
 
-export default checkFeatures
+// Function to check functionality with additional properties (autoSwitch)
+export function checkFeatures(form, autoSwitchFeatures) {  
+  
+  autoSwitchFeatures.forEach((feature) => {
+    const inputName = feature.inputName
+    const inputElement = form.querySelector(`[name="${inputName}"]`)
+
+    if (inputElement) {
+      const featureWithPattern = {
+        ...feature,
+        pattern: feature.pattern ? new RegExp(feature.pattern) : null
+      }
+
+      // Add an input event listener to check pattern validity
+      inputElement.addEventListener('input', 
+      checkPatternValidity(featureWithPattern, () => {return moveToNextInput(inputElement)}))
+    }
+  })
+}  
+
+// Function to move to the next field
+export function moveToNextInput(currentInputElement) {
+  // Retrieve the following element from the the form
+  const nextInput = currentInputElement.nextElementSibling
+  
+  // If the next element exists, focus on it
+  if (nextInput) nextInput.focus()
+}

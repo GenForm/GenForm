@@ -3,6 +3,7 @@
 
 # GenForm-Tests
 GenForm-Tests/*/node_modules
+GenForm-Tests/Vanilla/index.js
 
 # All minified files
 *.min.js
