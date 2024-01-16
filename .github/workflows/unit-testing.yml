@@ -38,3 +38,16 @@ jobs:
         with:
           project: ./GenForm-Exemples/React/
           working-directory: ./GenForm-Exemples/React/
+  
+  cypress-vue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          project: ./GenForm-Exemples/Vue/
+          working-directory: ./GenForm-Exemples/Vue/
