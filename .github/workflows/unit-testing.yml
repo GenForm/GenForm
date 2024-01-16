@@ -63,7 +63,7 @@ jobs:
         working-directory: ./GenForm-Exemples/Vue/
       
       - name: run project
-        run: npm run dev
+        run: (npm run dev -- --port 3000&)
         working-directory: ./GenForm-Exemples/Vue/
       
       - name: npm install in Tests
