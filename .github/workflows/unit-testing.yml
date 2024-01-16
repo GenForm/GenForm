@@ -36,5 +36,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          project: ./GenForm-Tests/React/
-          working-directory: ./GenForm-Tests/React/
+          project: ./GenForm-Exemples/React/
+          working-directory: ./GenForm-Exemples/React/
