@@ -4,7 +4,13 @@ module.exports = {
     node: true,
     es2024: true
   },
-  ignorePatterns: ['**/node_modules/', '**/*min.js', '**/spec/'],
+  ignorePatterns: [
+    '**/node_modules/',
+    '**/*min.js',
+    '**/spec/',
+    'GenForm-Exemples/React',
+    'GenForm-Tests/Cypress'
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module'
@@ -34,7 +40,7 @@ module.exports = {
     'no-unused-vars': 'warn',
     'arrow-body-style': ['error', 'always'],
     'camelcase': ['error', { properties: 'always' }],
-    'capitalized-comments': ['error', 'always'],
+    'capitalized-comments': ['warn', 'always'],
     'max-lines-per-function': [
       'error',
       {

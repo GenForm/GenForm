@@ -1,0 +1,15 @@
+{
+  "name": "cypress",
+  "version": "1.0.0",
+  "description": "Package for the cypress tests",
+  "main": "cypress.config.js",
+  "scripts": {
+    "cypress": "npx cypress open",
+    "terminal": "npx cypress run --spec cypress/e2e/spec.cy.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^13.6.2"
+  }
+}

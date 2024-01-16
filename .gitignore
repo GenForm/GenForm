@@ -1,10 +1,13 @@
+# Config
+.vscode/
+.idea/
+
 # GenForm-NPM
 **/node_modules
 
 # GenForm-Tests
-GenForm-Tests/*/node_modules
+GenForm-Exemples/*/node_modules
 
 # All minified files
-*.min.js
-/.idea
-
+*.min.*
+*.bundle.*
