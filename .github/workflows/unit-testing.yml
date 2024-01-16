@@ -75,5 +75,5 @@ jobs:
         working-directory: ./GenForm-Tests/Cypress/
 
       - name: Cypress run
-        run: npx cypress run --spec ./cypress/e2e/spec.cy.js
+        run: npx cypress run --spec ./cypress/e2e/spec.cy.js --headed --browser chrome --config baseUrl=http://localhost:3000
         working-directory: ./GenForm-Tests/Cypress/
