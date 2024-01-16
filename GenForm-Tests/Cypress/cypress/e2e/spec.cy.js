@@ -24,11 +24,11 @@ describe('template spec', () => {
     cy.get('[type="email"]').should('have.value', '')
     cy.get('[type="password"]').should('have.value', '')
   })
-  // it('Submit Values', () => {
-  //   cy.get('[type="text"]').type('John Doe')
-  //   cy.get('[type="email"]').type('c@c')
-  //   cy.get('[type="password"]').type('123456')
-  //   cy.get('[type="submit"]').click()
-  //   cy.url().should('include', '/login')
-  // })
+  it('Submit Values', () => {
+    cy.get('[type="text"]').type('John Doe')
+    cy.get('[type="email"]').type('c@c')
+    cy.get('[type="password"]').type('123456')
+    cy.get('[type="submit"]').click()
+    // cy.url().should('include', '/login')
+  })
 })
