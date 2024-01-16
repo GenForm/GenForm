@@ -33,19 +33,29 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: npm install
+      - name: npm install in Exemples
         run: npm install
         working-directory: ./GenForm-Exemples/React/
 
-      - name: install cypress
+      - name: install cypress in Exemples
         run: npm install cypress
         working-directory: ./GenForm-Exemples/React/
+      
+      - name: run project
+        run: (npm run start --port 3000&)
+        working-directory: ./GenForm-Exemples/React/
+      
+      - name: npm install in Tests
+        run: npm install
+        working-directory: ./GenForm-Tests/Cypress/
+
+      - name: install cypress in Tests
+        run: npm install cypress
+        working-directory: ./GenForm-Tests/Cypress/
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          project: ./GenForm-Exemples/React/
-          working-directory: ./GenForm-Exemples/React/
+        run: npx cypress run --spec ./cypress/e2e/spec.cy.js
+        working-directory: ./GenForm-Tests/Cypress/
   
   cypress-vue:
     runs-on: ubuntu-latest
