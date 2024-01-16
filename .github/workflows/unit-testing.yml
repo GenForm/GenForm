@@ -65,5 +65,5 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
-          project: ./
+          project: ../../GenForm-Tests/Cypress/
           working-directory: ./GenForm-Exemples/Vue/
