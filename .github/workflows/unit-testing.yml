@@ -75,7 +75,5 @@ jobs:
         working-directory: ./GenForm-Tests/Cypress/
 
       - name: Cypress run
-        uses: cypress-io/github-action@v6
-        with:
-          project: ../../GenForm-Tests/Cypress/
-          working-directory: ./GenForm-Exemples/Vue/
+        run: npx cypress run --spec ./cypress/e2e/spec.cy.js
+        working-directory: ./GenForm-Tests/Cypress/
