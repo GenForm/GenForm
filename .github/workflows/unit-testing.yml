@@ -54,13 +54,21 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      - name: npm install
+      - name: npm install in Exemples
         run: npm install
         working-directory: ./GenForm-Exemples/Vue/
 
-      - name: install cypress
-        run: npm install -g cypress
+      - name: install cypress in Exemples
+        run: npm install cypress
         working-directory: ./GenForm-Exemples/Vue/
+      
+      - name: npm install in Tests
+        run: npm install
+        working-directory: ./GenForm-Tests/Cypress/
+
+      - name: install cypress in Tests
+        run: npm install cypress
+        working-directory: ./GenForm-Tests/Cypress/
 
       - name: Cypress run
         uses: cypress-io/github-action@v6
