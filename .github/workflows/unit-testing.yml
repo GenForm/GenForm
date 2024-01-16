@@ -1,9 +1,9 @@
 name: Unit Testing
 
 on:
-  push:
+  pull_request:
     branches:
-      - t45-cicd
+      - main
 
 jobs:
   unit-testing-core:
