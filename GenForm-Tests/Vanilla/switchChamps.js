@@ -1,4 +1,4 @@
-// JSON element processing without additional properties
+// Function to check functionality without additional properties
 function checkNoneFeatures(elem, autoSwitchFeatures, elems) {
   const notInAutoSwitch = autoSwitchFeatures.every((feature) => { return feature.inputName !== elem.name })
 
@@ -20,7 +20,7 @@ function checkNoneFeatures(elem, autoSwitchFeatures, elems) {
   }
 }
 
-// Pattern validity check function
+// Function to check pattern validity
 function checkPatternValidity(inputElement, pattern, maxChars, name, elems) {
   const adjustedPattern = pattern ? `^${pattern}$` : null
   const currentPattern = adjustedPattern ? new RegExp(pattern) : null
@@ -53,8 +53,9 @@ function checkPatternValidity(inputElement, pattern, maxChars, name, elems) {
   })
 }
 
-// JSON element processing with additional properties
+// Function to check functionality with additional properties
 function checkFeatures(features, elems) {
+  // Retrieve autoSwitch features from the JSON
   const autoSwitchFeatures = features.autoSwitch || []
 
   autoSwitchFeatures.forEach((feature) => {
@@ -68,11 +69,13 @@ function checkFeatures(features, elems) {
       // Checks for the presence of the word pattern in elems
       const patternElement = elems.find((elem) => { return elem.name === inputName && elem.pattern })
 
-      if (patternElement) {   
+      if (patternElement) {  
+        // If a pattern is found, checks the validity of the pattern
         const inputElement = document.getElementsByName(foundElement.name)[0]
         checkPatternValidity(inputElement, patternElement.pattern, foundElement.maxChars, foundElement.name, elems)
         
       } else {
+        // If no pattern is found, adds an event listener to manage maximum length
         const inputElement = document.getElementsByName(foundElement.name)[0]
 
         inputElement.addEventListener('input', () => {
@@ -85,12 +88,13 @@ function checkFeatures(features, elems) {
     }
   })
 
+  // Check all elements for functionality without additional properties
   elems.forEach((elem) => {
     checkNoneFeatures(elem, autoSwitchFeatures, elems)
   })
 }  
 
-// Move to next field function
+// Function to move to next field function
 function moveToNextInput(currentInputName, elems) {
   // Retrieve the element from the elems array
   const currentInput = elems.find((elem) => { return elem.name === currentInputName })
