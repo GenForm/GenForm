@@ -59,7 +59,7 @@ jobs:
         working-directory: ./GenForm-Exemples/Vue/
 
       - name: install cypress
-        run: npm install cypress
+        run: npm install -g cypress
         working-directory: ./GenForm-Exemples/Vue/
 
       - name: Cypress run
