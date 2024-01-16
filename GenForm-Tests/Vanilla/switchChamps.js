@@ -2,10 +2,11 @@
 function checkNoneFeatures(elem, autoSwitchFeatures, elems) {
   const notInAutoSwitch = autoSwitchFeatures.every((feature) => { return feature.inputName !== elem.name })
 
-    if (notInAutoSwitch && elem.pattern) {
-      // Retrieves the HTML element associated with the JSON element
-      const inputElement = document.getElementsByName(elem.name)[0]
-
+  if (notInAutoSwitch && elem.pattern) {
+    // Retrieves the HTML element associated with the JSON element
+    const inputElement = document.getElementsByName(elem.name)[0]
+    
+    if (!notInAutoSwitch) {
       // Adds an event listener to detect changes in the input
       inputElement.addEventListener('input', () => {
         // Creation of a regular expression based on the JSON element pattern
@@ -16,6 +17,7 @@ function checkNoneFeatures(elem, autoSwitchFeatures, elems) {
         }
       })
     }
+  }
 }
 
 // Pattern validity check function
