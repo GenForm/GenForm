@@ -62,9 +62,9 @@ jobs:
         run: npm install cypress
         working-directory: ./GenForm-Exemples/Vue/
       
-      # - name: run project
-      #   run: (npm run dev -- --port 3000&)
-      #   working-directory: ./GenForm-Exemples/Vue/
+      - name: run project
+        run: (npm run dev -- --port 3000&)
+        working-directory: ./GenForm-Exemples/Vue/
       
       - name: npm install in Tests
         run: npm install
@@ -79,5 +79,4 @@ jobs:
         with:
           project: ../../GenForm-Tests/Cypress/
           working-directory: ./GenForm-Exemples/Vue/
-          build: (npm run dev -- --port 3000&)
           browser: chrome
