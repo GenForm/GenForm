@@ -79,5 +79,5 @@ jobs:
         with:
           project: ../../GenForm-Tests/Cypress/
           working-directory: ./GenForm-Exemples/Vue/
-          build: npm run dev -- --port 3000
+          build: (npm run dev -- --port 3000&)
           browser: chrome
