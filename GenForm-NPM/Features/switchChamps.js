@@ -18,9 +18,7 @@ export function checkPatternValidity(elem, onValid) {
       }
 
       // Truncate input value if it exceeds maxChars
-      if (inputElement.value.length >= elem.maxChars) {
-        inputElement.value = inputElement.value.slice(0, elem.maxChars)
-      }
+      inputElement.value = inputElement.value.slice(0, elem.maxChars)
     }
   }
 }
