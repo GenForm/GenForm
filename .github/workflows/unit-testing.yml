@@ -33,6 +33,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: npm install
+        run: npm install
+        working-directory: ./GenForm-Exemples/React/
+        
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
