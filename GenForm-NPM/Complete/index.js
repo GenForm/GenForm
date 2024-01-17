@@ -1,5 +1,5 @@
 import * as GenFormCore from '@genform/core'
-import * as GenFormCore from '@genform/core'
+
 // Features imports
 import autoCapitalize from './lib/autoCapitalize.js'
 import verifyEqualInputs from './lib/generics.js'
