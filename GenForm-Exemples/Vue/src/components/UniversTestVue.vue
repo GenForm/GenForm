@@ -8,8 +8,11 @@
           v-model="jsonInput"
           class="json-input"
           placeholder="Enter JSON data here"
+          id="changeform"
         />
-        <button class="submit-button" @click="jsonSubmit">Submit</button>
+        <button class="submit-button" @click="jsonSubmit" id="submit">
+          Submit
+        </button>
       </div>
 
       <div class="split-line" />

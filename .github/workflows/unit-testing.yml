@@ -1,0 +1,73 @@
+name: Unit Testing and front-end testing
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  unit-testing-core:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Use Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18
+
+      - name: npm clean install
+        run: npm ci
+        working-directory: ./GenForm-NPM/Core/
+
+      - name: npm run tests for core
+        run: npm test
+        working-directory: ./GenForm-NPM/Core/
+
+  cypress-react:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: npm install in Exemples
+        run: npm install
+        working-directory: ./GenForm-Exemples/React/
+
+      - name: run project
+        run: (npm run start --port 3000&)
+        working-directory: ./GenForm-Exemples/React/
+
+      - name: npm install in Tests
+        run: npm install
+        working-directory: ./GenForm-Tests/Cypress/
+
+      - name: Cypress run
+        run: npx cypress run --spec ./cypress/e2e/spec.cy.js
+        working-directory: ./GenForm-Tests/Cypress/
+
+  cypress-vue:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: npm install in Exemples
+        run: npm install
+        working-directory: ./GenForm-Exemples/Vue/
+
+      - name: run project
+        run: (npm run dev -- --port 3000&)
+        working-directory: ./GenForm-Exemples/Vue/
+
+      - name: npm install in Tests
+        run: npm install
+        working-directory: ./GenForm-Tests/Cypress/
+
+      - name: Cypress run
+        run: npx cypress run --spec ./cypress/e2e/spec.cy.js
+        working-directory: ./GenForm-Tests/Cypress/
