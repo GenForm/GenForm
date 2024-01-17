@@ -3,7 +3,7 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - main
+      - t64-cicd
 
 jobs:
   # Build and publish the package if the version is not already published
@@ -100,3 +100,53 @@ jobs:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           token: ${{ secrets.NPM_TOKEN }}
         working-directory: GenForm-NPM/React
+        
+  build-publish-Complete:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_ENV: ./env-vars-publish.env
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+          registry-url: 'https://registry.npmjs.org/'
+      - name: Check if the version is already published
+        run: |
+          currentVersion=$(node -p -e "require('./package.json').version")
+          currentVersion_major=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_minor=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_patch=$(echo $currentVersion | cut -d'.' -f3)
+          distantVersion=$(npm view @genform/complete version)
+          distantVersion_major=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_minor=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_patch=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_major" -lt "$distantVersion_major" ] || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -lt "$distantVersion_minor" ]) || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -eq "$distantVersion_minor" ] && [ "$currentVersion_patch" -lt "$distantVersion_patch" ]); then
+            echo "Local version $currentVersion is lower than distant version"
+            exit 1
+          elif [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+          else
+            echo "Version $currentVersion not published yet"
+            echo "COMPLETE_PUBLISHED=false" >> $GITHUB_ENV
+          fi
+        working-directory: GenForm-NPM/Complete
+      - name: Clean Install
+        if: env.COMPLETE_PUBLISHED == 'false'
+        run: npm ci
+        working-directory: GenForm-NPM/Complete
+      - name: Create Minified Version
+        if: env.COMPLETE_PUBLISHED == 'false'
+        run: npm run minify
+        working-directory: GenForm-NPM/Complete
+      - name: Publish to NPM
+        if: env.COMPLETE_PUBLISHED == 'false'
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          token: ${{ secrets.NPM_TOKEN }}
+        working-directory: GenForm-NPM/Complete
+
