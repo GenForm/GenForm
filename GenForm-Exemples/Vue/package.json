@@ -10,7 +10,7 @@
     "lint": "eslint ../../.eslintrc.js"
   },
   "dependencies": {
-    "@genform/vue": "0.0.16",
+    "@genform/vue": "^0.0.17",
     "vue": "3.4.5"
   },
   "devDependencies": {
