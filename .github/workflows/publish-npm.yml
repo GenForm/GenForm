@@ -133,9 +133,9 @@ jobs:
             echo "COMPLETE_PUBLISHED=false" >> $GITHUB_ENV
           fi
         working-directory: GenForm-NPM/Complete
-      - name: Clean Install
+      - name: npm Install
         if: env.COMPLETE_PUBLISHED == 'false'
-        run: npm ci
+        run: npm i
         working-directory: GenForm-NPM/Complete
       - name: Create Minified Version
         if: env.COMPLETE_PUBLISHED == 'false'
