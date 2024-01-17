@@ -16,6 +16,7 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
           fetch-depth: 0
+          persist-credentials: false
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -30,6 +31,7 @@ jobs:
         with:
           prettier_options: . --write --config .prettierrc --ignore-path .prettierignore
           only_changed: True
+          github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
