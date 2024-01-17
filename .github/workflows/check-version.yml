@@ -1,9 +1,9 @@
 name: Node.js Package version checking
 
 on:
-  push:
+  pull_request:
     branches:
-      - t64-cicd
+      - main
 
 jobs:
   check-version-Core:
