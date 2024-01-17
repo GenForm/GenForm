@@ -1,9 +1,9 @@
 name: Check Prettier formatting
 
 on:
-  push:
+  pull_request:
     branches:
-      - t60-cicd
+      - main
       
 
 jobs:
