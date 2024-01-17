@@ -1,6 +1,6 @@
 {
   "name": "@genform/complete",
-  "version": "0.0.12",
+  "version": "0.0.14",
   "description": "A form generator using JS based on a JSON object with features such as validation, auto switch to next input, etc.",
   "private": false,
   "main": "index.min.js",
