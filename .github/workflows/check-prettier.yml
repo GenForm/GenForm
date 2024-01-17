@@ -13,6 +13,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+          fetch-depth: 0
 
       - name: Use Node.js
         uses: actions/setup-node@v4
@@ -22,5 +25,14 @@ jobs:
       - name: Install prettier
         run: npm install prettier -g
 
+      - name: Prettify code
+        uses: creyD/prettier_action@v4.3
+        with:
+          prettier_options: . --write --config .prettierrc --ignore-path .prettierignore
+          only_changed: True
+
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
+      
+
+      
