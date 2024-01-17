@@ -31,7 +31,7 @@ jobs:
         with:
           prettier_options: . --write --config .prettierrc --ignore-path .prettierignore
           only_changed: True
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
 
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
