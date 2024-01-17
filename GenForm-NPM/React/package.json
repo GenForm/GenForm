@@ -1,11 +1,11 @@
 {
   "name": "@genform/react",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "description": "A form generator using JS based on a JSON object for React projects",
   "main": "index.js",
   "dependencies": {
-    "@genform/complete": "^0.0.12",
-    "react": "^18.2.0"
+    "@genform/complete": "0.0.16",
+    "react": "18.2.0"
   },
   "scripts": {
     "test": "node index.js",

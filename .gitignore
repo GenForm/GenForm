@@ -8,6 +8,7 @@
 # GenForm-Tests
 GenForm-Exemples/*/node_modules
 
-# All minified files
+# All compiled files
 *.min.*
 *.bundle.*
+dist/

@@ -30,7 +30,7 @@ function applyRule(rule) {
   switch (rule) {
     case 'firstLetter':
       return function (string) {
-        return string.charAt(0).toUpperCase() + string.slice(1)
+        return string.charAt(0).toUpperCase() + string.slice(1).toLowerCase()
       }
     case 'firstLetterOfEach':
       return function (string) {
@@ -59,7 +59,7 @@ function capitalizeFirstLetter(string) {
       if (breakpoints.test(s)) {
         return s
       }
-      return s.charAt(0).toUpperCase() + s.slice(1)
+      return s.charAt(0).toUpperCase() + s.slice(1).toLowerCase()
     })
     .join('')
 }
