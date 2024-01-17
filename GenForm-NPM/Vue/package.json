@@ -1,6 +1,6 @@
 {
   "name": "@genform/vue",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "A form generator using JS based on a JSON object for Vue projects",
   "type": "module",
   "private": false,
@@ -11,7 +11,7 @@
     "lint": "eslint ../../.eslintrc.js"
   },
   "dependencies": {
-    "@genform/complete": "^0.0.14",
+    "@genform/complete": "0.0.17",
     "vue": "3.4.5"
   },
   "keywords": [
