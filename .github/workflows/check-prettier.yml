@@ -17,7 +17,7 @@ jobs:
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Install prettier
         run: npm install prettier -g
@@ -27,6 +27,16 @@ jobs:
 
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
-      
+
+      - name: Commit Prettier
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add .
+          git diff-index --quiet HEAD || git commit -m "Applied Prettier"
+  
+      - name: Push Prettier on PR
+        run: git push origin HEAD:${{ github.head_ref }}
+        
 
       
