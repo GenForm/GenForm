@@ -34,8 +34,9 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add .
           git diff-index --quiet HEAD || git commit -m "applied Prettier"
+          git checkout ${GITHUB_REF#refs/heads/}
           git pull origin ${GITHUB_REF#refs/heads/}
-          git push origin HEAD:${{ github.head_ref }}
+          git push origin HEAD
         
 
       
