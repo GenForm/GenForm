@@ -13,11 +13,7 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.head_ref }}
-          fetch-depth: 0
-          persist-credentials: false
-
+        
       - name: Use Node.js
         uses: actions/setup-node@v4
         with:
@@ -27,11 +23,7 @@ jobs:
         run: npm install prettier -g
 
       - name: Prettify code
-        uses: creyD/prettier_action@v4.3
-        with:
-          prettier_options: . --write --config .prettierrc --ignore-path .prettierignore
-          only_changed: True
-          github_token: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+        run: npx prettier . --write --config .prettierrc --ignore-path .prettierignore
 
       - name: Check Prettier formatting
         run: npx prettier . --check --config .prettierrc --ignore-path .prettierignore
