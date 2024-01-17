@@ -6,13 +6,13 @@
   "private": false,
   "main": "./dist/GenFormComponent.umd.cjs",
   "module": "./dist/GenFormComponent.js",
-  "scripts": {
-    "build": "vite build",
-    "lint": "eslint ../../.eslintrc.js"
-  },
   "dependencies": {
     "@genform/complete": "0.0.17",
     "vue": "3.4.5"
+  },
+  "scripts": {
+    "build": "vite build",
+    "lint": "eslint ../../.eslintrc.js"
   },
   "keywords": [
     "form-generator",

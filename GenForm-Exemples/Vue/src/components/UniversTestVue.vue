@@ -23,6 +23,7 @@
           v-if="showGenForm"
           :elems="customElems"
           :params="customParams"
+          :features="customFeatures"
           key="componentKey"
         />
       </div>
@@ -45,6 +46,7 @@ export default {
       jsonInput: '',
       customElems: [],
       customParams: {},
+      customFeatures: {},
       showGenForm: false // Pour supprimer le composant GenFormComponent du DOM
     }
   },
@@ -55,6 +57,7 @@ export default {
         const json = JSON.parse(this.jsonInput)
         this.customElems = json.elems
         this.customParams = json.params
+        this.customFeatures = json.features
 
         // Supprimer mon composant GenFormComponent du DOM
         this.showGenForm = false
