@@ -3,7 +3,7 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - t65-cicd
+      - main
 
 jobs:
   # Build and publish the package if the version is not already published
