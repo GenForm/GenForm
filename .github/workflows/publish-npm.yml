@@ -3,7 +3,7 @@ name: Node.js Package building & publishing
 on:
   push:
     branches:
-      - main
+      - t65-cicd
 
 jobs:
   # Build and publish the package if the version is not already published
@@ -186,9 +186,9 @@ jobs:
         if: env.VUE_PUBLISHED == 'false'
         run: npm i
         working-directory: GenForm-NPM/Vue
-      - name: Create Minified Version
+      - name: Create build Version
         if: env.VUE_PUBLISHED == 'false'
-        run: npm run minify
+        run: npm run build
         working-directory: GenForm-NPM/Vue
       - name: Publish to NPM
         if: env.VUE_PUBLISHED == 'false'
