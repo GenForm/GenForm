@@ -68,22 +68,32 @@ function App() {
       return ""
     }
   }
+  const clearJson = () => {
+    setFormElems([])
+    setFormParams([])
+  }
 
   return (
-    <div className="App" style={{ display: 'flex' }}>
-      <div style={{ flex: '1', border: '1px solid #ddd', padding: '10px' }}>
-        <h2>Form Elements</h2>
-        {availableElements.map((element) => (
-          <FormElement key={element.id} {...element} onClick={addElementToForm} />
-        ))}
-      </div>
+    <div>
+      <h1 className="title">Gen Form</h1>
+      <div className="App" style={{ display: 'flex' }}>
+        <div style={{ flex: '1', border: '1px solid #ddd', padding: '10px' }}>
+          <h2>Form Elements</h2>
+          {availableElements.map((element) => (
+            <FormElement key={element.id} {...element} onClick={addElementToForm} />
+          ))}
+        </div>
 
-      <div style={{ flex: '2', border: '1px solid #ddd', padding: '10px' }}>
-        <h2>Json Souhaité :</h2>
-        <pre>{convertElementToString(formElems)}</pre>
-        <pre>{convertParamsToString(formParams)}</pre>
-        Copy json <FaCopy style={{ cursor: 'pointer' }} onClick={() => {copyJson()}}/>
-        {afterCopied()}
+        <div style={{ flex: '2', border: '1px solid #ddd', padding: '10px' }}>
+          <h2>Json Souhaité :</h2>
+          <pre>{convertElementToString(formElems)}</pre>
+          <pre>{convertParamsToString(formParams)}</pre>
+          Copier le json <FaCopy style={{ cursor: 'pointer' }} onClick={() => {
+          copyJson()
+        }} />
+          {afterCopied()}
+          <div onClick={() => clearJson()} style={{ cursor: 'pointer' }}>Vider le Json</div>
+        </div>
       </div>
     </div>
   );
