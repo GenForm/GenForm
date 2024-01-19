@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import { FaCopy } from "react-icons/fa";
 
 const FormElement = ({ id, name, onClick }) => (
   <div key={id} onClick={() => onClick(id)} style={{ cursor: 'pointer', margin: '5px' }}>
@@ -10,6 +11,7 @@ const FormElement = ({ id, name, onClick }) => (
 function App() {
   const [formElems, setFormElems] = useState([]);
   const [formParams, setFormParams] = useState([]);
+  const [isCopied, setIsCopied] = useState(false);
   const availableElements = [
     { id: 1, name: 'Input' },
     { id: 2, name: 'Textarea' },
@@ -51,9 +53,24 @@ function App() {
     return str;
   }
 
+  const copyJson = () => {
+    navigator.clipboard.writeText(convertElementToString(formElems) + convertParamsToString(formParams));
+    setIsCopied(true);
+    setTimeout(() => {
+      setIsCopied(false);
+    }, 2000)
+  }
+
+  const afterCopied = () => {
+    if(isCopied) {
+      return "Copié!"
+    } else {
+      return ""
+    }
+  }
+
   return (
     <div className="App" style={{ display: 'flex' }}>
-      <h1 className="title">Gen Form</h1>
       <div style={{ flex: '1', border: '1px solid #ddd', padding: '10px' }}>
         <h2>Form Elements</h2>
         {availableElements.map((element) => (
@@ -65,6 +82,8 @@ function App() {
         <h2>Json Souhaité :</h2>
         <pre>{convertElementToString(formElems)}</pre>
         <pre>{convertParamsToString(formParams)}</pre>
+        Copy json <FaCopy style={{ cursor: 'pointer' }} onClick={() => {copyJson()}}/>
+        {afterCopied()}
       </div>
     </div>
   );
