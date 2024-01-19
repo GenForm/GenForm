@@ -1,5 +1,8 @@
 **/package.json
 **/package-lock.json
 
-README.md
+**/README.md
 **/*.min.js
+
+**/dist/
+**/build/
