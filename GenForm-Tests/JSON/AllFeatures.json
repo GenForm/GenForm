@@ -35,13 +35,9 @@
   },
   "features": {
     "capitalize": {
-      "firstLetter": [
-        "username"
-      ],
+      "firstLetter": ["username"],
       "firstLetterOfEach": [],
-      "allUppercase": [
-        "lim10"
-      ],
+      "allUppercase": ["lim10"],
       "allLowercase": []
     },
     "checkEqualityInputs": [
