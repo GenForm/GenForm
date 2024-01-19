@@ -1,0 +1,14 @@
+.color-picker-container {
+    display: flex;
+  }
+  
+  .color-picker-section {
+    margin-top: 20%;
+}
+  
+  .color-display {
+    width: 200px;
+    height: 100px;
+    marginTop: '10px';
+  }
+  
