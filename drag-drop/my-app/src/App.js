@@ -1,12 +1,7 @@
-import React, { useState } from 'react';
-import './App.css';
-import { FaCopy } from "react-icons/fa";
-
-const FormElement = ({ id, name, onClick }) => (
-  <div key={id} onClick={() => onClick(id)} style={{ cursor: 'pointer', margin: '5px' }}>
-    {name}
-  </div>
-);
+import React, { useState } from 'react'
+import './App.css'
+import { FaCopy } from 'react-icons/fa'
+import Selector from './Selector'
 
 function App() {
   const [formElems, setFormElems] = useState([]);
@@ -14,17 +9,15 @@ function App() {
   const [isCopied, setIsCopied] = useState(false);
   const availableElements = [
     { id: 1, name: 'Input' },
-    { id: 2, name: 'Textarea' },
+    { id: 2, name: 'Text' },
     { id: 3, name: 'Checkbox' },
     { id: 4, name: 'Radio' },
-    { id: 5, name: 'Select' },
-    { id: 6, name: 'Button'}
+    { id: 6, name: 'Textarea' },
+    { id: 7, name: 'Custom'}
   ];
 
-  const addElementToForm = (elementId) => {
-    const selectedElement = availableElements.find((element) => element.id === elementId);
-    setFormElems([...formElems, { type: selectedElement.name.toLowerCase(), name: selectedElement.name,
-      placeholder: selectedElement.name }]);
+  const addElementToForm = (json) => {
+    setFormElems(json);
   };
 
   const convertElementToString = (elements) => {
@@ -45,12 +38,11 @@ function App() {
 
   const convertParamsToString = (params) => {
     if(formElems.length === 0) return;
-    let str = `\t"params": {\n
+    return `\t"params": {\n
     \t\t"action": "/login"\n,
     \t\t"method": "POST"\n
     \t}\n
-    }\n`
-    return str;
+    }\n`;
   }
 
   const copyJson = () => {
@@ -72,6 +64,29 @@ function App() {
     setFormElems([])
     setFormParams([])
   }
+  const choose = (name) => {
+      switch (name) {
+        case 'Input':
+          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        case 'Text':
+          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        case 'Checkbox':
+          return <Selector name={name} type={true} placeholder={false} addValue={addElementToForm}/>;
+        case 'Radio':
+          return <Selector name={name} type={false} placeholder={false} addValue={addElementToForm}/>;
+        case 'Custom':
+          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        case 'Textarea':
+          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        default:
+          return <div>div</div>;
+      }
+    }
+  const getAllElements = () => {
+    return availableElements.map((element) => (
+      choose(element.name)
+    ))
+  }
 
   return (
     <div>
@@ -79,9 +94,7 @@ function App() {
       <div className="App" style={{ display: 'flex' }}>
         <div style={{ flex: '1', border: '1px solid #ddd', padding: '10px' }}>
           <h2>Form Elements</h2>
-          {availableElements.map((element) => (
-            <FormElement key={element.id} {...element} onClick={addElementToForm} />
-          ))}
+          {getAllElements()}
         </div>
 
         <div style={{ flex: '2', border: '1px solid #ddd', padding: '10px' }}>
