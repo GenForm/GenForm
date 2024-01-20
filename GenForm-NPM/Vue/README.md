@@ -1,14 +1,14 @@
 # Genform 
 
-## React Package
+## Vue Package
 
 Genform is a JavaScript library for creating web forms from JSON or JS. It's designed to be simple and flexible. You can create forms with just a few lines of code. It's also possible to create complex forms with lots of customization.
 
-The React package allows you to use genform in your React project as a react component. This is package for React.
+The Vue package allows you to use genform in your Vue project as a vue component. This is package for Vue.
 
 ## Dependencies
 
-- [React](https://www.npmjs.com/package/react) - React library
+- [Vue](https://www.npmjs.com/package/vue) - Vue library
 - [GenForm - Core](https://www.npmjs.com/package/@genform/core) - Core library
 
 ## How to use it ?
@@ -16,7 +16,7 @@ The React package allows you to use genform in your React project as a react com
 First, you need to install the package :
 
 ```bash
-npm install @genform/react
+npm install @genform/vue
 ```
 
 It takes two elements when creating the component :
@@ -97,7 +97,7 @@ Then, you can use it in your project :
 ```
 
 ```js
-  // Integrate GenForm into your React project, providing form elements, parameters and optional functionality as prop
+  // Integrate GenForm into your Vue project, providing form elements, parameters and optional functionality as prop
   <GenFormComponent elems={formElements} params={formParams} features={formFeatures} />
 ```
 
