@@ -16,7 +16,7 @@
   "author": "GenForm",
   "license": "MIT",
   "dependencies": {
-    "@genform/core": "0.1.12"
+    "@genform/core": "0.1.16"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",
