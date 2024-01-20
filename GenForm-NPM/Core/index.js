@@ -1,38 +1,3 @@
-/*
-Structure of the object :
-{
-    "elems": [
-        {
-            "type": "text",
-            "name": "username",
-            "label": "Username",
-            "placeholder": "Enter your username",
-            "required": "true"
-        },
-        {
-            "type": "password",
-            "name": "password",
-            "label": "Password",
-            "placeholder": "Enter your password",
-            "required": "true"
-        },
-        {
-            "type": "checkbox",
-            "name": "remember",
-            "label": "Remember me",
-            "required": "false"
-        },
-        {
-            "type": "submit",
-            "value": "Login"
-        }
-    ],
-    "params": {
-        "action": "/login",
-        "method": "POST"
-    }
-}*/
-
 // MDN WebSite for input doc : https://developer.mozilla.org/fr/docs/Web/HTML/Element/input
 
 /**
@@ -121,7 +86,7 @@ class GenForm {
  */
 
 /**
- * @typedef {Object} formObj
+ * @typedef {Object} FormObj
  * @property {inputElem[]} elems The list of the inputs and their parameters
  * @property {formParams} params The parameters of the form
  */
@@ -129,7 +94,7 @@ class GenForm {
 /**
  * This function creates a form in the DOM from an object listing the required inputs and their parameters
  * @param {Document} document The required document object to create form's elements
- * @param {formObj} obj The object containing the required inputs, their parameters and the form parameters
+ * @param {FormObj} obj The object containing the required inputs, their parameters and the form parameters
  * @returns The InnerHTML of the form containing the elements listed in the object
  */
 
@@ -200,25 +165,5 @@ function jsonIsCorrect(inputJSON) {
     }
   }
 }
-
-/*TODO: Parser de form html into json
-genform.toJson = function(formInHtml) {
-    let form = {};
-    form.params = {};
-    form.elems = [];
-    form.params.action = formInHtml.getAttribute("action");
-    form.params.method = formInHtml.getAttribute("method");
-    let inputs = formInHtml.getElementsByTagName("input");
-    for (let i = 0; i < inputs.length; i++) {
-        let input = inputs[i];
-        let elem = {};
-        let keys = Object.keys(input);
-        for (let key in keys) {
-            elem[keys[key]] = input[keys[key]];
-        }
-        form.elems.push(elem);
-    }
-    return form;
-}*/
 
 export default GenForm
