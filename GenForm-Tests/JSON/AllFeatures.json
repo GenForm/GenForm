@@ -1,0 +1,57 @@
+{
+  "elems": [
+    {
+      "type": "text",
+      "name": "lim10",
+      "placeholder": "Enter 10 chars",
+      "required": "true"
+    },
+    {
+      "type": "text",
+      "name": "username",
+      "placeholder": "Enter your username",
+      "required": "true"
+    },
+    {
+      "type": "password",
+      "name": "password",
+      "placeholder": "Enter your password",
+      "required": "true"
+    },
+    {
+      "type": "password",
+      "name": "password_confirm",
+      "placeholder": "Enter your password to confirm",
+      "required": "true"
+    },
+    {
+      "type": "submit",
+      "value": "Login"
+    }
+  ],
+  "params": {
+    "action": "/login",
+    "method": "POST"
+  },
+  "features": {
+    "capitalize": {
+      "firstLetter": ["username"],
+      "firstLetterOfEach": [],
+      "allUppercase": ["lim10"],
+      "allLowercase": []
+    },
+    "checkEqualityInputs": [
+      {
+        "password": "password_confirm",
+        "message": "Passwords do not match",
+        "position": "popup"
+      }
+    ],
+    "autoSwitch": [
+      {
+        "inputName": "lim10",
+        "maxChars": 10
+      }
+    ]
+  }
+}

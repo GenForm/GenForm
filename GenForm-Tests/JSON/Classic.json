@@ -1,0 +1,29 @@
+{
+  "elems": [
+    {
+      "type": "text",
+      "name": "username",
+      "placeholder": "Enter your username",
+      "required": "true"
+    },
+    {
+      "type": "password",
+      "name": "password",
+      "placeholder": "Enter your password",
+      "required": "true"
+    },
+    {
+      "type": "checkbox",
+      "name": "remember",
+      "required": "false"
+    },
+    {
+      "type": "submit",
+      "value": "Login"
+    }
+  ],
+  "params": {
+    "action": "/login",
+    "method": "POST"
+  }
+}

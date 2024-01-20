@@ -1,5 +1,5 @@
 {
-  "name": "genform-test-vue",
+  "name": "genform-vue-tests",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint ../../.eslintrc.js"
   },
   "dependencies": {
-    "@genform/vue": "0.0.16",
+    "@genform/vue": "0.0.18",
     "vue": "3.4.5"
   },
   "devDependencies": {
