@@ -1,4 +1,4 @@
-# Genform 
+# Genform
 
 ## Vue Package
 
@@ -27,7 +27,7 @@ It takes two elements when creating the component :
 The first one `elements` is an array of objects. Each object represents an element of the form. For example :
 
 ```js
-[
+;[
   {
     type: 'text',
     name: 'firstname',
@@ -62,43 +62,47 @@ The second one `params` is an object that contains the parameters of the form. F
 Then, you can use it in your project :
 
 ```js
-  // Define the elements of the form
-  const formElements = [
-    {
-      type: 'text',
-      name: 'username',
-      placeholder: 'Username',
-    },
-    {
-      type: 'password',
-      name: 'password',
-      placeholder: 'Password',
-    },
-    {
-      type: 'submit',
-      value: 'Login',
-    },
-  ];
+// Define the elements of the form
+const formElements = [
+  {
+    type: 'text',
+    name: 'username',
+    placeholder: 'Username'
+  },
+  {
+    type: 'password',
+    name: 'password',
+    placeholder: 'Password'
+  },
+  {
+    type: 'submit',
+    value: 'Login'
+  }
+]
 ```
 
 ```js
-  // Define the parameters of the form
-  const formParams = {
-    action: '/login',
-    method: 'POST',
-  };
+// Define the parameters of the form
+const formParams = {
+  action: '/login',
+  method: 'POST'
+}
 ```
 
 ```js
-  // Define additional features for the form (optional)
-  const formFeatures = {
-    // Add any additional features here
-  };
+// Define additional features for the form (optional)
+const formFeatures = {
+  // Add any additional features here
+}
 ```
 
 ```js
-  // Integrate GenForm into your Vue project, providing form elements, parameters and optional functionality as prop
-  <GenFormComponent elems={formElements} params={formParams} features={formFeatures} />
+// Integrate GenForm into your Vue project, providing form elements, parameters and optional functionality as prop
+<GenFormComponent
+  elems={formElements}
+  params={formParams}
+  features={formFeatures}
+/>
 ```
 
 ## Want to contribute ?

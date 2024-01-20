@@ -1,4 +1,4 @@
-# GenForm 
+# GenForm
 
 ## Complete Package
 
@@ -22,20 +22,20 @@ import genform from '@genform/complete'
 
 // Assuming you have a JSON object defining your form
 const formData = {
-  "elems": [
+  elems: [
     {
-      "type": "text",
-      "name": "username",
-      "placeholder": "Enter your username",
-      "required": true
+      type: 'text',
+      name: 'username',
+      placeholder: 'Enter your username',
+      required: true
     }
     // Add more form elements as needed
   ],
-  "params": {
-    "action": "/submit",
-    "method": "POST"
+  params: {
+    action: '/submit',
+    method: 'POST'
   },
-  "features": {}
+  features: {}
 }
 
 // Retrieve the container element where you want to render the form

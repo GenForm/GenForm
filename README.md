@@ -14,19 +14,19 @@ To integrate GenForm into your project, you can use the package corresponding to
 npm install @genform/vue
 ```
 
-- **React**: 
+- **React**:
 
 ```bash
 npm install @genform/react
 ```
 
-- **Vanilla**: 
+- **Vanilla**:
 
 ```bash
 npm install @genform/vanilla
 ```
 
-- **Complete**: 
+- **Complete**:
 
 ```bash
 npm install @genform/complete
@@ -42,4 +42,5 @@ npm install @genform/core
 ```
 
 ## Contributions
+
 Contributions to the GenForm package are welcome. Feel free to create a pull request to propose modifications.
