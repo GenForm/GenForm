@@ -1,6 +1,6 @@
 {
   "name": "@genform/vue",
-  "version": "0.0.20",
+  "version": "0.0.30",
   "description": "A form generator using JS based on a JSON object for Vue projects",
   "type": "module",
   "private": false,
