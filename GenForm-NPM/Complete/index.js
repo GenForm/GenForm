@@ -7,7 +7,7 @@ import verifyEqualInputs from './lib/verifyEqualInputs.js'
 import switchField from './lib/switchField.js'
 
 class GenForm {
-  constructor() { }
+  constructor() {}
 }
 
 GenForm.toForm = function (document, obj) {
