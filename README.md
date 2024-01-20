@@ -8,32 +8,32 @@ This project was developed as part of the Engineering Project 2023-2024.
 ## Package installation
 To install our **GenForm solution**, simply use this command: 
 
-```sh
+```bash
 npm install @genform/core
 ```
 
 Other packages are also available in our solution. Here are the commands to install them on your project:
 - **Vue**:
 
-```sh
-$ npm install @genform/vue
+```bash
+npm install @genform/vue
 ```
 
 - **React**: 
 
-```sh
+```bash
 npm install @genform/react
 ```
 
 - **Vanilla**: 
 
-```sh
+```bash
 npm install @genform/vanilla
 ```
 
 - **Complete**: 
 
-```sh
+```bash
 npm install @genform/complete
 ```
 
