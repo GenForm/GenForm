@@ -113,3 +113,39 @@ jobs:
           else
             echo "Version $currentVersion not published yet"
           fi
+
+  check-version-Vue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: check if Vue version is already published
+        run: |
+          if [ -z "$(git diff --name-only -r HEAD^1 HEAD -- GenForm-NPM/Vue)" ]; then
+            echo "no changes in this package, skipping version check"
+            exit 0
+          fi
+          cd ./GenForm-NPM/Vue
+          currentVersion=$(node -p -e "require('./package.json').version")
+          currentVersion_major=$(echo $currentVersion | cut -d'.' -f1)
+          currentVersion_minor=$(echo $currentVersion | cut -d'.' -f2)
+          currentVersion_patch=$(echo $currentVersion | cut -d'.' -f3)
+          distantVersion=$(npm view @genform/vue version)
+          distantVersion_major=$(echo $distantVersion | cut -d'.' -f1)
+          distantVersion_minor=$(echo $distantVersion | cut -d'.' -f2)
+          distantVersion_patch=$(echo $distantVersion | cut -d'.' -f3)
+          if [ "$currentVersion_major" -lt "$distantVersion_major" ] || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -lt "$distantVersion_minor" ]) || 
+            ([ "$currentVersion_major" -eq "$distantVersion_major" ] && [ "$currentVersion_minor" -eq "$distantVersion_minor" ] && [ "$currentVersion_patch" -lt "$distantVersion_patch" ]); then
+            echo "Local version $currentVersion is lower than distant version"
+            exit 1
+          elif [ "$currentVersion" = "$distantVersion" ]; then
+            echo "Version $currentVersion already published"
+            exit 1
+          else
+            echo "Version $currentVersion not published yet"
+          fi
