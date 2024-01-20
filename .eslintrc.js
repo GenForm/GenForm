@@ -8,6 +8,7 @@ module.exports = {
     '**/node_modules/',
     '**/*min.js',
     '**/spec/',
+    '**/dist/',
     'GenForm-Exemples/React',
     'GenForm-Tests/Cypress'
   ],
