@@ -1,12 +1,10 @@
-# GenForm | Complete Package
+# GenForm 
 
-Genform is a JavaScript library for creating forms. It is designed to be simple and flexible. You can create forms with a few lines of code. It is also possible to create complex forms with a lot of customization.
+## Complete Package
 
-The core package is the core of the library. It contains the main functions of the library and nothing else.
+Genform is a JavaScript library for creating web forms from JSON or JS. It's designed to be simple and flexible. You can create forms with just a few lines of code. It's also possible to create complex forms with lots of customization.
 
-If you want to use genform in your project, you can use the package for the framework you are using. It exists for React and Vue. If you are not using a framework, you can use the core package.
-
-If you want more fonctionnalities, you can check the other packages of genform.
+The Complete package consolidates additional functionality beyond form creation. It offers a complete solution for advanced customization and versatile use of GenForm.
 
 ## How to use it ?
 
@@ -19,35 +17,35 @@ npm install @genform/complete
 Then, you can use it in your project :
 
 ```js
-import GenForm from '@genform/core'
+// Import GenForm from the package
+import genform from '@genform/complete'
 
-// You need an array of objects that represents the elements of the form
-const elems = [
-  {
-    type: 'text',
-    name: 'username',
-    placeholder: 'Username'
+// Assuming you have a JSON object defining your form
+const formData = {
+  "elems": [
+    {
+      "type": "text",
+      "name": "username",
+      "placeholder": "Enter your username",
+      "required": true
+    }
+    // Add more form elements as needed
+  ],
+  "params": {
+    "action": "/submit",
+    "method": "POST"
   },
-  {
-    type: 'password',
-    name: 'password',
-    placeholder: 'Password'
-  },
-  {
-    type: 'submit',
-    value: 'Login'
-  }
-]
-
-// You need an object that contains the general parameters of the form
-const params = {
-  action: '/login',
-  method: 'POST'
+  "features": {}
 }
 
-// And finally, you can create the form
-const yourForm = new GenForm(elems, params)
-Document.getElementById('yourFormDiv').innerHTML = yourForm
+// Retrieve the container element where you want to render the form
+const formContainer = document.getElementById('genform')
+
+// Create the form using GenForm
+const form = genform.toForm(document, formData)
+
+// Append the form to the container
+formContainer.appendChild(form)
 ```
 
 ## Want to contribute ?
