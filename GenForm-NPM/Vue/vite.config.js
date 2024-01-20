@@ -12,11 +12,11 @@ export default defineConfig({
       fileName: 'GenFormComponent'
     },
     rollupOptions: {
-      external: ['vue', '@genform/core'],
+      external: ['vue', '@genform/complete'],
       output: {
         globals: {
           'vue': 'Vue',
-          '@genform/core': 'GenForm'
+          '@genform/complete': 'GenForm'
         }
       }
     }
