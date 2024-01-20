@@ -1,18 +1,13 @@
 # GenForm
 
 ## Presentation of the solution
-GenForm is a node package for generating web forms from JSON or JS. 
-The package can also be used to automatically add functionality to improve the ergonomics and accessibility of forms.
-This project was developed as part of the Engineering Project 2023-2024.
+
+Genform is a JavaScript library for creating web forms from JSON or JS. It's designed to be simple and flexible. You can create forms with just a few lines of code. It's also possible to create complex forms with lots of customization.
 
 ## Package installation
-To install our **GenForm solution**, simply use this command: 
 
-```bash
-npm install @genform/core
-```
+To integrate GenForm into your project, you can use the package corresponding to the framework you're using. GenForm offers specific packages for Vue, React, Vanilla and Complete.
 
-Other packages are also available in our solution. Here are the commands to install them on your project:
 - **Vue**:
 
 ```bash
@@ -35,6 +30,15 @@ npm install @genform/vanilla
 
 ```bash
 npm install @genform/complete
+```
+
+If you're not using a particular framework, the Core package is your fundamental choice. It contains the essential core of the library, comprising the library's main functions.
+If you need additional functionality, you can consult Genform's other packages for your specific needs.
+
+- **Core**:
+
+```bash
+npm install @genform/core
 ```
 
 ## Contributions
