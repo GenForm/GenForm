@@ -18,6 +18,7 @@
       <div class="split-line" />
 
       <div class="right-section">
+        <!-- <GenFormComponent isFromFile :file=jsonFromFile v-if="showGenForm"/> -->
         <!-- Ici, on affiche le composant GenFormComponent de npm -->
         <GenFormComponent
           v-if="showGenForm"
@@ -43,6 +44,7 @@ export default {
   },
   data() {
     return {
+      jsonFromFile: {}, // JSON de test
       jsonInput: '',
       customElems: [],
       customParams: {},
@@ -50,6 +52,13 @@ export default {
       showGenForm: false // Pour supprimer le composant GenFormComponent du DOM
     }
   },
+  // mounted() {
+  //   import('../../Classic.json').then((json) => {
+  //     this.jsonFromFile = json.default
+  //   }).then(() => {
+  //     this.showGenForm = true
+  //   })
+  // },
   methods: {
     jsonSubmit: async function () {
       try {

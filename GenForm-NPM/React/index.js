@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from 'react'
 import GenForm from '@genform/complete'
 
-function GenFormComponent({ elems, params, features }) {
+function GenFormComponent({ elems, params, features, file }) {
   const formRef = useRef(null)
 
   useEffect(() => {
-    const generatedForm = GenForm.toForm(document, {
+    const generatedForm = GenForm.toForm(document, file !== undefined ? file : {
       elems: elems,
       params: params,
       features: features

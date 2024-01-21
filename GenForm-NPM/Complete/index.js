@@ -7,7 +7,7 @@ import verifyEqualInputs from './lib/verifyEqualInputs.js'
 import switchField from './lib/switchField.js'
 
 class GenForm {
-  constructor() {}
+  constructor() { }
 }
 
 GenForm.toForm = function (document, obj) {
@@ -26,12 +26,6 @@ GenForm.toForm = function (document, obj) {
   }
 
   return form
-}
-
-GenForm.toFormWithFile = function (document, pathToFile) {
-  return import(path.resolve(__dirname, pathToFile)).then((file) => {
-    return GenForm.toForm(document, file)
-  })
 }
 
 export default GenForm

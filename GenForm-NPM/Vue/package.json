@@ -1,13 +1,13 @@
 {
   "name": "@genform/vue",
-  "version": "0.0.30",
+  "version": "0.0.32",
   "description": "A form generator using JS based on a JSON object for Vue projects",
   "type": "module",
   "private": false,
   "main": "./dist/GenFormComponent.umd.cjs",
   "module": "./dist/GenFormComponent.js",
   "dependencies": {
-    "@genform/complete": "0.0.23",
+    "@genform/complete": "0.0.27",
     "vue": "3.4.5"
   },
   "scripts": {
