@@ -1,37 +1,42 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
+import Inputs from './Inputs';
 
 const Selector = ({ name, type, placeholder, addValue }) => {
-  const [value, setValue] = useState({})
+  const [id, setId] = useState(0)
+  const [inputs, setInputs] = useState([])
+  useEffect(() => {
+    console.log("useEffect")
+    hasType()
+    hasPlaceholder()
+  }, [])
 
   const hasType = () => {
     if(type === true) {
-      if(name !== 'Custom')
-        setValue({type: name.toLowerCase()})
-        return (
-          <div>
-            <label htmlFor={name}>{name}</label>
-            <input type="text" placeholder={name} defaultValue={type}
-                   onChange={(e) => {setValue({type: e})}}/>
-          </div>
-        )
+      if(name !== 'Custom') {
+        setInputs((prevInputs) => [...prevInputs, <Inputs key={id} id={id} name={"type"} value={"input"}/>] )
+        setId((prevId) => {
+          return prevId + 1
+        })
+      }
     }
   }
   const hasPlaceholder = () => {
     if(placeholder === true) {
-      setValue({placeholder: name.toLowerCase()})
-      return (
-        <div>
-          <label htmlFor={name}>Placeholder</label>
-          <input type={name.toLowerCase()} placeholder={name}
-          onChange={e => {setValue({placeholder: e})}}/>
-        </div>
-      )
+      setInputs((prevInputs) => [...prevInputs, <Inputs key={id} id={name + id} name={"placeholder"} value={"default"}/>] )
+      setId((prevId) => {
+        return prevId + 1
+      })
     }
   }
   const addingElementToForm = () => {
    addValue("OUI OUI")
+  }
+  const showInputs = () => {
+    return inputs.map((input) => {
+      return input
+    })
   }
 
   return (
@@ -44,8 +49,9 @@ const Selector = ({ name, type, placeholder, addValue }) => {
             </button>
             <div className="header"> Choisissez les paramètres </div>
             <div className="content">
-              {hasType()}
-              {hasPlaceholder()}
+            </div>
+            <div>
+              {showInputs()}
             </div>
             <div className="actions">
               <button className="button" onClick={() => {

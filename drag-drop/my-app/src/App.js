@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './App.css'
 import { FaCopy } from 'react-icons/fa'
 import Selector from './Selector'
 
 function App() {
+  const [selectedElement, setSelectedElement] = useState([])
   const [formElems, setFormElems] = useState([]);
   const [formParams, setFormParams] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
@@ -15,6 +16,11 @@ function App() {
     { id: 6, name: 'Textarea' },
     { id: 7, name: 'Custom'}
   ];
+
+  useEffect(() => {
+    console.log("once pls")
+    getAllElements();
+  }, [])
 
   const addElementToForm = (json) => {
     setFormElems(json);
@@ -83,8 +89,8 @@ function App() {
       }
     }
   const getAllElements = () => {
-    return availableElements.map((element) => (
-      choose(element.name)
+    availableElements.map((element) => (
+      setSelectedElement((prevElem) => [...prevElem, choose(element.name)])
     ))
   }
 
@@ -94,7 +100,11 @@ function App() {
       <div className="App" style={{ display: 'flex' }}>
         <div style={{ flex: '1', border: '1px solid #ddd', padding: '10px' }}>
           <h2>Form Elements</h2>
-          {getAllElements()}
+          {selectedElement.map((element, index) => (
+            <div key={index}>
+              {element}
+            </div>
+          ))}
         </div>
 
         <div style={{ flex: '2', border: '1px solid #ddd', padding: '10px' }}>
