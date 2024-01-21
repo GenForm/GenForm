@@ -48,9 +48,7 @@ function App() {
           />
         </form>
         <div id="vbar"></div>
-        <div id="genform">
-          {showFormComponent()}
-        </div>
+        <div id="genform">{showFormComponent()}</div>
       </div>
     </div>
   )

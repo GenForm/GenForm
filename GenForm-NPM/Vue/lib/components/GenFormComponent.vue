@@ -38,11 +38,16 @@ const props = defineProps({
 const formRef = ref(null)
 
 onMounted(() => {
-  const generatedForm = GenForm.toForm(document, props.isFromFile ? props.file : {
-    elems: props.elems,
-    params: props.params,
-    features: props.features
-  })
+  const generatedForm = GenForm.toForm(
+    document,
+    props.isFromFile
+      ? props.file
+      : {
+          elems: props.elems,
+          params: props.params,
+          features: props.features
+        }
+  )
 
   if (formRef.value instanceof HTMLElement) {
     formRef.value.innerHTML = ''

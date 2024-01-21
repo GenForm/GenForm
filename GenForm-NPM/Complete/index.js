@@ -1,5 +1,4 @@
 import * as GenFormCore from '@genform/core'
-import path from 'path'
 
 // Features imports
 import autoCapitalize from './lib/autoCapitalize.js'
