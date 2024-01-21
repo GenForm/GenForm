@@ -1,0 +1,44 @@
+#PersonnalizelyStyle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffff;
+  border: solid 0.5px #ebebeb;
+  border-radius: 10px;
+  width: 25%;
+  padding: 15px;
+}
+
+#container_label, textarea, button {
+  margin-bottom: 10px; /* Espace entre les éléments */
+}
+label {
+  margin: 5px 5px 5px 5px;
+}
+textarea {
+  resize: none;
+}
+
+button {
+  display: inline-block;
+  line-height: 1.5;
+  color: #ffffff;
+
+  cursor: pointer;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  border-radius: 0.25rem;
+}
+
+button:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
+}
+
+button:focus {
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.5);
+  outline: 0;
+}

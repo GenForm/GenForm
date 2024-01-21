@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import { FaCopy } from "react-icons/fa";
+import Personalize from './components/Personnalize';
 
 const FormElement = ({ id, name, onClick }) => (
   <div key={id} onClick={() => onClick(id)} style={{ cursor: 'pointer', margin: '5px' }}>
@@ -93,8 +94,10 @@ function App() {
         }} />
           {afterCopied()}
           <div onClick={() => clearJson()} style={{ cursor: 'pointer' }}>Vider le Json</div>
+          <div>Personnaliser</div>
         </div>
       </div>
+      <Personalize />
     </div>
   );
 }
