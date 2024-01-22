@@ -8,6 +8,7 @@ function App() {
   const [formElems, setFormElems] = useState([]);
   const [formParams, setFormParams] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
+  const [key, setKey] = useState(0);
   const availableElements = [
     { id: 1, name: 'Input' },
     { id: 2, name: 'Text' },
@@ -23,19 +24,16 @@ function App() {
   }, [])
 
   const addElementToForm = (json) => {
+    console.log("json", json)
     setFormElems(json);
   };
 
-  const convertElementToString = (elements) => {
-    if(elements.length === 0) return;
+  const convertElementToString = () => {
+    if(formElems.length === 0) return;
     let str = `{\n
     \t"elems": [\n`;
-    for(let element of elements) {
-      str += "\t\t{\n";
-      str += "\t\ttype: " + element.type + ",\n";
-      str += "\t\tname: " + element.name + ",\n";
-      str += "\t\tplaceholder: " + element.placeholder + "\n";
-      str += "\t},\n";
+    for(let element of formElems) {
+      str += element
     }
     str = str.slice(0, -2);
     str += "\n\t],\n";
@@ -73,17 +71,35 @@ function App() {
   const choose = (name) => {
       switch (name) {
         case 'Input':
-          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
         case 'Text':
-          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
         case 'Checkbox':
-          return <Selector name={name} type={true} placeholder={false} addValue={addElementToForm}/>;
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={false} addValue={addElementToForm}/>;
         case 'Radio':
-          return <Selector name={name} type={false} placeholder={false} addValue={addElementToForm}/>;
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={false} placeholder={false} addValue={addElementToForm}/>;
         case 'Custom':
-          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
         case 'Textarea':
-          return <Selector name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
         default:
           return <div>div</div>;
       }
