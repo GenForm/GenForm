@@ -7,7 +7,7 @@
   "main": "./dist/GenFormComponent.umd.cjs",
   "module": "./dist/GenFormComponent.js",
   "dependencies": {
-    "@genform/complete": "0.0.27",
+    "@genform/complete": "0.0.28",
     "vue": "3.4.5"
   },
   "scripts": {

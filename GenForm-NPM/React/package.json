@@ -5,7 +5,7 @@
   "private": false,
   "main": "index.js",
   "dependencies": {
-    "@genform/complete": "^0.0.28",
+    "@genform/complete": "0.0.28",
     "react": "18.2.0"
   },
   "scripts": {
