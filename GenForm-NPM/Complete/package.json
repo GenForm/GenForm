@@ -1,6 +1,6 @@
 {
   "name": "@genform/complete",
-  "version": "0.0.25",
+  "version": "0.0.29",
   "description": "A form generator using JS based on a JSON object with features such as validation, auto switch to next input, etc.",
   "private": false,
   "main": "index.min.js",
@@ -16,7 +16,7 @@
   "author": "GenForm",
   "license": "MIT",
   "dependencies": {
-    "@genform/core": "0.1.16"
+    "@genform/core": "0.1.17"
   },
   "devDependencies": {
     "@babel/core": "^7.23.7",

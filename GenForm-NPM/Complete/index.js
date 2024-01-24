@@ -1,5 +1,4 @@
 import * as GenFormCore from '@genform/core'
-import path from 'path'
 
 // Features imports
 import autoCapitalize from './lib/autoCapitalize.js'
@@ -26,12 +25,6 @@ GenForm.toForm = function (document, obj) {
   }
 
   return form
-}
-
-GenForm.toFormWithFile = function (document, pathToFile) {
-  return import(path.resolve(__dirname, pathToFile)).then((file) => {
-    return GenForm.toForm(document, file)
-  })
 }
 
 export default GenForm
