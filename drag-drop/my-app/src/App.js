@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react'
 import './App.css';
 import { FaCopy } from "react-icons/fa";
 import Personalize from './components/Personnalize';
+import Selector from './Selector'
 
 const FormElement = ({ id, name, onClick }) => (
   <div key={id} onClick={() => onClick(id)} style={{ cursor: 'pointer', margin: '5px' }}>
@@ -10,34 +11,36 @@ const FormElement = ({ id, name, onClick }) => (
 );
 
 function App() {
+  const [selectedElement, setSelectedElement] = useState([])
   const [formElems, setFormElems] = useState([]);
   const [formParams, setFormParams] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
+  const [key, setKey] = useState(0);
   const availableElements = [
     { id: 1, name: 'Input' },
-    { id: 2, name: 'Textarea' },
+    { id: 2, name: 'Text' },
     { id: 3, name: 'Checkbox' },
     { id: 4, name: 'Radio' },
-    { id: 5, name: 'Select' },
-    { id: 6, name: 'Button'}
+    { id: 6, name: 'Textarea' },
+    { id: 7, name: 'Custom'}
   ];
 
-  const addElementToForm = (elementId) => {
-    const selectedElement = availableElements.find((element) => element.id === elementId);
-    setFormElems([...formElems, { type: selectedElement.name.toLowerCase(), name: selectedElement.name,
-      placeholder: selectedElement.name }]);
+  useEffect(() => {
+    console.log("once pls")
+    getAllElements();
+  }, [])
+
+  const addElementToForm = (json) => {
+    console.log("json", json)
+    setFormElems(json);
   };
 
-  const convertElementToString = (elements) => {
-    if(elements.length === 0) return;
+  const convertElementToString = () => {
+    if(formElems.length === 0) return;
     let str = `{\n
     \t"elems": [\n`;
-    for(let element of elements) {
-      str += "\t\t{\n";
-      str += "\t\ttype: " + element.type + ",\n";
-      str += "\t\tname: " + element.name + ",\n";
-      str += "\t\tplaceholder: " + element.placeholder + "\n";
-      str += "\t},\n";
+    for(let element of formElems) {
+      str += element
     }
     str = str.slice(0, -2);
     str += "\n\t],\n";
@@ -46,12 +49,11 @@ function App() {
 
   const convertParamsToString = (params) => {
     if(formElems.length === 0) return;
-    let str = `\t"params": {\n
+    return `\t"params": {\n
     \t\t"action": "/login"\n,
     \t\t"method": "POST"\n
     \t}\n
-    }\n`
-    return str;
+    }\n`;
   }
 
   const copyJson = () => {
@@ -73,6 +75,47 @@ function App() {
     setFormElems([])
     setFormParams([])
   }
+  const choose = (name) => {
+      switch (name) {
+        case 'Input':
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        case 'Text':
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        case 'Checkbox':
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={false} addValue={addElementToForm}/>;
+        case 'Radio':
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={false} placeholder={false} addValue={addElementToForm}/>;
+        case 'Custom':
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        case 'Textarea':
+          console.log("keey", key)
+          setKey(prevkey => prevkey + 1)
+          console.log("keey", key)
+          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
+        default:
+          return <div>div</div>;
+      }
+    }
+  const getAllElements = () => {
+    availableElements.map((element) => (
+      setSelectedElement((prevElem) => [...prevElem, choose(element.name)])
+    ))
+  }
 
   return (
     <div>
@@ -80,8 +123,10 @@ function App() {
       <div className="App" style={{ display: 'flex' }}>
         <div style={{ flex: '1', border: '1px solid #ddd', padding: '10px' }}>
           <h2>Form Elements</h2>
-          {availableElements.map((element) => (
-            <FormElement key={element.id} {...element} onClick={addElementToForm} />
+          {selectedElement.map((element, index) => (
+            <div key={index}>
+              {element}
+            </div>
           ))}
         </div>
 
