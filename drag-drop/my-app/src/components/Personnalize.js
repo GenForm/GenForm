@@ -1,18 +1,15 @@
 import './Personnalize.css';
 import { useState } from 'react';
 
-function Personnalize() {
+function Personnalize( {formElements}) {
   const [selectedInput, setSelectedInput] = useState('name');
   const [css, setCss] = useState({});
 
-  const handleSelectChange = (elem) => {
-    const inputName = elem.target.value;
-    setSelectedInput(inputName);
-  };
+
 
   const handleCssChange = (elem) => {
     const newCss = elem.target.value;
-    setCss({...css,[selectedInput]: newCss });
+    setCss({ ...css, [selectedInput]: newCss });
   };
 
   const PersonnalizeStyle = () => {
@@ -28,9 +25,14 @@ function Personnalize() {
       <div id="PersonnalizeStyle">
         <div id="container_label">
           <label>Select the input </label>
-          <select value={selectedInput} onChange={handleSelectChange}>
-            <option value="name">Name</option>
-            <option value="pseudonym">Pseudonym</option>
+
+
+          <select value={selectedInput} onChange={(e) => setSelectedInput(e.target.value)}>
+            {formElements.map((elem, index) => (
+              <option key={index} value={elem.name}>
+                {elem.name}
+              </option>
+            ))}
           </select>
         </div>
 

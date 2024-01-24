@@ -97,7 +97,7 @@ function App() {
           <div>Personnaliser</div>
         </div>
       </div>
-      <Personalize />
+      <Personalize formElements={formElems} />
     </div>
   );
 }
