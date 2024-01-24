@@ -3,25 +3,32 @@ import { useState } from 'react';
 
 function Personnalize() {
   const [selectedInput, setSelectedInput] = useState('name');
-  const [cssString, setCssString] = useState('');
+  const [css, setCss] = useState({});
 
-  const PersonnalizelyStyle = () => {
+  const handleSelectChange = (elem) => {
+    const inputName = elem.target.value;
+    setSelectedInput(inputName);
+  };
+
+  const handleCssChange = (elem) => {
+    const newCss = elem.target.value;
+    setCss({...css,[selectedInput]: newCss });
+  };
+
+  const PersonnalizeStyle = () => {
     const inputElements = document.getElementsByName(selectedInput);
-
-    for (let i = 0; i < inputElements.length; i++) {
-      const element = inputElements[i];
-      element.style.cssText = cssString;
-
+    for (let element of inputElements) {
+      element.style.cssText = css[selectedInput];
     }
   };
 
   return (
     <div className="Personnalize">
       <br />
-      <div id="PersonnalizelyStyle">
+      <div id="PersonnalizeStyle">
         <div id="container_label">
           <label>Select the input </label>
-          <select value={selectedInput} onChange={(e) => setSelectedInput(e.target.value)}>
+          <select value={selectedInput} onChange={handleSelectChange}>
             <option value="name">Name</option>
             <option value="pseudonym">Pseudonym</option>
           </select>
@@ -32,17 +39,16 @@ function Personnalize() {
           placeholder='enter your css here'
           rows={20}
           cols={30}
-          onChange={(elem) => setCssString(elem.target.value)}
+          value={css[selectedInput]}
+          onChange={handleCssChange}
         />
         <br />
         <br />
 
-
-        <button onClick={PersonnalizelyStyle}>Apply style</button>
+        <button onClick={PersonnalizeStyle}>Apply style</button>
         <br />
         <br />
       </div>
-      {/*TODO : delete after test*/}
       <div id='div-input'>
         <input type="text" name="name" placeholder="Nom" />
         <br />
