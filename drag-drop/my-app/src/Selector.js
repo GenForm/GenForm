@@ -20,6 +20,7 @@ const Selector = ({ key, name, type, placeholder, addValue }) => {
     console.log("key", key)
     if(type === true) {
       if(name !== 'Custom') {
+        setJsons(prevList => [...prevList, '']);
         setInputs((prevInputs) => [...prevInputs, <Inputs key={key+" "+id} id={id} name={"type"} value={"input"} modifyJson={modifyJson}/>] )
         setId((prevId) => {
           return prevId + 1
@@ -30,7 +31,8 @@ const Selector = ({ key, name, type, placeholder, addValue }) => {
   }
   const hasPlaceholder = () => {
     if(placeholder === true) {
-      setInputs((prevInputs) => [...prevInputs, <Inputs key={key+" "+id} id={name + id} name={"placeholder"} value={"default"} modifyJson={modifyJson}/>] )
+      setJsons(prevList => [...prevList, '']);
+      setInputs((prevInputs) => [...prevInputs, <Inputs key={key+" "+id} id={id} name={"placeholder"} value={"default"} modifyJson={modifyJson}/>] )
       setId((prevId) => {
         return prevId + 1
       })
