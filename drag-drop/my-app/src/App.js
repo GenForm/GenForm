@@ -8,14 +8,13 @@ function App() {
   const [formElems, setFormElems] = useState([]);
   const [formParams, setFormParams] = useState([]);
   const [isCopied, setIsCopied] = useState(false);
-  const [key, setKey] = useState(0);
   const availableElements = [
-    { id: 1, name: 'Input' },
-    { id: 2, name: 'Text' },
-    { id: 3, name: 'Checkbox' },
-    { id: 4, name: 'Radio' },
-    { id: 6, name: 'Textarea' },
-    { id: 7, name: 'Custom'}
+    { id: 1, typeName: 'Input' },
+    { id: 2, typeName: 'Text' },
+    { id: 3, typeName: 'Checkbox' },
+    { id: 4, typeName: 'Radio' },
+    { id: 6, typeName: 'Textarea' },
+    { id: 7, typeName: 'Custom' }
   ];
 
   useEffect(() => {
@@ -29,10 +28,10 @@ function App() {
   };
 
   const convertElementToString = () => {
-    if(formElems.length === 0) return;
+    if (formElems.length === 0) return;
     let str = `{\n
     \t"elems": [\n`;
-    for(let element of formElems) {
+    for (let element of formElems) {
       str += element
     }
     str = str.slice(0, -2);
@@ -41,7 +40,7 @@ function App() {
   }
 
   const convertParamsToString = (params) => {
-    if(formElems.length === 0) return;
+    if (formElems.length === 0) return;
     return `\t"params": {\n
     \t\t"action": "/login"\n,
     \t\t"method": "POST"\n
@@ -58,7 +57,7 @@ function App() {
   }
 
   const afterCopied = () => {
-    if(isCopied) {
+    if (isCopied) {
       return "Copié!"
     } else {
       return ""
@@ -68,45 +67,9 @@ function App() {
     setFormElems([])
     setFormParams([])
   }
-  const choose = (name) => {
-      switch (name) {
-        case 'Input':
-          console.log("keey", key)
-          setKey(prevkey => prevkey + 1)
-          console.log("keey", key)
-          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
-        case 'Text':
-          console.log("keey", key)
-          setKey(prevkey => prevkey + 1)
-          console.log("keey", key)
-          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
-        case 'Checkbox':
-          console.log("keey", key)
-          setKey(prevkey => prevkey + 1)
-          console.log("keey", key)
-          return <Selector key={key} name={name} type={true} placeholder={false} addValue={addElementToForm}/>;
-        case 'Radio':
-          console.log("keey", key)
-          setKey(prevkey => prevkey + 1)
-          console.log("keey", key)
-          return <Selector key={key} name={name} type={false} placeholder={false} addValue={addElementToForm}/>;
-        case 'Custom':
-          console.log("keey", key)
-          setKey(prevkey => prevkey + 1)
-          console.log("keey", key)
-          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
-        case 'Textarea':
-          console.log("keey", key)
-          setKey(prevkey => prevkey + 1)
-          console.log("keey", key)
-          return <Selector key={key} name={name} type={true} placeholder={true} addValue={addElementToForm}/>;
-        default:
-          return <div>div</div>;
-      }
-    }
   const getAllElements = () => {
     availableElements.map((element) => (
-      setSelectedElement((prevElem) => [...prevElem, choose(element.name)])
+      setSelectedElement((prevElem) => [...prevElem, <Selector elementTypeKey={element.id * 100} typeName={element.typeName} addValue={addElementToForm} />])
     ))
   }
 
@@ -128,8 +91,8 @@ function App() {
           <pre>{convertElementToString(formElems)}</pre>
           <pre>{convertParamsToString(formParams)}</pre>
           Copier le json <FaCopy style={{ cursor: 'pointer' }} onClick={() => {
-          copyJson()
-        }} />
+            copyJson()
+          }} />
           {afterCopied()}
           <div onClick={() => clearJson()} style={{ cursor: 'pointer' }}>Vider le Json</div>
         </div>

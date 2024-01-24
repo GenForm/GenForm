@@ -3,41 +3,36 @@ import Popup from 'reactjs-popup';
 import 'reactjs-popup/dist/index.css';
 import Inputs from './Inputs';
 
-const Selector = ({ key, name, type, placeholder, addValue }) => {
+const Selector = ({ elementTypeKey, typeName, addValue }) => {
   const [id, setId] = useState(0)
   const [inputs, setInputs] = useState([])
   const [jsons, setJsons] = useState([])
   useEffect(() => {
-    console.log("useEffect")
-    hasType()
-    hasPlaceholder()
+    handleAdd()
+  }, [inputs])
+  useEffect(() => {
+    // Called once
+    addTypeInput()
+    addNameInput()
   }, [])
+  useEffect(() => {
+    console.log("Last Elem id", id) // TODO: To update Id on each update, replace console.log by something more useful
+  }, [id])
   function handleAdd() {
     console.log("added")
     setJsons(prevList => [...prevList, '']);
   }
-  const hasType = () => {
-    console.log("key", key)
-    if(type === true) {
-      if(name !== 'Custom') {
-        setJsons(prevList => [...prevList, '']);
-        setInputs((prevInputs) => [...prevInputs, <Inputs key={key+" "+id} id={id} name={"type"} value={"input"} modifyJson={modifyJson}/>] )
-        setId((prevId) => {
-          return prevId + 1
-        })
-        handleAdd()
-      }
-    }
+  const addTypeInput = () => {
+    setJsons(prevList => [...prevList, '']);
+    setInputs((prevInputs) => [...prevInputs, <Inputs key={elementTypeKey + id} id={id} name={"type"} value={typeName} modifyJson={modifyJson} />])
+    setId((prevId) => prevId + 1);
+    handleAdd()
   }
-  const hasPlaceholder = () => {
-    if(placeholder === true) {
-      setJsons(prevList => [...prevList, '']);
-      setInputs((prevInputs) => [...prevInputs, <Inputs key={key+" "+id} id={id} name={"placeholder"} value={"default"} modifyJson={modifyJson}/>] )
-      setId((prevId) => {
-        return prevId + 1
-      })
-      handleAdd()
-    }
+  const addNameInput = () => {
+    setJsons(prevList => [...prevList, '']);
+    setInputs((prevInputs) => [...prevInputs, <Inputs key={elementTypeKey + id} id={id} name={"name"} value={""} modifyJson={modifyJson} />])
+    setId((prevId) => prevId + 1);
+    handleAdd()
   }
   const modifyJson = (id, json) => {
     console.log("modifyJson", id, json)
@@ -57,7 +52,7 @@ const Selector = ({ key, name, type, placeholder, addValue }) => {
     })
     json.concat('\t\t},\n')
     console.log("concat", json + times)
-    if(times > 0) {
+    if (times > 0) {
       addValue(json)
     }
   }
@@ -67,16 +62,15 @@ const Selector = ({ key, name, type, placeholder, addValue }) => {
     })
   }
   const addInput = () => {
-    setInputs((prevInputs) => [...prevInputs, <Inputs key={key+" "+id} id={id} name={"à saisir"} value={"à saisir"} modifyJson={modifyJson}/>] )
-    setId((prevId) => {
-      return prevId + 1
-    })
+    setInputs((prevInputs) => [...prevInputs, <Inputs key={elementTypeKey + id} id={id} name={""} value={""} modifyJson={modifyJson} />])
+    setId((prevId) => prevId + 1);
+    console.log("Actual id", id)
     handleAdd()
   }
 
   return (
-    <div key={name}>
-      <Popup trigger={<button className="button"> {name} </button>} modal>
+    <div key={typeName}>
+      <Popup trigger={<button className="button"> {typeName} </button>} modal>
         {close => (
           <div className="modal">
             <button className="close" onClick={close}>
