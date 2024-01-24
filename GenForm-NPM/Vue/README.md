@@ -27,7 +27,7 @@ It takes two elements when creating the component :
 The first one `elements` is an array of objects. Each object represents an element of the form. For example :
 
 ```js
-;[
+[
   {
     type: 'text',
     name: 'firstname',
