@@ -8,7 +8,7 @@
   "module": "./dist/GenFormComponent.js",
   "dependencies": {
     "@genform/complete": "0.0.28",
-    "vue": "3.4.5"
+    "vue": "^3.4.15"
   },
   "scripts": {
     "build": "vite build",
