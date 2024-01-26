@@ -20,7 +20,7 @@ function GenFormComponent({ elems, params, features, file }) {
       formRef.current.innerHTML = ''
       formRef.current.appendChild(generatedForm)
     }
-  }, [elems, params, features])
+  }, [elems, params, features, file])
 
   return React.createElement('div', { ref: formRef })
 }
