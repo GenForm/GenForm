@@ -36,14 +36,8 @@
       "name": "selectOption2",
       "placeholder": "Select an option",
       "options": {
-        "optGroup1": [
-          "option 1",
-          "option 2"
-        ],
-        "optGroup2": [
-          "option 1",
-          "option 2"
-        ]
+        "optGroup1": ["option 1", "option 2"],
+        "optGroup2": ["option 1", "option 2"]
       }
     },
     {

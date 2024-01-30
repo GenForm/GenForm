@@ -191,7 +191,13 @@ function createSelect(document, selectElem) {
             break
           case false:
             for (const optionGrp in selectElem[key]) {
-              select.appendChild(createOptionGroup(document, selectElem[key][optionGrp], optionGrp))
+              select.appendChild(
+                createOptionGroup(
+                  document,
+                  selectElem[key][optionGrp],
+                  optionGrp
+                )
+              )
             }
             break
         }
