@@ -10,9 +10,7 @@
           placeholder="Enter JSON data here"
           id="changeform"
         />
-        <button class="submit-button" @click="jsonSubmit" id="submit">
-          Submit
-        </button>
+        <button class="submit-button" @click="jsonSubmit" id="submit">Submit</button>
       </div>
 
       <div class="split-line" />

@@ -18,6 +18,29 @@
       "required": "false"
     },
     {
+      "type": "select",
+      "name": "selectOption",
+      "placeholder": "Select an option",
+      "options": [
+        "option 1",
+        "option 2",
+        {
+          "text": "option 3",
+          "value": "option 3",
+          "selected": "true"
+        }
+      ]
+    },
+    {
+      "type": "select",
+      "name": "selectOption2",
+      "placeholder": "Select an option",
+      "options": {
+        "optGroup1": ["option 1", "option 2"],
+        "optGroup2": ["option 1", "option 2"]
+      }
+    },
+    {
       "type": "submit",
       "value": "Login"
     }
