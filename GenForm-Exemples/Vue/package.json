@@ -4,13 +4,13 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "start": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint ../../.eslintrc.js"
   },
   "dependencies": {
-    "@genform/vue": "0.0.31",
+    "@genform/vue": "0.0.33",
     "vue": "3.4.5"
   },
   "devDependencies": {
