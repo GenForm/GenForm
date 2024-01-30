@@ -57,6 +57,7 @@ class GenForm {
     'minlength',
     'multiple',
     'name',
+    'options',
     'pattern',
     'placeholder',
     'popovertarget',
@@ -70,6 +71,49 @@ class GenForm {
     'value',
     'width'
   ]
+}
+
+function nameIsDuplicate(jsonObj) {
+  const name = {}
+  const elems = jsonObj.elems
+
+  for (let i = 0; i < elems.length; i++) {
+    if (name[elems[i].name] !== undefined) {
+      throw new Error('Duplicate name: ' + elems[i].name)
+    } else {
+      name[elems[i].name] = elems[i].name
+    }
+  }
+}
+
+function jsonIsCorrect(inputJSON) {
+  if (!inputJSON || Object.keys(inputJSON).length === 0) {
+    throw new Error('Empty JSON')
+  }
+
+  if (!inputJSON.elems) {
+    throw new Error('"elems" field is missing')
+  }
+
+  if (!inputJSON.params || typeof inputJSON.params !== 'object') {
+    throw new Error('"params" field is missing')
+  }
+
+  if (!inputJSON.params.action) {
+    throw new Error('"action" field in "params" is missing')
+  }
+
+  for (const elem of inputJSON.elems) {
+    if (!GenForm.validTypes.includes(elem.type)) {
+      throw new Error('invalid type: ' + elem.type)
+    }
+
+    for (const key in elem) {
+      if (!GenForm.validAttributes.includes(key)) {
+        throw new Error('invalid attribute: ' + key)
+      }
+    }
+  }
 }
 
 /**
@@ -115,57 +159,80 @@ GenForm.toForm = function (document, obj) {
   form.setAttribute('method', obj.params.method)
 
   obj.elems.forEach(function (elem) {
-    const element = document.createElement('input')
-    const keys = Object.keys(elem)
-    for (const key in keys) {
-      element.setAttribute(keys[key], elem[keys[key]])
+    switch (elem.type) {
+      case 'select':
+        form.appendChild(createSelect(document, elem))
+        break
+      default:
+        form.appendChild(createInput(document, elem))
     }
-    form.appendChild(element)
   })
   return form
 }
 
-function nameIsDuplicate(jsonObj) {
-  const name = {}
-  const elems = jsonObj.elems
-
-  for (let i = 0; i < elems.length; i++) {
-    if (name[elems[i].name] !== undefined) {
-      throw new Error('Duplicate name: ' + elems[i].name)
-    } else {
-      name[elems[i].name] = elems[i].name
-    }
+function createInput(document, inputElem) {
+  const input = document.createElement('input')
+  for (const key in inputElem) {
+    input.setAttribute(key, inputElem[key])
   }
+  return input
 }
 
-function jsonIsCorrect(inputJSON) {
-  if (!inputJSON || Object.keys(inputJSON).length === 0) {
-    throw new Error('Empty JSON')
-  }
-
-  if (!inputJSON.elems) {
-    throw new Error('"elems" field is missing')
-  }
-
-  if (!inputJSON.params || typeof inputJSON.params !== 'object') {
-    throw new Error('"params" field is missing')
-  }
-
-  if (!inputJSON.params.action) {
-    throw new Error('"action" field in "params" is missing')
-  }
-
-  for (const elem of inputJSON.elems) {
-    if (!GenForm.validTypes.includes(elem.type)) {
-      throw new Error('invalid type: ' + elem.type)
-    }
-
-    for (const key in elem) {
-      if (!GenForm.validAttributes.includes(key)) {
-        throw new Error('invalid attribute: ' + key)
-      }
+function createSelect(document, selectElem) {
+  const select = document.createElement('select')
+  for (const key in selectElem) {
+    switch (key) {
+      case 'options':
+        switch (Array.isArray(selectElem[key])) {
+          case true:
+            for (const option of selectElem[key]) {
+              select.appendChild(createOption(document, option))
+            }
+            break
+          case false:
+            for (const optionGrp in selectElem[key]) {
+              select.appendChild(createOptionGroup(document, selectElem[key][optionGrp], optionGrp))
+            }
+            break
+        }
+        break
+      case 'placeholder':
+        select.appendChild(createSelectPlaceholder(document, selectElem[key]))
+        break
+      default:
+        select.setAttribute(key, selectElem[key])
     }
   }
+  return select
+}
+
+function createOption(document, option) {
+  const opt = document.createElement('option')
+  if (typeof option === 'string') {
+    opt.innerHTML = option
+  } else {
+    opt.setAttribute('value', option.value)
+    opt.innerHTML = option.text || option.value
+    opt.setAttribute('selected', option.selected || false)
+  }
+  return opt
+}
+
+function createOptionGroup(document, optionGrp, label) {
+  const optGrp = document.createElement('optgroup')
+  optGrp.setAttribute('label', label)
+  for (const option of optionGrp) {
+    optGrp.appendChild(createOption(document, option))
+  }
+  return optGrp
+}
+
+function createSelectPlaceholder(document, placeholder) {
+  const opt = document.createElement('option')
+  opt.innerHTML = placeholder
+  opt.setAttribute('disabled', '')
+  opt.setAttribute('selected', '')
+  return opt
 }
 
 export default GenForm
