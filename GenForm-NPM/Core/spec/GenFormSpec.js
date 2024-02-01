@@ -10,10 +10,10 @@ describe('GenForm should', function () {
   })
 
   it('contain a list with all valid input elements', function () {
-    expect(GenForm.validTypes.length).toBe(24)
+    expect(GenForm.validTypes.length).toBe(23)
   })
 
   it('contain a list with all valid input attributes', function () {
-    expect(GenForm.validAttributes.length).toBe(36)
+    expect(GenForm.validAttributes.length).toBe(37)
   })
 })
