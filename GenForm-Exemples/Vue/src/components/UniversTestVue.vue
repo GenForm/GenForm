@@ -7,7 +7,7 @@
         <textarea
           v-model="jsonInput"
           class="json-input"
-          placeholder="Enter JSON data here"
+          placeholder="Enter a json format form parameters ..."
           id="changeform"
         />
         <button class="submit-button" @click="jsonSubmit" id="submit">Submit</button>
