@@ -21,6 +21,8 @@ function App() {
   function showFormComponent() {
     if (showForm) {
       return <GenFormComponent params={params} elems={elems} features={features} />
+    } else {
+      return <form></form>
     }
   }
 
@@ -30,14 +32,11 @@ function App() {
       <div id="main">
         <form id="input">
           <textarea
-            rows="30"
-            cols="68"
             id="changeform"
             name="changeform"
             placeholder="Enter a json format form parameters ..."
             onChange={(event) => setValue(event.target.value)}
           ></textarea>
-          <br />
           <input
             type="button"
             value="Submit"
