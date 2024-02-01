@@ -48,7 +48,7 @@ const form = genform.toForm(document, formData)
 formContainer.appendChild(form)
 ```
 
-The json is composed of 3 parts :
+The json is composed of 2 parts :
 - `elems` : The form elements, you can have your inputs, buttons, etc.
 - `params` : The form parameters, you can have the action, method, etc.
 
