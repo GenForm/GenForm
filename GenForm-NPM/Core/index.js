@@ -164,7 +164,11 @@ GenForm.toForm = function (document, obj) {
         form.appendChild(createSelect(document, elem))
         break
       default:
-        form.appendChild(createInput(document, elem))
+        if (elem.label) {
+          form.appendChild(createLabel(document, elem))
+        } else {
+          form.appendChild(createInput(document, elem))
+        }
     }
   })
   return form
@@ -176,6 +180,15 @@ function createInput(document, inputElem) {
     input.setAttribute(key, inputElem[key])
   }
   return input
+}
+
+function createLabel(document, obj) {
+  const label = document.createElement('label')
+  label.textContent = obj.label
+  delete obj.label
+
+  label.appendChild(createInput(document, obj))
+  return label
 }
 
 function createSelect(document, selectElem) {
@@ -234,6 +247,7 @@ function createSelectPlaceholder(document, placeholder) {
   opt.innerHTML = placeholder
   opt.setAttribute('disabled', '')
   opt.setAttribute('selected', '')
+  opt.setAttribute('hidden', '')
   return opt
 }
 

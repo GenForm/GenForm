@@ -49,9 +49,9 @@ formContainer.appendChild(form)
 ```
 
 The json is composed of 2 parts :
+
 - `elems` : The form elements, you can have your inputs, buttons, etc.
 - `params` : The form parameters, you can have the action, method, etc.
-
 
 ## Want to contribute ?
 
@@ -64,4 +64,3 @@ This project is under the [MIT](https://github.com/GenForm/GenForm/blob/main/LIC
 ## Web interface
 
 To generate automatically a form, you can use the [web interface](https://genform.github.io/).
-
