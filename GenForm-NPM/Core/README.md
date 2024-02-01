@@ -63,5 +63,5 @@ This project is under the [MIT](https://github.com/GenForm/GenForm/blob/main/LIC
 
 ## Web interface
 
-To generate automatically a form, you can use the [web interface](https://genform.github.io/GenForm-Web/).
+To generate automatically a form, you can use the [web interface](https://genform.github.io/).
 
