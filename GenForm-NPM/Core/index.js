@@ -247,6 +247,7 @@ function createSelectPlaceholder(document, placeholder) {
   opt.innerHTML = placeholder
   opt.setAttribute('disabled', '')
   opt.setAttribute('selected', '')
+  opt.setAttribute('hidden', '')
   return opt
 }
 
