@@ -1,6 +1,6 @@
 {
   "name": "@genform/complete",
-  "version": "0.0.30",
+  "version": "1.0.0",
   "description": "A form generator using JS based on a JSON object with features such as validation, auto switch to next input, etc.",
   "private": false,
   "main": "index.min.js",
@@ -15,9 +15,6 @@
   ],
   "author": "GenForm",
   "license": "MIT",
-  "dependencies": {
-    "@genform/core": "0.1.17"
-  },
   "devDependencies": {
     "@babel/core": "^7.23.7",
     "@babel/preset-env": "^7.23.8",
@@ -26,5 +23,8 @@
     "uglify-js": "^3.17.4",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "@genform/core": "^1.0.0"
   }
 }
