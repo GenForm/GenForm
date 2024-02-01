@@ -48,6 +48,11 @@ const form = genform.toForm(document, formData)
 formContainer.appendChild(form)
 ```
 
+The json is composed of 3 parts :
+- `elems` : The form elements, you can have your inputs, buttons, etc.
+- `params` : The form parameters, you can have the action, method, etc.
+
+
 ## Want to contribute ?
 
 If you want to contribute to the project, you can check the [GitHub](https://github.com/GenForm/GenForm) repository.
@@ -55,3 +60,8 @@ If you want to contribute to the project, you can check the [GitHub](https://git
 ## License
 
 This project is under the [MIT](https://github.com/GenForm/GenForm/blob/main/LICENSE) license.
+
+## Web interface
+
+To generate automatically a form, you can use the [web interface](https://genform.github.io/).
+
