@@ -20,9 +20,7 @@ function App() {
 
   function showFormComponent() {
     if (showForm) {
-      return (
-        <GenFormComponent params={params} elems={elems} features={features} />
-      )
+      return <GenFormComponent params={params} elems={elems} features={features} />
     }
   }
 
