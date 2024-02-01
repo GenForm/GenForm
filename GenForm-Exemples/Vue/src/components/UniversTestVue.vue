@@ -4,8 +4,12 @@
 
     <div class="content">
       <div class="left-section">
-        <textarea v-model="jsonInput" class="json-input" placeholder="Enter a json format form parameters ..."
-          id="changeform" />
+        <textarea
+          v-model="jsonInput"
+          class="json-input"
+          placeholder="Enter a json format form parameters ..."
+          id="changeform"
+        />
         <button class="submit-button" @click="jsonSubmit" id="submit">Submit</button>
       </div>
 
@@ -14,8 +18,13 @@
       <div class="right-section">
         <!-- <GenFormComponent isFromFile :file=jsonFromFile v-if="showGenForm"/> -->
         <!-- Ici, on affiche le composant GenFormComponent de npm -->
-        <GenFormComponent v-if="showGenForm" :elems="customElems" :params="customParams" :features="customFeatures"
-          key="componentKey" />
+        <GenFormComponent
+          v-if="showGenForm"
+          :elems="customElems"
+          :params="customParams"
+          :features="customFeatures"
+          key="componentKey"
+        />
       </div>
     </div>
   </div>
