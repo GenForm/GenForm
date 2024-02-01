@@ -164,23 +164,10 @@ GenForm.toForm = function (document, obj) {
         form.appendChild(createSelect(document, elem))
         break
       default:
-        if (elem.label) {
-          form.appendChild(createLabel(document, elem))
-        } else {
-          form.appendChild(createInput(document, elem))
-        }
+        form.appendChild(createInput(document, elem))
     }
   })
   return form
-}
-
-function createLabel(document, obj) {
-  const label = document.createElement('label')
-  label.textContent = obj.label
-  delete obj.label
-
-  label.appendChild(createInput(document, obj))
-  return label
 }
 
 function createInput(document, inputElem) {
