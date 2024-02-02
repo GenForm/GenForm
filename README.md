@@ -6,7 +6,13 @@ Genform is a JavaScript library for creating web forms from JSON or JS. It's des
 
 ## Package installation
 
-To integrate GenForm into your project, you can use the package corresponding to the framework you're using. GenForm offers specific packages for Vue, React, Vanilla and Complete.
+To integrate GenForm into your project, you can use the package corresponding to the framework you're using. GenForm offers specific packages for Vue, React, and , for any other frameword, Complete.
+
+- **Complete**:
+
+```bash
+npm install @genform/complete
+```
 
 - **Vue**:
 
@@ -18,18 +24,6 @@ npm install @genform/vue
 
 ```bash
 npm install @genform/react
-```
-
-- **Vanilla**:
-
-```bash
-npm install @genform/vanilla
-```
-
-- **Complete**:
-
-```bash
-npm install @genform/complete
 ```
 
 If you're not using a particular framework, the Core package is your fundamental choice. It contains the essential core of the library, comprising the library's main functions.
